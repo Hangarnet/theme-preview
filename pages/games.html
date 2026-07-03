@@ -18,6 +18,57 @@
 .hero .lead b { color: var(--text-primary); }
 .era { font-family: var(--hcn-font-mono); font-size: 11px; letter-spacing: .18em; color: var(--accent-hover-text); }
 
+/* selo de patrocinador — placa usinada rebitada ao casco, DNA do .seal.
+   Verde NVIDIA (#76B900) só existe aqui dentro (filete energizado + LED),
+   pequeno e contido: não disputa com o laranja de ação da página. */
+.sponsor {
+  position: absolute; right: 24px; top: 50%; transform: translateY(-46%);
+  display: flex; flex-direction: column; align-items: center; gap: 11px;
+  padding: 20px 42px 17px;
+  background-color: #232629;
+  background-image: var(--hcn-brush), var(--hcn-hairlines), var(--hcn-sweep),
+    linear-gradient(180deg, #34383e, #22252a 55%, #1b1e22);
+  clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 14px,
+    100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%,
+    0 calc(100% - 14px), 0 14px);
+  box-shadow:
+    inset 0 0 0 1px rgba(0,0,0,.6), inset 0 0 0 2px rgba(255,255,255,.06),
+    inset 0 1px 0 rgba(255,255,255,.1), inset 0 -8px 14px -8px rgba(0,0,0,.55);
+  filter: drop-shadow(0 4px 7px rgba(0,0,0,.65)) drop-shadow(0 16px 32px rgba(0,0,0,.5));
+}
+.sponsor::before, .sponsor::after { /* parafusos laterais com fenda (como no .seal) */
+  content: ""; position: absolute; top: 50%; transform: translateY(-50%);
+  width: 8px; height: 8px; border-radius: 50%;
+  background:
+    linear-gradient(52deg, transparent 43%, rgba(0,0,0,.65) 47%, rgba(0,0,0,.65) 53%, transparent 57%),
+    radial-gradient(circle at 32% 28%, #8a9099, #3c4046 52%, #0e0f11 96%);
+  box-shadow: inset 0 -1px 1px rgba(255,255,255,.15), 0 1px 2px rgba(0,0,0,.7);
+}
+.sponsor::before { left: 10px; } .sponsor::after { right: 10px; }
+.sponsor .k { /* rótulo gravado no metal */
+  font-family: var(--hcn-font-mono); font-size: 9px; letter-spacing: .34em;
+  text-transform: uppercase; color: var(--text-faint);
+  text-shadow: 0 -1px 0 rgba(0,0,0,.65); margin-right: -.34em; white-space: nowrap;
+}
+.sponsor img { height: 23px; display: block;
+  filter: drop-shadow(0 1px 1px rgba(0,0,0,.7)); }
+.sponsor .pline { /* filete energizado — a voz do patrocinador */
+  width: 100%; height: 2px; border-radius: 1px; margin-top: 2px;
+  background: linear-gradient(90deg, transparent, #76b900 22%, #9fd428 50%, #76b900 78%, transparent);
+  box-shadow: 0 0 6px rgba(118,185,0,.55), 0 0 16px rgba(118,185,0,.25);
+}
+.sponsor .sys { display: inline-flex; align-items: center; gap: 7px; white-space: nowrap; }
+.sponsor .led--nv { /* LED do domo em verde NVIDIA */
+  background: radial-gradient(circle at 38% 30%, #e4ffb0, #76b900 45%, #3c6000 90%);
+  box-shadow: 0 0 5px 1px rgba(118,185,0,.6), 0 0 14px rgba(118,185,0,.28),
+    inset 0 -1px 1px rgba(0,0,0,.4), inset 0 1px 1px rgba(255,255,255,.5);
+}
+/* ≤860px: a coluna direita some (o herói vira coluna única); a placa desce
+   para o fluxo, abaixo do CTA — patrocínio continua visível, sem empurrar o copy */
+@media (max-width: 880px) {
+  .sponsor { position: static; transform: none; display: inline-flex; margin: 30px 0 4px; }
+}
+
 section { padding: 60px 0; }
 .sechead { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
 .sechead .rule { flex: 1; height: 1px; background: linear-gradient(90deg, var(--edge-light), transparent); }
@@ -49,7 +100,17 @@ section { padding: 60px 0; }
 .blockhead { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--hairline); }
 .blockhead .plate { font-size: 9.5px; padding: 5px 12px 5px 26px; }
 .blockbody { padding: 8px 14px 12px; }
-.morelink { font-size: 12px; color: var(--text-faint); text-decoration: none; }
+
+/* cabeçalho do bloco TV: manchete à esquerda, marca + link à direita */
+.tvhead { display: flex; justify-content: space-between; align-items: flex-start;
+  gap: 28px; margin-bottom: 28px; }
+.tvhead .secsub { margin: 0; }
+.tvbrand { display: flex; flex-direction: column; align-items: flex-end;
+  gap: 12px; flex: none; padding-top: 4px; }
+.tvbrand img { height: 40px; display: block;
+  filter: drop-shadow(0 3px 10px rgba(0,0,0,.55)); }
+@media (max-width: 700px) { .tvhead { flex-direction: column; }
+  .tvbrand { align-items: flex-start; } }
 
 /* HCA ladder */
 .ladder { width: 100%; border-collapse: collapse; font-size: 13px; }
@@ -129,6 +190,12 @@ section { padding: 60px 0; }
       <a class="btn btn--ghost btn--lg" href="#hca" style="margin-left:10px;">Ver campeonatos</a>
       <span class="reassure">Conta grátis · Um login para toda a rede Hangar</span>
     </div>
+    <aside class="sponsor" aria-label="Patrocinador oficial: NVIDIA">
+      <span class="k">Patrocinador oficial</span>
+      <img src="../assets/nvidia-logo-white.svg" alt="NVIDIA">
+      <span class="pline" aria-hidden="true"></span>
+      <span class="sys">hca · temporada 1 <span class="led led--nv"></span></span>
+    </aside>
     <p class="era" style="margin-top: 26px;">est. 1998 — schangar.com.br · reativada 2026</p>
   </div>
 </header>
@@ -165,7 +232,7 @@ section { padding: 60px 0; }
 <section id="hca" style="padding-top: 0;">
   <div class="wrap hcagrid">
     <div class="hca-copy">
-      <span class="sys">arena // hca · temporada 1 <span class="led led--steel"></span></span>
+      <span class="sys sys--crumb">// hca · temporada 1 <span class="led led--steel"></span></span>
       <h2 class="headline headline--lg">Hangar Combat Arena. Onde o BR <em>se prova</em>.</h2>
       <p>De 2001 a 2005, o HCA coroou os melhores do país. A arena reabriu:
         ladder contínua, chaves automáticas e premiação por temporada —
@@ -223,9 +290,17 @@ section { padding: 60px 0; }
 
 <section id="tv" style="padding-top: 0;">
   <div class="wrap">
-    <span class="sys">transmissão // hnet tv <span class="led led--live"></span></span>
-    <h2 class="headline headline--lg" style="margin-top: 12px;">Quem está <em>no ar</em> agora.</h2>
-    <p class="secsub" style="margin: 0 0 28px;">Streamers, podcasts e canais do competitivo BR — o radar do cenário em tempo real.</p>
+    <div class="tvhead">
+      <div>
+        <span class="sys sys--crumb">// hnet tv <span class="led led--live"></span></span>
+        <h2 class="headline headline--lg">Quem está <em>no ar</em> agora.</h2>
+        <p class="secsub">Streamers, podcasts e canais do competitivo BR — o radar do cenário em tempo real.</p>
+      </div>
+      <div class="tvbrand">
+        <img src="../logo/hnet-tv.svg" alt="Hnet TV">
+        <a class="morelink fliplink" href="#">ver todos os streams →</a>
+      </div>
+    </div>
     <div class="strip tvgrid">
       <div class="tv">
         <div class="ph"><img src="../assets/tv-1.jpg" alt=""><span class="live"><span class="led led--live"></span> ao vivo · twitch</span></div>
