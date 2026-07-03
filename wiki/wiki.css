@@ -5,29 +5,29 @@
   box-shadow: inset -1px 0 0 rgba(255,255,255,.04);
   padding: 26px 20px; display: flex; flex-direction: column; gap: 22px;
   position: sticky; top: 0; align-self: start; height: calc(100vh - 35px); }
-.sidebar .brand img { width: 150px; display: block;
+.sidebar .brand img { width: 150px; display: block; margin-bottom: 6px;
   filter: drop-shadow(0 3px 8px rgba(0,0,0,.5)); }
-.sidebar .brand .sys { display: block; margin-top: 10px; }
 
 .wnav { display: flex; flex-direction: column; gap: 2px; flex: 1; }
-.wnav a { font-family: var(--hcn-font-mono); font-size: 11.5px;
-  letter-spacing: .14em; text-transform: lowercase; text-decoration: none;
+.wnav a { font-family: var(--hcn-font-ui); font-size: 14px; font-weight: 500;
+  text-decoration: none;
   color: var(--text-muted); padding: 9px 12px; border-radius: 4px;
-  border-left: 2px solid transparent; }
+  border-left: 2px solid transparent; line-height: 1.35; }
 .wnav a:hover { color: var(--text-primary); background: rgba(255,255,255,.04); }
-.wnav a[aria-current] { color: var(--accent-hover-text);
+.wnav a[aria-current] { color: var(--accent-hover-text); font-weight: 600;
   border-left-color: var(--accent); background: rgba(242,101,34,.06); }
-.wnav .grouplabel { font-family: var(--hcn-font-mono); font-size: 9px;
-  letter-spacing: .24em; text-transform: uppercase; color: var(--text-faint);
-  padding: 14px 12px 4px; }
 .sidebar .back { font-size: 12px; }
 
 .content { padding: 44px 48px 80px; max-width: 860px; }
 .content > header { margin-bottom: 34px; }
 .content h1 { font-size: clamp(26px, 3.4vw, 38px); margin: 10px 0 12px; }
 .content .lead { color: var(--text-muted); max-width: 62ch; font-size: 15.5px; }
-.content h2 { font-size: 20px; margin: 40px 0 12px; }
-.content h2::before { content: "// "; color: var(--system); font-family: var(--hcn-font-mono); font-size: 14px; }
+/* subtítulo de bloco: barra e palavra na MESMA voz — aço, harmonioso */
+.content h2 { font-family: var(--hcn-font-ui); font-weight: 700;
+  font-size: 19px; letter-spacing: .01em; color: var(--system);
+  margin: 40px 0 12px; }
+.content h2::before { content: "// "; }
+.content h2 .date { color: var(--text-faint); font-weight: 500; font-size: 14px; }
 .content p { color: var(--text-muted); max-width: 68ch; }
 .content p b, .content li b { color: var(--text-primary); }
 .content ul { margin: 10px 0; padding-left: 0; list-style: none; max-width: 70ch; }
@@ -36,13 +36,40 @@
 .content ul.steel li::before { color: var(--system); }
 
 .content table { border-collapse: collapse; width: 100%; margin: 14px 0 22px; font-size: 13.5px; }
-.content th { font-family: var(--hcn-font-mono); font-size: 10px; letter-spacing: .16em;
+.content th { font-family: var(--hcn-font-mono); font-size: 12.5px; letter-spacing: .12em;
   text-transform: lowercase; color: var(--system); text-align: left;
   padding: 8px 12px; border-bottom: 1px solid var(--hcn-gm-700); font-weight: 400; }
 .content td { padding: 8px 12px; border-bottom: 1px solid rgba(255,255,255,.05); vertical-align: top; }
 .content td.pts { font-family: var(--hcn-font-mono); color: var(--accent-hover-text);
-  white-space: nowrap; font-variant-numeric: tabular-nums; }
-.content td.k { font-family: var(--hcn-font-mono); font-size: 12px; white-space: nowrap; }
+  letter-spacing: .07em; white-space: nowrap; font-variant-numeric: tabular-nums; }
+.content td.k { font-family: var(--hcn-font-mono); font-size: 12.5px;
+  letter-spacing: .07em; white-space: nowrap; }
+
+/* chips de produto — inspiradas nas pills do google: leitura instantânea */
+.chip { display: inline-block; font-family: var(--hcn-font-ui);
+  font-size: 12.5px; font-weight: 600; letter-spacing: .01em;
+  padding: 2px 11px; border-radius: 999px; white-space: nowrap;
+  line-height: 1.55; border: 1px solid; vertical-align: 1px; }
+.chip--network { color: #ffb38a; background: rgba(242,101,34,.13); border-color: rgba(242,101,34,.5); }
+.chip--cloud   { color: #a8d4f2; background: rgba(105,170,215,.13); border-color: rgba(105,170,215,.5); }
+.chip--sites   { color: #ffdd8f; background: rgba(255,190,29,.11); border-color: rgba(255,190,29,.45); }
+.chip--games   { color: #ff9d99; background: rgba(213,53,46,.13); border-color: rgba(213,53,46,.5); }
+.chip--tv      { color: #d8b6f5; background: rgba(155,89,208,.14); border-color: rgba(155,89,208,.5); }
+
+/* diagrama de encapsulamento — a rede contém os setores */
+.netmap { border: 1px solid rgba(242,101,34,.45); border-radius: 12px;
+  background: rgba(242,101,34,.035); padding: 18px 18px 16px; margin: 18px 0 10px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.04); }
+.netmap-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
+.netmap-head .hint { font-family: var(--hcn-font-mono); font-size: 11px;
+  letter-spacing: .1em; color: var(--text-faint); text-transform: lowercase; }
+.netmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+.netmap .node { background: linear-gradient(180deg, var(--hcn-gm-800), var(--hcn-gm-900));
+  border: 1px solid var(--edge-dark); border-radius: 8px; padding: 14px 16px;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 3px 10px rgba(0,0,0,.35); }
+.netmap .node p { margin: 9px 0 8px; font-size: 12.5px; color: var(--text-muted); }
+.netmap .node .regime { font-family: var(--hcn-font-mono); font-size: 10.5px;
+  letter-spacing: .1em; color: var(--text-faint); text-transform: lowercase; }
 
 .wikifoot { border-top: 1px solid var(--hairline); margin-top: 56px; padding-top: 18px;
   display: flex; justify-content: space-between; gap: 14px; flex-wrap: wrap; }
