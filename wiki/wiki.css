@@ -16,6 +16,9 @@
 .wnav a:hover { color: var(--text-primary); background: rgba(255,255,255,.04); }
 .wnav a[aria-current] { color: var(--accent-hover-text); font-weight: 600;
   border-left-color: var(--accent); background: rgba(242,101,34,.06); }
+.wnav a.sub { padding-left: 30px; font-size: 13px; position: relative; }
+.wnav a.sub::before { content: "└"; position: absolute; left: 14px;
+  color: var(--text-faint); font-size: 11px; }
 .sidebar .back { font-size: 12px; }
 
 .content { padding: 44px 48px 80px; max-width: 860px; }
@@ -73,13 +76,17 @@
 .netmap-head .hint { font-family: var(--hcn-font-mono); font-size: 11px;
   letter-spacing: .1em; color: var(--text-faint); text-transform: lowercase; }
 .netmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
-.netmap .node, .authmap .node { background: linear-gradient(180deg, var(--hcn-gm-800), var(--hcn-gm-900));
+.netmap-grid .node { background: linear-gradient(180deg, var(--hcn-gm-800), var(--hcn-gm-900));
   border: 1px solid var(--edge-dark); border-radius: 8px; padding: 14px 16px;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 3px 10px rgba(0,0,0,.35); }
-.netmap .node p, .authmap .node p { margin: 9px 0 10px; font-size: 12.5px; color: var(--text-muted); }
-.netmap .node .subs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
-.netmap .node .cats { display: flex; flex-wrap: wrap; gap: 6px; }
+.netmap-grid .node p { margin: 9px 0 10px; font-size: 12.5px; color: var(--text-muted); }
+.netmap-grid .node .subs { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 10px; }
+.netmap-grid .node .cats { display: flex; flex-wrap: wrap; gap: 6px; }
 .netmap-foot { font-size: 12px; color: var(--text-faint); margin: 12px 2px 0; }
+.golink { display: inline-block; font-family: var(--hcn-font-mono); font-size: 10.5px;
+  letter-spacing: .16em; text-transform: lowercase; color: var(--system);
+  text-decoration: none; margin-top: 10px; }
+.golink:hover { text-shadow: 0 0 8px rgba(105,170,215,.8); }
 
 /* chips menores (sub-projetos dentro de um nó) */
 .chip--sm { font-size: 11px; padding: 1px 9px; font-weight: 600; }
