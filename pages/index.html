@@ -35,9 +35,10 @@ section { padding: 72px 0 96px; }
 .verticals > a { display: flex; flex-direction: column; gap: 14px;
   text-decoration: none; transition: background-color 140ms ease; }
 .verticals > a:hover { background: rgba(255,255,255,.03); }
-.verticals .photo-frame { height: 158px; margin: -24px -22px 6px; border-radius: 0; border: none; }
-.verticals .photo { filter: saturate(.82) contrast(1.04); transition: filter 200ms ease; }
-.verticals > a:hover .photo { filter: saturate(1.05) contrast(1.06); }
+.verticals .photo-frame { height: 200px; margin: -24px -22px 6px; border-radius: 0; border: none; }
+.verticals .photo { filter: saturate(.82) contrast(1.04);
+  transition: filter 220ms ease, transform 380ms cubic-bezier(.2,.7,.3,1); }
+.verticals > a:hover .photo { filter: saturate(1.08) contrast(1.07); transform: scale(1.07); }
 .verticals .sublogo { width: 168px; height: auto; margin: 2px 0;
   filter: drop-shadow(0 3px 10px rgba(0,0,0,.55)); }
 .verticals p { margin: 0; color: var(--text-muted); font-size: 13.5px; flex: 1; }
@@ -85,24 +86,24 @@ section { padding: 72px 0 96px; }
     <div class="strip verticals">
       <a href="./sites.html">
         <div class="photo-frame"><img class="photo" src="../assets/sweets.jpg" alt=""></div>
-        <span class="sys">setor // <b>sites</b></span>
+        <span class="sys">// <b>sites</b></span>
         <img class="sublogo" src="../logo/hangar-sites.svg" alt="Hangar Sites">
         <p>Sua loja no ar. Com IA.</p>
-        <span class="go">→ entrar no setor</span>
+        <span class="go">→ entrar</span>
       </a>
       <a href="./cloud.html">
         <div class="photo-frame"><img class="photo" src="../assets/datacenter-hall.jpg" alt=""></div>
-        <span class="sys">setor // <b>cloud</b></span>
+        <span class="sys">// <b>cloud</b></span>
         <img class="sublogo" src="../logo/hangar-cloud.svg" alt="Hangar Cloud">
         <p>Infra que você mesmo pilota.</p>
-        <span class="go">→ entrar no setor</span>
+        <span class="go">→ entrar</span>
       </a>
       <a href="./games.html">
         <div class="photo-frame"><img class="photo" src="../assets/esports.jpg" alt=""></div>
-        <span class="sys">setor // <b>games</b></span>
+        <span class="sys">// <b>games</b></span>
         <img class="sublogo" src="../logo/hangar-games.svg" alt="Hangar Games">
         <p>A comunidade, de volta.</p>
-        <span class="go">→ entrar no setor</span>
+        <span class="go">→ entrar</span>
       </a>
     </div>
   </div>

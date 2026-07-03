@@ -267,11 +267,12 @@
   text-transform: uppercase; color: var(--text-faint);
   text-shadow: 0 -1px 0 rgba(0,0,0,.65); margin-right: -.38em;
 }
-.seal b { /* o ano em brasa (gradiente 2004) */
-  font-family: var(--hcn-font-display); font-weight: 800; font-size: 29px;
-  line-height: 1; letter-spacing: .04em; margin-right: -.04em;
-  background: linear-gradient(180deg, #ffd75e, #ffbe1d 18%, #ff8000 46%,
-    #f26522 62%, #b34a00 88%);
+.seal b { /* o ano gravado em latão — serifa tradicional, voz de tradição */
+  font-family: Georgia, "Times New Roman", "Noto Serif", serif;
+  font-weight: 600; font-size: 27px;
+  line-height: 1; letter-spacing: .09em; margin-right: -.09em;
+  font-variant-numeric: lining-nums;
+  background: linear-gradient(180deg, #e6c98d, #cfa452 40%, #a97b2c 72%, #8a6120 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
   filter: drop-shadow(0 1px 1px rgba(0,0,0,.65));
 }
