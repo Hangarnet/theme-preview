@@ -247,7 +247,7 @@
   box-shadow:
     inset 0 0 0 1px rgba(0,0,0,.6), inset 0 0 0 2px rgba(255,255,255,.06),
     inset 0 1px 0 rgba(255,255,255,.1), inset 0 -8px 14px -8px rgba(0,0,0,.55);
-  filter: drop-shadow(0 3px 8px rgba(0,0,0,.55));
+  filter: drop-shadow(0 4px 7px rgba(0,0,0,.65)) drop-shadow(0 16px 32px rgba(0,0,0,.5));
 }
 .seal::before, .seal::after { /* parafusos laterais com fenda */
   content: ""; position: absolute; top: 50%; transform: translateY(-50%);
@@ -362,22 +362,30 @@
   background: repeating-linear-gradient(90deg, var(--hcn-orange-deep) 0 46px, transparent 46px 82px); }
 .runway::after { content: ""; position: absolute; inset: 0; background: var(--hcn-noise); }
 
-/* conduíte de energia (divisor holográfico — aço, voz do sistema) */
-.conduit { position: relative; height: 72px; }
-.conduit::before { /* trilho */
+/* conduíte de energia (divisor holográfico — aço, voz do sistema)
+   trilhos nas bordas que mergulham num V central: seta de "há mais abaixo" */
+.conduit { position: relative; height: 96px; }
+.conduit::before { /* trilhos, abrindo ao centro */
   content: ""; position: absolute; left: 0; right: 0; top: 50%; height: 1px;
-  background: linear-gradient(90deg, transparent,
-    rgba(105,170,215,.26) 16%, rgba(105,170,215,.26) 84%, transparent); }
-.conduit::after { /* núcleo energizado */
-  content: ""; position: absolute; left: 50%; top: 50%; width: 340px; height: 3px;
-  transform: translate(-50%, -1px); border-radius: 999px;
-  background: linear-gradient(90deg, transparent, var(--system) 30%,
-    #dceefb 50%, var(--system) 70%, transparent);
-  box-shadow: 0 0 12px rgba(105,170,215,.75), 0 0 36px rgba(105,170,215,.32);
+  background: linear-gradient(90deg,
+    transparent, rgba(105,170,215,.26) 14%,
+    rgba(105,170,215,.46) calc(50% - 128px), transparent calc(50% - 124px),
+    transparent calc(50% + 124px), rgba(105,170,215,.46) calc(50% + 128px),
+    rgba(105,170,215,.26) 86%, transparent); }
+.conduit::after, .conduit .node { /* braços do V */
+  content: ""; position: absolute; top: 50%; width: 128px; height: 2px;
+  border-radius: 999px;
+  box-shadow: 0 0 10px rgba(105,170,215,.6), 0 0 26px rgba(105,170,215,.28);
   animation: conduit-pulse 3.4s ease-in-out infinite; }
-.conduit .node { /* nó central (losango) */
-  content: ""; position: absolute; left: 50%; top: 50%; width: 9px; height: 9px;
-  transform: translate(-50%, -50%) rotate(45deg);
+.conduit::after { /* braço esquerdo: da borda do trilho ao vértice */
+  left: calc(50% - 128px); transform-origin: left center; transform: rotate(9deg);
+  background: linear-gradient(90deg, rgba(105,170,215,.30), var(--system) 60%, #dceefb); }
+.conduit .node { /* braço direito */
+  left: 50%; transform-origin: right center; transform: rotate(-9deg);
+  background: linear-gradient(270deg, rgba(105,170,215,.30), var(--system) 60%, #dceefb); }
+.conduit .node::before { /* losango no vértice da seta */
+  content: ""; position: absolute; left: -4px; top: -3.5px; width: 9px; height: 9px;
+  transform: rotate(45deg);
   background: linear-gradient(135deg, #dceefb, var(--system) 60%, #2b5878);
   border: 1px solid rgba(0,0,0,.6);
   box-shadow: 0 0 10px rgba(105,170,215,.9), 0 0 26px rgba(105,170,215,.4); }
