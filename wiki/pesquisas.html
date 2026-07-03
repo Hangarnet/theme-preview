@@ -41,11 +41,16 @@
     <h2>Empacotamento: cloud vs criação de sites <span class="date">· 2026-07-03</span></h2>
     <p>Como as melhores startups (Vercel, Cloudflare, DigitalOcean, Hostinger,
       Wix/GoDaddy) organizam infra/devops e construção de sites.</p>
+    <div class="callout callout--info"><span class="ico">🔗</span>
+      <div><b>Conta única é o elo</b>
+        <p>Todos os grandes separam os produtos por público (dev vs leigo) —
+          mas unificam a identidade e fazem cross-sell pela base
+          (Vercel v0 → hosting; DigitalOcean → Cloudways). É exatamente o
+          desenho da rede Hangar.</p></div>
+    </div>
     <ul>
-      <li><b>Separam produtos por público, não por tecnologia</b> — dev vs leigo/SMB;
-        a divisão que sobrevive no mercado é por tipo de cliente</li>
-      <li><b>Conta única é o elo</b>: todos unificam identidade e fazem cross-sell
-        pela base (Vercel v0 → hosting; DO → Cloudways)</li>
+      <li><b>Separam produtos por público, não por tecnologia</b> — a divisão que
+        sobrevive no mercado é por tipo de cliente</li>
       <li><b>Venda por público</b>: para dev, separado e por uso; para leigo,
         bundle em assinatura única — nunca misturar os modelos</li>
       <li><b>Bundle só como cross-sell</b> (desconto/crédito entre setores), nunca
@@ -57,26 +62,38 @@
     <h2>Gamificação: moeda, tiers e integrações <span class="date">· 2026-07-03</span></h2>
     <p>Evidências de plataformas de games (Twitch, Steam, Roblox, Duolingo) sobre
       moeda de pontos, níveis e pontes com plataformas externas.</p>
+
+    <div class="statrow">
+      <div class="stat"><b>1,8x</b><span>ROI de fidelidade com tiers vs sem tiers</span></div>
+      <div class="stat"><b>+25%</b><span>conclusão de lições com as Leagues do Duolingo</span></div>
+      <div class="stat"><b>47→28%</b><span>queda do churn do Duolingo com gamificação</span></div>
+      <div class="stat"><b>+18%</b><span>tempo assistido com Channel Points na Twitch</span></div>
+    </div>
+
+    <div class="callout callout--ok"><span class="ico">✓</span>
+      <div><b>Earned-only é a receita segura</b>
+        <p>Pontos nunca compráveis, gastáveis em status/cosméticos/conveniência —
+          fora da zona regulatória (UE 2025, loot boxes) e zero pay-to-win.</p></div>
+    </div>
+    <div class="callout callout--info"><span class="ico">⇄</span>
+      <div><b>Hub-and-spoke: ler de fora, premiar dentro</b>
+        <p>Não existe troca de moeda entre plataformas. A Twitch é a única ponte
+          real (channel points → pontos hnet via recompensa autorizada); a Steam
+          é só leitura de atividade (biblioteca, horas, conquistas).</p></div>
+    </div>
+    <div class="callout callout--warn"><span class="ico">⚠</span>
+      <div><b>Nunca exportar pontos para valor real</b>
+        <p>Venda ou gift card quebra ToS de parceiros e atrai o regulador. A moeda
+          hnet é beco sem saída de valor: entra atividade, sai status.</p></div>
+    </div>
+
     <ul>
       <li><b>Moeda vale a pena se circula</b>: o valor está no ciclo ganhar →
         acumular → gastar; sem sinks, vira número morto e inflaciona</li>
-      <li><b>Earned-only é a receita segura</b>: pontos nunca compráveis, gastáveis
-        em status/cosméticos/conveniência — fora da zona regulatória (UE 2025,
-        loot boxes) e zero pay-to-win</li>
-      <li><b>Tiers funcionam</b>: fidelidade com níveis ≈ 1,8x ROI; Duolingo Leagues
-        +25% conclusão e churn de 47% → 28%; status é recompensa de custo zero</li>
       <li><b>Moeda + tiers se completam</b>: a moeda dá o loop de curto prazo,
         os tiers o arco de longo prazo (dupla usada por Twitch e Duolingo)</li>
-      <li><b>Não existe troca de moeda entre plataformas</b> — o padrão viável é
-        "ler de fora, premiar dentro" (hub-and-spoke, como programas de milhas)</li>
-      <li><b>Twitch é a única ponte real</b>: custom reward de channel points +
-        webhook (EventSub) permite converter atividade Twitch em pontos hnet,
-        com OAuth do streamer, dentro do ToS</li>
-      <li><b>Steam é só leitura</b>: biblioteca, horas e conquistas via OpenID —
-        Steam Points não tem API; nunca prometer "importar pontos"</li>
-      <li><b>Nunca exportar pontos para valor real</b> (venda, gift card): quebra
-        ToS de parceiros e atrai o regulador — a moeda hnet é beco sem saída de
-        valor: entra atividade, sai status</li>
+      <li><b>Steam Points não tem API</b> — nunca prometer "importar pontos"
+        no marketing</li>
     </ul>
 
     <h2>Referências</h2>

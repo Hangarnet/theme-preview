@@ -38,18 +38,45 @@
     </header>
 
     <h2>Login universal</h2>
-    <p>Conta única em toda a rede — o mesmo login vale para
-      <span class="chip chip--sites">Sites</span>
-      <span class="chip chip--cloud">Cloud</span>
-      <span class="chip chip--games">Games</span> e
-      <span class="chip chip--tv">TV</span>.
-      Base já construída e verificada: identidade única com <b>login
-      Google</b> ativo e sessão compartilhada entre subdomínios.</p>
+    <p>Você cria a conta <b>uma vez</b> — e ela vale na rede inteira. Entrou no
+      Games? Já está logado no Cloud, no Sites e na TV, sem novo cadastro.
+      Dá para entrar com email e senha, ou com um clique usando a
+      <b>conta Google</b>.</p>
+
+    <div class="authmap">
+      <div class="acct">
+        <img src="../logo/hangar-emblem.svg" alt="">
+        <div>
+          <b>Sua conta Hangar</b>
+          <small>Google ou email · avatar · patente · pontos · badges</small>
+        </div>
+      </div>
+      <div class="link"><span>um login · mesma sessão em toda a rede</span></div>
+      <div class="netmap-grid">
+        <div class="node">
+          <span class="chip chip--sites">Sites</span>
+          <p>Cria e gerencia sua loja; compra em qualquer loja da rede</p>
+        </div>
+        <div class="node">
+          <span class="chip chip--cloud">Cloud</span>
+          <p>Contrata e pilota hospedagem, VMs e deploy por IA</p>
+        </div>
+        <div class="node">
+          <span class="chip chip--games">Games</span>
+          <p>Participa do fórum, inscreve equipe no HCA, acumula pontos</p>
+        </div>
+        <div class="node">
+          <span class="chip chip--tv">TV</span>
+          <p>Segue streams e creators; vincula seu canal</p>
+        </div>
+      </div>
+    </div>
+
     <ul>
-      <li><b>HangarUserChip</b>: componente no topo de todos os subprodutos —
-        deslogado mostra o botão "Entrar"; logado mostra avatar + patente + pontos</li>
-      <li>Falta: cutover para o domínio definitivo (cookies + redirect do Google)
-        e todos os setores sob o mesmo apex</li>
+      <li>Em <b>todos os sites da rede</b>, o topo mostra você: seu avatar com
+        patente e pontos — ou o botão "Entrar", se estiver deslogado</li>
+      <li>A base já existe e funciona hoje (conta única + login Google + sessão
+        compartilhada); falta só a mudança para o domínio definitivo da rede</li>
     </ul>
 
     <h2>Patentes</h2>
@@ -69,12 +96,16 @@
     <h2>Badges</h2>
     <p>Badges dizem o que a pessoa <b>é</b>; patentes dizem o quanto ela
       <b>participou</b>.</p>
-    <ul>
-      <li><b>streamer</b> — vinculou seu canal Twitch</li>
-      <li><b>youtuber</b> — cadastrou seu YouTube ou podcast</li>
-      <li><b>admin</b> — hnet community admin (manual)</li>
-      <li><b>community manager</b> — hnet community manager (manual)</li>
-    </ul>
+    <div class="badge-row">
+      <span class="hbadge hbadge--streamer"><i>◉</i>
+        <span><b>streamer</b><small>vinculou seu canal Twitch</small></span></span>
+      <span class="hbadge hbadge--youtuber"><i>▶</i>
+        <span><b>youtuber</b><small>cadastrou seu YouTube ou podcast</small></span></span>
+      <span class="hbadge hbadge--admin"><i>★</i>
+        <span><b>admin</b><small>hnet community admin</small></span></span>
+      <span class="hbadge hbadge--cm"><i>✦</i>
+        <span><b>community manager</b><small>hnet community manager</small></span></span>
+    </div>
 
     <h2>Economia de pontos</h2>
     <table>
@@ -105,7 +136,7 @@
     <h2>Fases</h2>
     <table>
       <tr><th>fase</th><th>entrega</th></tr>
-      <tr><td class="k">f1 · identidade</td><td>Conta única no domínio novo · HangarUserChip · pontos base · patente no perfil</td></tr>
+      <tr><td class="k">f1 · identidade</td><td>Conta única no domínio novo · avatar/login no topo de todos os sites · pontos base · patente no perfil</td></tr>
       <tr><td class="k">f2 · crescimento</td><td>Convites/referral · compartilhamentos · badges manuais</td></tr>
       <tr><td class="k">f3 · vínculos</td><td>Twitch/YouTube · X · Steam · ponte channel points · HCA exigindo Steam</td></tr>
       <tr><td class="k">f4 · sinks</td><td>Títulos, molduras, emotes, cargo Discord · depois desconto em Cloud/Sites</td></tr>
