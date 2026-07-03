@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Users, auth, points &amp; tiers — Wiki Hangar Network</title>
+<link rel="icon" href="../logo/hangar-emblem.svg">
+<link rel="stylesheet" href="../hangar-theme.css">
+<link rel="stylesheet" href="./wiki.css">
+</head>
+<body class="hangar">
+
+<div class="statusbar">
+  <span class="sys">hangar network // wiki · users <span class="led led--steel"></span></span>
+  <span class="placard">plano de construção · <b>em digestão</b></span>
+</div>
+
+<div class="wikigrid">
+  <aside class="sidebar">
+    <a class="brand" href="../pages/index.html">
+      <img src="../logo/hangar-network.svg" alt="Hangar Network">
+      <span class="sys">// wiki da rede</span>
+    </a>
+    <nav class="wnav" aria-label="Wiki">
+      <a href="./index.html">início</a>
+      <span class="grouplabel">seções</span>
+      <a href="./users.html" aria-current="page">users, auth, points &amp; tiers</a>
+      <a href="./projeto.html">projeto</a>
+      <a href="./pesquisas.html">pesquisas</a>
+    </nav>
+    <a class="back fliplink" href="../pages/index.html">← voltar ao hub</a>
+  </aside>
+
+  <main class="content">
+    <header>
+      <span class="sys sys--crumb">// wiki · seção a</span>
+      <h1 class="display">Users, auth, points &amp; <em>tiers</em></h1>
+      <p class="lead">Uma identidade para toda a rede, uma economia de pontos
+        que premia participação, e patentes que contam a história de cada piloto.</p>
+    </header>
+
+    <h2>Login universal</h2>
+    <p>Conta única em toda a rede — o mesmo login vale para Sites, Cloud, Games
+      e TV. Base já construída e verificada: identidade única com <b>login
+      Google</b> ativo e sessão compartilhada entre subdomínios.</p>
+    <ul>
+      <li><b>HangarUserChip</b>: componente no topo de todos os subprodutos —
+        deslogado mostra o botão "Entrar"; logado mostra avatar + patente + pontos</li>
+      <li>Falta: cutover para o domínio definitivo (cookies + redirect do Google)
+        e todos os setores sob o mesmo apex</li>
+    </ul>
+
+    <h2>Patentes</h2>
+    <p>Nomes que só a nossa comunidade entende. <b>Patente nunca desce</b> —
+      é pontuação acumulada na vida, não saldo.</p>
+    <table>
+      <tr><th>patente</th><th>faixa</th></tr>
+      <tr><td class="k">Visitante</td><td>deslogado</td></tr>
+      <tr><td class="k">Peão</td><td>0 – 199</td></tr>
+      <tr><td class="k">Marine</td><td>200 – 999</td></tr>
+      <tr><td class="k">Zealot</td><td>1.000 – 2.999</td></tr>
+      <tr><td class="k">Carrier</td><td>3.000 – 3.999</td></tr>
+      <tr><td class="k">Invoker</td><td>4.000 – 4.999</td></tr>
+      <tr><td class="k">Zeratul</td><td>5.000+</td></tr>
+    </table>
+
+    <h2>Badges</h2>
+    <p>Badges dizem o que a pessoa <b>é</b>; patentes dizem o quanto ela
+      <b>participou</b>.</p>
+    <ul>
+      <li><b>streamer</b> — vinculou seu canal Twitch</li>
+      <li><b>youtuber</b> — cadastrou seu YouTube ou podcast</li>
+      <li><b>admin</b> — hnet community admin (manual)</li>
+      <li><b>community manager</b> — hnet community manager (manual)</li>
+    </ul>
+
+    <h2>Economia de pontos</h2>
+    <table>
+      <tr><th>ação</th><th>pontos</th><th>regra</th></tr>
+      <tr><td>Cadastro</td><td class="pts">+10</td><td>única vez, email verificado</td></tr>
+      <tr><td>Login</td><td class="pts">+1</td><td>máx. 1/dia</td></tr>
+      <tr><td>Chamar amigo</td><td class="pts">+100</td><td>por convite · cap 10/mês</td></tr>
+      <tr><td>Amigo se cadastrou</td><td class="pts">+500</td><td>após verificação + 1º login</td></tr>
+      <tr><td>Compartilhar conteúdo</td><td class="pts">+100</td><td>link próprio · cap 3/dia</td></tr>
+      <tr><td>Comprar um serviço</td><td class="pts">+2.500</td><td>após pagamento · estorno remove</td></tr>
+    </table>
+    <ul class="steel">
+      <li><b>Earned-only</b>: pontos nunca são compráveis — território "fidelidade", fora da zona regulatória</li>
+      <li><b>Sinks desde o dia 1</b>: a moeda precisa circular (status, cosméticos, acesso)</li>
+      <li>Ledger de eventos com idempotência; saldo é view, nunca campo editável</li>
+    </ul>
+
+    <h2>Integrações</h2>
+    <ul>
+      <li><b>X é o megafone</b> — vincular (+150), seguir oficiais (+50), compartilhar
+        conquistas com card gerado (+100), hashtag do HCA (+150), repost oficial (+250)</li>
+      <li><b>Steam é a prova de jogo</b> — vincular (+200), badges por jogo da biblioteca,
+        marcos de horas, check-in de partida HCA (+25); conta ≥ 6 meses p/ HCA (anti-smurf)</li>
+      <li><b>Twitch é a ponte</b> — a única conversão real do mercado: viewer resgata
+        channel points no canal parceiro e recebe pontos hnet (+500, via webhook)</li>
+    </ul>
+
+    <h2>Fases</h2>
+    <table>
+      <tr><th>fase</th><th>entrega</th></tr>
+      <tr><td class="k">f1 · identidade</td><td>Conta única no domínio novo · HangarUserChip · pontos base · patente no perfil</td></tr>
+      <tr><td class="k">f2 · crescimento</td><td>Convites/referral · compartilhamentos · badges manuais</td></tr>
+      <tr><td class="k">f3 · vínculos</td><td>Twitch/YouTube · X · Steam · ponte channel points · HCA exigindo Steam</td></tr>
+      <tr><td class="k">f4 · sinks</td><td>Títulos, molduras, emotes, cargo Discord · depois desconto em Cloud/Sites</td></tr>
+    </table>
+
+    <div class="wikifoot">
+      <span class="sys">hangar network // wiki · <b>users</b></span>
+      <span class="placard">detalhamento completo: plano 007 (interno)</span>
+    </div>
+  </main>
+</div>
+
+</body>
+</html>
