@@ -1,0 +1,388 @@
+/**
+ * HANGAR THEME — o tema único da Hangar Network (final, v1)
+ * ─────────────────────────────────────────────────────────
+ * Fusão definitiva: casco gunmetal moderno + metal usinado + laranja como a
+ * única voz de AÇÃO + aço-azul (herança 2002) como a voz do SISTEMA — rede,
+ * setores, telemetria, códigos. Cromo acetinado disponível como acabamento.
+ *
+ * Regra de ouro das vozes:
+ *   LARANJA  → ação e energia: CTAs, indicadores ativos, destaque de valor.
+ *   AÇO-AZUL → sistema e meta: códigos de setor, telemetria, rótulos de rede,
+ *              hosts/URLs, tags técnicas. Nunca em botões de ação.
+ *   NEUTROS  → todo o resto. Se as três vozes disputam, o laranja vence.
+ *
+ * Consome: Google Fonts (@import abaixo); de resto autocontido.
+ * Supersede docs/design/tokens.css (rascunho).
+ * Guia: docs/design/theme/THEME.md
+ */
+
+/* Tipos — Oxanium ecoa o letreiro techno do logo 2001; Saira é o corpo
+   industrial; Share Tech Mono grava os rótulos técnicos. */
+@import url("https://fonts.googleapis.com/css2?family=Oxanium:wght@500;600;700;800&family=Saira:ital,wght@0,400;0,500;0,600;0,700;0,800;1,400&family=Share+Tech+Mono&display=swap");
+
+/* ═══ Layer 1 · Primitivos ═══════════════════════════════════════════ */
+:root {
+  /* Laranja — uma rampa, três ancestrais */
+  --hcn-orange-glow: #ffbe1d;  /* 2001: topo de gradiente */
+  --hcn-orange-hot: #ff8000;   /* 2001: energia/ativo */
+  --hcn-orange: #f26522;       /* produto: acento primário */
+  --hcn-orange-muted: #de8625; /* 2002: hover sobre metal escuro */
+  --hcn-orange-deep: #c86400;  /* 2001: base de gradiente */
+
+  /* Gunmetal — casco moderno + metais do arquivo 2002 */
+  --hcn-gm-950: #121316;
+  --hcn-gm-900: #1a1c20;
+  --hcn-gm-800: #26282d;
+  --hcn-gm-700: #3a3d42;
+  --hcn-gm-600: #505050;
+  --hcn-gm-500: #676767;
+  --hcn-gm-400: #858585;
+  --hcn-gm-300: #909090;
+  --hcn-gm-200: #999999;
+
+  /* Cromo — acabamento acetinado (2001, refinado) */
+  --hcn-chrome-highlight: #f2f2f2;
+  --hcn-chrome-light: #c0c0c0;
+  --hcn-chrome-mid: #8b8b8b;
+  --hcn-chrome-dark: #4d4d4d;
+
+  /* Aço-azul — a voz do sistema (2002) */
+  --hcn-steel-500: #69aad7;
+  --hcn-steel-600: #527188;
+  --hcn-steel-700: #637989;
+
+  /* Tipos — três vozes */
+  --hcn-font-display: "Oxanium", "Saira", system-ui, sans-serif;
+  --hcn-font-ui: "Saira", Verdana, "Segoe UI", system-ui, sans-serif;
+  --hcn-font-mono: "Share Tech Mono", ui-monospace, "Cascadia Mono", Consolas, monospace;
+
+  /* Raio */
+  --hcn-radius: 6px;
+  --hcn-radius-pill: 999px;
+
+  /* Texturas (SVG inline — grão fino e metal escovado de alta definição) */
+  --hcn-noise: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='140' height='140'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.035 0'/%3E%3C/filter%3E%3Crect width='140' height='140' filter='url(%23n)'/%3E%3C/svg%3E");
+  --hcn-brush: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='320' height='64'%3E%3Cfilter id='b'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.006 0.9' numOctaves='3'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 0.07 0'/%3E%3C/filter%3E%3Crect width='320' height='64' filter='url(%23b)'/%3E%3C/svg%3E");
+  /* fios de escovação — hairlines horizontais sutis */
+  --hcn-hairlines: repeating-linear-gradient(180deg,
+    rgba(255,255,255,.026) 0 1px, transparent 1px 3px,
+    rgba(0,0,0,.05) 3px 4px, transparent 4px 7px);
+  /* varredura especular — o brilho que atravessa o metal */
+  --hcn-sweep: linear-gradient(100deg,
+    transparent 18%, rgba(255,255,255,.04) 36%,
+    rgba(255,255,255,.10) 50%, rgba(255,255,255,.04) 64%, transparent 82%);
+  --hcn-hazard: repeating-linear-gradient(-45deg,
+    var(--hcn-orange-deep) 0 14px, #17130c 14px 28px);
+  --hcn-chrome-satin: linear-gradient(180deg,
+    #f6f8fa 0%, #dde1e6 30%, #b9bfc8 46%, #9ba2ac 52%,
+    #b4bac2 62%, #d6dade 84%, #eef0f3 100%);
+
+  /* ═══ Layer 2 · Papéis semânticos ═══════════════════════════════════ */
+  --surface-canvas: var(--hcn-gm-950);
+  --surface-raised: var(--hcn-gm-900);
+  --surface-overlay: var(--hcn-gm-800);
+
+  --text-primary: #edeef0;
+  --text-muted: #b4b6bb;
+  --text-faint: #7d8087;
+  --text-on-accent: #180a00;
+  --text-on-chrome: #23262b;
+
+  --accent: var(--hcn-orange);            /* AÇÃO */
+  --accent-active: var(--hcn-orange-hot);
+  --accent-hover-text: var(--hcn-orange-muted);
+  --system: var(--hcn-steel-500);         /* SISTEMA */
+  --system-dim: var(--hcn-steel-600);
+  --focus-ring: color-mix(in srgb, var(--hcn-orange) 60%, transparent);
+
+  --edge-dark: #000;
+  --edge-light: rgba(255, 255, 255, 0.08);
+  --hairline: var(--hcn-gm-800);
+}
+
+/* ═══ Base ═══════════════════════════════════════════════════════════ */
+.hangar * { box-sizing: border-box; }
+.hangar {
+  margin: 0;
+  background: var(--surface-canvas);
+  color: var(--text-primary);
+  font-family: var(--hcn-font-ui);
+  font-size: 15px;
+  line-height: 1.6;
+}
+.hangar a { color: inherit; }
+.hangar :focus-visible { outline: 2px solid var(--focus-ring); outline-offset: 2px; }
+
+/* halo de fundo opcional (laranja ou aço) */
+.hangar--halo-orange { background:
+  radial-gradient(1200px 500px at 70% -10%, rgba(242,101,34,.05), transparent 60%),
+  var(--surface-canvas); }
+.hangar--halo-steel { background:
+  radial-gradient(1000px 460px at 20% -8%, rgba(105,170,215,.06), transparent 60%),
+  var(--surface-canvas); }
+
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 24px; }
+
+/* ═══ Vozes tipográficas ═════════════════════════════════════════════ */
+/* placard: rótulo técnico neutro */
+.placard {
+  font-family: var(--hcn-font-mono);
+  font-size: 10.5px; letter-spacing: .22em; text-transform: uppercase;
+  color: var(--text-faint);
+}
+.placard b { color: var(--accent); font-weight: 400; }
+/* sys: rótulo do SISTEMA (aço) — setores, telemetria, hosts */
+.sys {
+  font-family: var(--hcn-font-mono);
+  font-size: 10px; letter-spacing: .2em; text-transform: lowercase;
+  color: var(--system);
+}
+.sys b { color: var(--system); font-weight: 400; }
+/* display: manchetes — Oxanium, o letreiro techno herdado de 2001 */
+.hangar h1, .hangar h2, .hangar h3, .display {
+  font-family: var(--hcn-font-display);
+}
+.display {
+  font-weight: 800; letter-spacing: -0.01em; line-height: 1.08;
+  text-wrap: balance;
+}
+.display em { font-style: normal; color: var(--accent); }
+
+/* ═══ Indicadores ════════════════════════════════════════════════════ */
+/* LED com domo de vidro: núcleo quente + reflexo + halo duplo */
+.led { display: inline-block; width: 7px; height: 7px; border-radius: 50%;
+  vertical-align: 1px;
+  background: radial-gradient(circle at 38% 30%, #ffe0b0, var(--hcn-orange-hot) 42%, #9c4600 88%);
+  box-shadow: 0 0 5px 1px rgba(255,128,0,.65), 0 0 14px rgba(255,128,0,.3),
+    inset 0 -1px 1px rgba(0,0,0,.45), inset 0 1px 1px rgba(255,255,255,.5); }
+.led--dim { background: radial-gradient(circle at 38% 30%, #7c8087, #4a4d52 50%, #232528 90%);
+  box-shadow: inset 0 -1px 1px rgba(0,0,0,.5), inset 0 1px 1px rgba(255,255,255,.2); }
+.led--steel { background: radial-gradient(circle at 38% 30%, #d3e8f7, var(--system) 45%, #2b5878 90%);
+  box-shadow: 0 0 5px 1px rgba(105,170,215,.6), 0 0 14px rgba(105,170,215,.28),
+    inset 0 -1px 1px rgba(0,0,0,.4), inset 0 1px 1px rgba(255,255,255,.5); }
+.led--live { background: radial-gradient(circle at 38% 30%, #ffc7c5, #e3413d 45%, #7e1c1a 90%);
+  box-shadow: 0 0 5px 1px rgba(227,65,61,.7), 0 0 14px rgba(227,65,61,.32),
+    inset 0 -1px 1px rgba(0,0,0,.4), inset 0 1px 1px rgba(255,255,255,.5); }
+
+/* ═══ Botões (laranja = ação; isolamento total da cor) ═══════════════ */
+.btn {
+  font: inherit; font-size: 13.5px; font-weight: 700; text-decoration: none;
+  cursor: pointer; display: inline-block;
+  padding: 10px 24px; border: 1px solid rgba(0,0,0,.55); border-radius: 5px;
+  /* laranja anodizado: brilho superior + varredura + base profunda */
+  background-image:
+    linear-gradient(100deg, transparent 30%, rgba(255,255,255,.14) 48%, rgba(255,255,255,.22) 52%, transparent 70%),
+    linear-gradient(180deg, #ff9433 0%, var(--hcn-orange-hot) 18%, var(--hcn-orange) 55%, var(--hcn-orange-deep) 100%);
+  color: var(--text-on-accent);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.45),
+    inset 0 -2px 3px rgba(0,0,0,.3),
+    0 1px 2px rgba(0,0,0,.6), 0 4px 12px rgba(200,100,0,.22);
+  transition: filter 120ms ease, box-shadow 120ms ease;
+}
+.btn:hover { filter: brightness(1.07); box-shadow:
+  inset 0 1px 0 rgba(255,255,255,.5), inset 0 -2px 3px rgba(0,0,0,.3),
+  0 1px 2px rgba(0,0,0,.6), 0 6px 18px rgba(242,101,34,.3); }
+.btn:active { filter: brightness(.95); }
+.btn--ghost { background: rgba(255,255,255,.02); color: var(--text-primary);
+  border: 1px solid var(--hcn-gm-700); font-weight: 600;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05); }
+.btn--ghost:hover { filter: none; background: rgba(255,255,255,.05); box-shadow: inset 0 1px 0 rgba(255,255,255,.05); }
+.btn--lg { font-size: 15px; padding: 13px 32px; }
+.btn--sm { font-size: 12px; padding: 8px 18px; }
+/* micro-linha de confiança sob o CTA */
+.reassure { display: block; margin-top: 10px; font-size: 12px; color: var(--text-faint); }
+
+/* ═══ Placa usinada ══════════════════════════════════════════════════ */
+.plate {
+  position: relative;
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 7px 16px 7px 30px;
+  background-color: #232629;
+  background-image: var(--hcn-brush), var(--hcn-hairlines), var(--hcn-sweep),
+    linear-gradient(180deg, #31353b, #22252a 55%, #26292e);
+  border: 1px solid var(--edge-dark); border-radius: 3px;
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.12),
+    inset 0 -1px 0 rgba(0,0,0,.5),
+    inset 1px 0 0 rgba(255,255,255,.04),
+    inset -1px 0 0 rgba(0,0,0,.3),
+    0 1px 2px rgba(0,0,0,.6), 0 3px 8px rgba(0,0,0,.35);
+  font-family: var(--hcn-font-mono); font-size: 10.5px; letter-spacing: .2em;
+  text-transform: uppercase; color: #d3d6da;
+  text-shadow: 0 -1px 0 rgba(0,0,0,.6); /* gravado no metal */
+}
+.plate::before { /* parafuso com fenda */
+  content: ""; position: absolute; left: 10px; top: 50%; transform: translateY(-50%);
+  width: 9px; height: 9px; border-radius: 50%;
+  background:
+    linear-gradient(52deg, transparent 43%, rgba(0,0,0,.68) 47%, rgba(0,0,0,.68) 53%, transparent 57%),
+    radial-gradient(circle at 32% 28%, #8a9099, #3c4046 52%, #0e0f11 96%);
+  box-shadow: inset 0 -1px 1px rgba(255,255,255,.15), 0 1px 2px rgba(0,0,0,.7);
+}
+
+/* cápsula cromada (acabamento herdado 2001 — usar com parcimônia) */
+.cap {
+  position: relative; display: inline-flex; align-items: center;
+  padding: 6px 20px 6px 26px; border-radius: var(--hcn-radius-pill);
+  background-image:
+    repeating-linear-gradient(90deg, rgba(255,255,255,.14) 0 1px, transparent 1px 3px),
+    var(--hcn-chrome-satin);
+  border: 1px solid rgba(0,0,0,.65);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.9),
+    inset 0 -2px 3px rgba(0,0,0,.35),
+    inset 0 6px 6px -4px rgba(255,255,255,.5),
+    0 1px 2px rgba(0,0,0,.6), 0 3px 8px rgba(0,0,0,.4);
+  font-family: var(--hcn-font-mono); font-size: 10.5px; letter-spacing: .2em;
+  text-transform: uppercase; color: var(--text-on-chrome);
+  text-shadow: 0 1px 0 rgba(255,255,255,.6);
+}
+.cap::before { /* nub laranja com domo */
+  content: ""; position: absolute; left: 9px; top: 50%; transform: translateY(-50%);
+  width: 8px; height: 8px; border-radius: 50%;
+  background: radial-gradient(circle at 35% 28%, #ffe4bb, var(--hcn-orange) 48%, var(--hcn-orange-deep) 92%);
+  box-shadow: 0 0 6px var(--hcn-orange-hot), inset 0 -1px 1px rgba(0,0,0,.35),
+    inset 0 1px 1px rgba(255,255,255,.6);
+}
+
+/* ═══ Painéis ════════════════════════════════════════════════════════ */
+.panel {
+  background-color: var(--surface-raised);
+  background-image: var(--hcn-noise), var(--hcn-hairlines),
+    linear-gradient(180deg, var(--hcn-gm-800), var(--hcn-gm-900));
+  border: 1px solid var(--edge-dark); border-radius: var(--hcn-radius);
+  box-shadow:
+    inset 0 1px 0 rgba(255,255,255,.10),
+    inset 0 -1px 0 rgba(0,0,0,.45),
+    inset 1px 0 0 rgba(255,255,255,.03),
+    inset -1px 0 0 rgba(0,0,0,.25),
+    0 2px 4px rgba(0,0,0,.45), 0 12px 30px rgba(0,0,0,.4);
+}
+.panel--flat { box-shadow: inset 0 1px 0 rgba(255,255,255,.10), inset 0 -1px 0 rgba(0,0,0,.45); }
+.panel--brushed { background-image: var(--hcn-brush), var(--hcn-hairlines), var(--hcn-sweep),
+  linear-gradient(180deg, var(--hcn-gm-800), var(--hcn-gm-900)); }
+.panel--rivets { position: relative; }
+.panel--rivets::before, .panel--rivets::after {
+  content: ""; position: absolute; top: 8px; width: 8px; height: 8px; border-radius: 50%;
+  background:
+    linear-gradient(52deg, transparent 43%, rgba(0,0,0,.6) 47%, rgba(0,0,0,.6) 53%, transparent 57%),
+    radial-gradient(circle at 32% 28%, #81878f, #383c41 52%, #0c0d0f 96%);
+  box-shadow: inset 0 -1px 1px rgba(255,255,255,.14), 0 1px 2px rgba(0,0,0,.7);
+}
+.panel--rivets::before { left: 8px; } .panel--rivets::after { right: 8px; }
+
+/* faixa de baias conectadas (não cards soltos) */
+.strip { display: grid;
+  background-color: var(--surface-raised);
+  background-image: var(--hcn-noise), linear-gradient(180deg, var(--hcn-gm-900), #17181c);
+  border: 1px solid var(--edge-dark); border-radius: var(--hcn-radius);
+  box-shadow: inset 0 1px 0 var(--edge-light), 0 14px 34px rgba(0,0,0,.4);
+  overflow: hidden; }
+.strip > * { padding: 24px 22px 26px; border-right: 1px solid rgba(0,0,0,.6);
+  box-shadow: inset 1px 0 0 rgba(255,255,255,.04); }
+
+/* tabela-manifesto */
+.manifest { border: 1px solid var(--hcn-gm-700); border-radius: var(--hcn-radius); overflow: hidden; }
+.manifest .mrow { display: grid; grid-template-columns: minmax(150px, 2fr) 5fr; gap: 18px;
+  padding: 13px 18px; border-bottom: 1px solid var(--hairline); background: var(--surface-raised); }
+.manifest .mrow:nth-child(even) { background: #17191d; }
+.manifest .mrow:last-child { border-bottom: none; }
+.manifest .k { font-family: var(--hcn-font-mono); font-size: 11px; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--accent-hover-text); padding-top: 3px; }
+.manifest .k--sys { color: var(--system); text-transform: lowercase; }
+.manifest .v { font-size: 14px; }
+.manifest .v small { display: block; color: var(--text-faint); font-size: 12.5px; }
+
+/* transmissão de rádio (citação/depoimento) */
+.radio { border-left: 3px solid var(--accent);
+  background: linear-gradient(90deg, rgba(242,101,34,.06), transparent 55%);
+  padding: 20px 26px; }
+.radio blockquote { margin: 0 0 10px; font-size: 19px; line-height: 1.45;
+  letter-spacing: -0.01em; max-width: 56ch; font-weight: 500; }
+.radio cite { font-style: normal; font-size: 13px; color: var(--text-faint); }
+
+/* pista (divisor de seção) */
+.runway { position: relative; height: 34px;
+  border-top: 1px solid var(--hcn-gm-700); border-bottom: 1px solid var(--hcn-gm-700);
+  background: #101114; overflow: hidden; }
+.runway::before { content: ""; position: absolute; top: 50%; left: 0; right: 0; height: 3px;
+  transform: translateY(-50%);
+  background: repeating-linear-gradient(90deg, var(--hcn-orange-deep) 0 46px, transparent 46px 82px); }
+.runway::after { content: ""; position: absolute; inset: 0; background: var(--hcn-noise); }
+
+/* faixa hazard (usar uma vez por página, no CTA final) */
+.hazard-top { position: relative; }
+.hazard-top::before { content: ""; position: absolute; top: -1px; left: 0; right: 0;
+  height: 10px; background: var(--hcn-hazard); opacity: .85; }
+
+/* ═══ Interações herdadas ════════════════════════════════════════════ */
+/* flip laranja-sobre-preto (2002) — links de lista/notícia */
+.fliplink { text-decoration: none; border-radius: 2px; padding: 1px 5px; margin: -1px -5px;
+  transition: color 120ms ease, background-color 120ms ease; }
+.fliplink:hover, .fliplink:focus-visible { color: var(--accent-hover-text); background: #000; }
+
+/* linhas de notícia */
+.newsrow { display: flex; gap: 12px; align-items: baseline; padding: 9px 4px;
+  border-bottom: 1px solid var(--hairline); }
+.newsrow:last-child { border-bottom: none; }
+.newsrow time { font-family: var(--hcn-font-mono); font-size: 11px; color: var(--text-faint);
+  flex: none; font-variant-numeric: tabular-nums; }
+.newsrow .tag { font-family: var(--hcn-font-mono); font-size: 9px; letter-spacing: .14em;
+  text-transform: lowercase; color: var(--system); flex: none; padding-top: 2px; min-width: 42px; }
+
+/* ═══ Mídia / imagens ════════════════════════════════════════════════ */
+.photo { display: block; width: 100%; height: 100%; object-fit: cover; }
+.photo-frame { position: relative; overflow: hidden; border-radius: var(--hcn-radius);
+  border: 1px solid var(--edge-dark);
+  box-shadow: inset 0 1px 0 var(--edge-light), 0 18px 40px rgba(0,0,0,.5); }
+.photo-frame::after { /* vinheta p/ fundir a foto no casco escuro */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  box-shadow: inset 0 0 60px rgba(10,11,13,.55);
+  background: linear-gradient(180deg, transparent 60%, rgba(10,11,13,.45)); }
+.photo-frame .badge { position: absolute; left: 12px; bottom: 12px; z-index: 1; }
+
+/* ═══ Preço (playbook: 3 opções, selo no pago, preço no CTA) ═════════ */
+.plan-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 18px; }
+.plan { position: relative; padding: 26px 24px; display: flex; flex-direction: column; gap: 12px; }
+.plan--reco { border-top: 3px solid var(--accent); }
+.plan--reco .reco-badge { position: absolute; top: -12px; left: 20px;
+  font-family: var(--hcn-font-mono); font-size: 9.5px; letter-spacing: .18em;
+  text-transform: uppercase; color: var(--text-on-accent);
+  background: linear-gradient(180deg, var(--hcn-orange-hot), var(--hcn-orange-deep));
+  padding: 4px 12px; border-radius: 3px; box-shadow: 0 2px 6px rgba(0,0,0,.5); }
+.plan h3 { margin: 0; font-family: var(--hcn-font-mono); font-size: 12px; letter-spacing: .22em;
+  text-transform: uppercase; color: var(--text-muted); font-weight: 400; }
+.plan .price { font-family: var(--hcn-font-display); font-size: 36px;
+  font-weight: 800; letter-spacing: -0.01em;
+  line-height: 1; font-variant-numeric: tabular-nums; }
+.plan .price small { font-size: 13px; font-weight: 500; color: var(--text-faint); letter-spacing: 0; }
+.plan ul { margin: 4px 0 6px; padding: 0; list-style: none;
+  display: flex; flex-direction: column; gap: 8px; font-size: 13.5px; color: var(--text-muted); }
+.plan ul li::before { content: "— "; color: var(--accent); }
+.plan .btn { align-self: flex-start; margin-top: 4px; }
+
+/* ═══ Nav / rodapé padrão ════════════════════════════════════════════ */
+.statusbar { display: flex; justify-content: space-between; align-items: center; gap: 16px;
+  padding: 8px 24px; background: #0b0c0e; border-bottom: 1px solid var(--edge-dark);
+  box-shadow: inset 0 -1px 0 rgba(255,255,255,.05); }
+.mainnav { display: flex; align-items: center; gap: 26px; padding: 22px 0; }
+.wordmark { font-family: var(--hcn-font-display); font-weight: 800;
+  font-size: 18px; letter-spacing: .05em;
+  text-transform: uppercase; text-decoration: none; }
+.wordmark span { color: var(--accent); }
+.mainnav ul { display: flex; gap: 2px; margin: 0 0 0 auto; padding: 0; list-style: none; }
+.mainnav ul a { text-decoration: none; font-size: 13.5px; font-weight: 500;
+  color: var(--text-muted); padding: 7px 12px; border-radius: 4px; }
+.sitefoot { padding: 28px 0 44px; border-top: 1px solid var(--hairline); }
+.sitefoot .wrap { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
+
+@media (max-width: 860px) {
+  .mainnav ul { display: none; }
+  .strip { grid-template-columns: 1fr !important; }
+  .strip > * { border-right: none !important; border-top: 1px solid rgba(0,0,0,.6); }
+  .manifest .mrow { grid-template-columns: 1fr; gap: 4px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hangar * { transition: none !important; animation: none !important; }
+}

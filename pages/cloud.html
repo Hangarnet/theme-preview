@@ -1,0 +1,242 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hangar Cloud — Hospedagem self-service, deploy pela sua IA e VMs sob medida</title>
+<link rel="stylesheet" href="../hangar-theme.css">
+<style>
+.hero { position: relative; padding: 72px 0 64px; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; z-index: 0; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: .28; }
+.hero-bg::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(18,19,22,.55) 0%, rgba(18,19,22,.85) 60%, var(--surface-canvas) 100%),
+              radial-gradient(700px 400px at 25% 30%, transparent, rgba(18,19,22,.6)); }
+.hero .wrap { position: relative; z-index: 1; }
+.hero h1 { font-size: clamp(32px, 4.8vw, 54px); margin: 20px 0 18px; max-width: 21ch; }
+.hero .lead { max-width: 50ch; color: var(--text-muted); font-size: 16.5px; margin: 0 0 28px; }
+.hero .lead b { color: var(--text-primary); }
+
+section { padding: 64px 0; }
+.sechead { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; }
+.sechead .rule { flex: 1; height: 1px; background: linear-gradient(90deg, var(--edge-light), transparent); }
+.secsub { margin: -18px 0 34px; color: var(--text-muted); max-width: 64ch; }
+
+/* blocos de produto alternados */
+.prod { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 44px; align-items: center; padding: 34px 0; }
+.prod + .prod { border-top: 1px solid var(--hairline); }
+.prod .photo-frame { height: 280px; }
+.prod h3 { font-size: clamp(20px, 2.6vw, 27px); font-weight: 800; letter-spacing: -0.01em; margin: 12px 0 10px; }
+.prod h3 em { font-style: normal; color: var(--accent); }
+.prod p { margin: 0 0 18px; color: var(--text-muted); max-width: 48ch; }
+.prod .points { margin: 0 0 22px; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 7px; font-size: 13.5px; color: var(--text-muted); }
+.prod .points li::before { content: "— "; color: var(--accent); }
+.prod .pricefrom { font-family: var(--hcn-font-mono); font-size: 12px; letter-spacing: .08em; color: var(--accent-hover-text); display: block; margin-bottom: 12px; font-variant-numeric: tabular-nums; }
+
+/* MCP — banner grandioso */
+.mcp-banner { position: relative; border-radius: 8px; overflow: hidden;
+  border: 1px solid var(--edge-dark); min-height: 460px;
+  display: flex; align-items: flex-end;
+  box-shadow: inset 0 1px 0 var(--edge-light), 0 26px 60px rgba(0,0,0,.55); }
+.mcp-banner > img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; }
+.mcp-banner::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(18,19,22,.25) 0%, rgba(18,19,22,.35) 45%, rgba(14,15,17,.92) 100%),
+              linear-gradient(90deg, rgba(14,15,17,.55) 0%, transparent 45%); }
+.mcp-inner { position: relative; z-index: 1; width: 100%;
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 28px; padding: 30px 34px; flex-wrap: wrap; }
+.mcp-inner h3 { font-size: clamp(24px, 3.4vw, 38px); font-weight: 800;
+  letter-spacing: -0.01em; margin: 12px 0 8px; max-width: 18ch; line-height: 1.08;
+  text-transform: uppercase; }
+.mcp-inner h3 em { font-style: normal; color: var(--accent); }
+.mcp-inner p { margin: 0 0 18px; color: #d6d8dc; max-width: 44ch; font-size: 15px; }
+.term { font-family: var(--hcn-font-mono); font-size: 12px; line-height: 1.8;
+  background: rgba(10,11,13,.78); border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--hcn-radius); padding: 12px 16px; backdrop-filter: blur(6px);
+  min-width: 300px; }
+.term .ln { display: block; white-space: pre-wrap; }
+.term .you { color: var(--text-primary); }
+.term .you::before { content: "você → ia  "; color: var(--text-faint); }
+.term .ai { color: var(--text-muted); }
+.term .ai::before { content: "ia         "; color: var(--system); }
+.term .ok { color: var(--accent-hover-text); }
+
+/* VM configurator mock — foto + card sobreposto */
+.vmvisual .photo-frame { height: 240px; }
+.vmvisual .vmconf { position: relative; z-index: 1; width: 90%; margin: -56px auto 0; }
+.vmconf { padding: 18px; display: flex; flex-direction: column; gap: 14px; }
+.vmrow { display: grid; grid-template-columns: 92px 1fr 78px; gap: 14px; align-items: center; }
+.vmrow .k { font-family: var(--hcn-font-mono); font-size: 10px; letter-spacing: .16em; text-transform: lowercase; color: var(--system); }
+.slider { position: relative; height: 6px; border-radius: 999px; background: #0c0d10; box-shadow: inset 0 1px 2px rgba(0,0,0,.8), inset 0 -1px 0 rgba(255,255,255,.05); }
+.slider i { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 999px;
+  background: linear-gradient(180deg, var(--hcn-orange-hot), var(--hcn-orange-deep)); box-shadow: 0 0 8px rgba(242,101,34,.4); }
+.slider b { position: absolute; top: 50%; transform: translate(-50%, -50%); width: 16px; height: 16px; border-radius: 50%;
+  background: radial-gradient(circle at 32% 28%, #9aa0a8, #3c4046 55%, #101214);
+  box-shadow: inset 0 -1px 1px rgba(255,255,255,.2), 0 1px 3px rgba(0,0,0,.7); }
+.vmrow .v { font-family: var(--hcn-font-mono); font-size: 12px; color: var(--text-primary); text-align: right; font-variant-numeric: tabular-nums; }
+.vmtotal { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--hairline); padding-top: 14px; }
+.vmtotal .placard b { font-size: 15px; letter-spacing: 0; }
+
+/* confiança */
+.trust { grid-template-columns: repeat(4, 1fr); }
+.trust > div h4 { margin: 10px 0 4px; font-size: 13.5px; }
+.trust > div p { margin: 0; font-size: 12.5px; color: var(--text-faint); }
+
+.paylogos { display: flex; gap: 8px; align-items: center; margin-top: 18px; }
+.paylogos .pill { font-family: var(--hcn-font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); border: 1px solid var(--hcn-gm-700); border-radius: 999px; padding: 4px 12px; }
+.paylogos .pill--pix { color: var(--system); border-color: var(--system-dim); }
+
+.ctaband { text-align: center; padding: 68px 0 76px; background: #101114; }
+.ctaband h2 { font-size: clamp(24px, 3.4vw, 34px); margin: 0 0 10px; }
+.ctaband p { color: var(--text-muted); margin: 0 0 24px; }
+
+@media (max-width: 860px) {
+  .prod { grid-template-columns: 1fr; }
+  .prod .photo-frame { order: -1; }
+  .trust { grid-template-columns: 1fr 1fr; }
+}
+</style>
+</head>
+<body class="hangar hangar--halo-steel">
+
+<div class="statusbar">
+  <span class="sys">hangar network // cloud <span class="led led--steel"></span>&nbsp; sites · games</span>
+  <span class="placard">uptime 30d: <b>99,98%</b></span>
+</div>
+
+<div class="wrap">
+  <nav class="mainnav" aria-label="Principal">
+    <a class="wordmark" href="#">Hangar<span>Cloud</span></a>
+    <ul>
+      <li><a href="#hospedagem">Hospedagem</a></li>
+      <li><a href="#mcp">Deploy por IA</a></li>
+      <li><a href="#vms">Máquinas</a></li>
+      <li><a href="#">Entrar</a></li>
+    </ul>
+    <a class="btn" href="#">Começar agora</a>
+  </nav>
+</div>
+
+<header class="hero">
+  <div class="hero-bg" aria-hidden="true"><img src="../assets/datacenter.jpg" alt=""></div>
+  <div class="wrap">
+    <span class="plate">Setor · Cloud <span class="led"></span></span>
+    <h1 class="display">Infra que você mesmo pilota. <em>Até pela sua IA.</em></h1>
+    <p class="lead">
+      Hospedagem de <b>ótimo custo-benefício</b>, 100% self-service. Faça deploy
+      <b>direto da sua IA via MCP</b> ou monte a máquina do seu jeito em minutos —
+      sem ticket, sem espera, sem consultor.
+    </p>
+    <div>
+      <a class="btn btn--lg" href="#">Criar minha conta</a>
+      <a class="btn btn--ghost btn--lg" href="#mcp" style="margin-left:10px;">Ver o deploy por IA</a>
+      <span class="reassure">A partir de R$ 19/mês · Pague com Pix · Cancele quando quiser</span>
+    </div>
+  </div>
+</header>
+
+<section id="hospedagem" style="padding-top: 40px;">
+  <div class="wrap">
+    <div class="sechead"><span class="plate">Produtos principais</span><span class="rule"></span></div>
+
+    <div class="prod">
+      <div>
+        <span class="sys">c-01 · hospedagem</span>
+        <h3>Hospedagem self-service, <em>preço de gente</em>.</h3>
+        <p>Site, app ou API no ar na borda global. Você contrata, aponta o domínio e publica — tudo sozinho, no painel, em minutos.</p>
+        <ul class="points">
+          <li>SSL, CDN e backups diários inclusos</li>
+          <li>Escala automática — pague só o que usar</li>
+          <li>Painel em português, suporte por WhatsApp</li>
+        </ul>
+        <span class="pricefrom">a partir de R$ 19/mês — preço fechado, sem pegadinha</span>
+        <a class="btn" href="#">Hospedar meu site — R$ 19/mês</a>
+        <span class="reassure">Pix ou cartão · Sem fidelidade</span>
+      </div>
+      <div class="photo-frame"><img class="photo" src="../assets/datacenter.jpg" alt="Racks de servidores com cabeamento laranja"><span class="badge plate">borda global</span></div>
+    </div>
+
+    <div id="mcp" style="padding: 34px 0; border-top: 1px solid var(--hairline);">
+      <div class="mcp-banner">
+        <img src="../assets/c-rocket.jpg" alt="Foguete decolando da plataforma de lançamento">
+        <div class="mcp-inner">
+          <div>
+            <span class="sys" style="color: var(--hcn-steel-500);">c-02 · mcp</span>
+            <h3>Sua IA faz o <em>deploy</em>.</h3>
+            <p>Conecte o MCP da Hangar no Claude, no Cursor ou na IA que você já usa — e peça. Você aprova, ela lança.</p>
+            <a class="btn btn--lg" href="#">Conectar minha IA</a>
+            <span class="reassure" style="color: #b9bcc2;">Incluso em todos os planos · Setup em 2 minutos</span>
+          </div>
+          <div class="term" aria-hidden="true">
+            <span class="ln you">sobe esse app pra produção</span>
+            <span class="ln ai">Deploy via MCP — <span class="ok">no ar em 41s ✓</span></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="prod" id="vms">
+      <div>
+        <span class="sys">c-03 · máquinas</span>
+        <h3>Máquinas virtuais <em>a seu gosto</em>.</h3>
+        <p>Monte a VM exata que o seu projeto pede — CPU, memória e disco nos sliders, preço na hora, máquina no ar em segundos.</p>
+        <ul class="points">
+          <li>Provisionamento em ~40 segundos</li>
+          <li>Preço por hora ou mensal com desconto</li>
+          <li>Snapshots e redimensionamento sem downtime</li>
+        </ul>
+        <span class="pricefrom">a partir de R$ 29/mês — calculado na tela, sem surpresa</span>
+        <a class="btn" href="#">Montar minha máquina</a>
+        <span class="reassure">Destrua e recrie quando quiser · Cobrança por uso real</span>
+      </div>
+      <div class="vmvisual" aria-hidden="true">
+        <div class="photo-frame"><img class="photo" src="../assets/setup.jpg" alt=""><span class="badge plate">hardware dedicado</span></div>
+        <div class="panel panel--rivets vmconf">
+          <div class="vmrow"><span class="k">vcpu</span><span class="slider"><i style="width:45%"></i><b style="left:45%"></b></span><span class="v">4 núcleos</span></div>
+          <div class="vmrow"><span class="k">memória</span><span class="slider"><i style="width:60%"></i><b style="left:60%"></b></span><span class="v">8 GB</span></div>
+          <div class="vmrow"><span class="k">disco nvme</span><span class="slider"><i style="width:35%"></i><b style="left:35%"></b></span><span class="v">120 GB</span></div>
+          <div class="vmrow"><span class="k">região</span><span class="slider"><i style="width:20%"></i><b style="left:20%"></b></span><span class="v">br-sudeste</span></div>
+          <div class="vmtotal">
+            <span class="sys">vm-a4 · pronta em ~40s</span>
+            <span class="placard">total: <b>R$ 87/mês</b></span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top: 8px;">
+  <div class="wrap">
+    <div class="sechead"><span class="plate">Por que a Hangar</span><span class="rule"></span></div>
+    <div class="strip trust">
+      <div><span class="led"></span><h4>Preço transparente</h4><p>O valor que você vê no slider é o valor da fatura. Em reais.</p></div>
+      <div><span class="led"></span><h4>Pix aceito</h4><p>Pague a infra como você paga tudo no Brasil — sem cartão internacional.</p></div>
+      <div><span class="led"></span><h4>Suporte de verdade</h4><p>WhatsApp com gente que faz deploy, não script de call center.</p></div>
+      <div><span class="led"></span><h4>Saída livre</h4><p>Exporte tudo e cancele em dois cliques. Sem fidelidade, sem multa.</p></div>
+    </div>
+    <div class="paylogos">
+      <span class="placard">pagamentos:</span>
+      <span class="pill pill--pix">Pix</span><span class="pill">Visa</span><span class="pill">Master</span><span class="pill">Boleto</span>
+    </div>
+  </div>
+</section>
+
+<section class="ctaband hazard-top">
+  <div class="wrap">
+    <h2 class="display">Seu próximo deploy, <em>no hangar</em>.</h2>
+    <p>Crie a conta agora e publique o primeiro projeto ainda hoje — você ou a sua IA.</p>
+    <a class="btn btn--lg" href="#">Criar minha conta</a>
+    <span class="reassure">A partir de R$ 19/mês · Pix ou cartão · Cancele quando quiser</span>
+  </div>
+</section>
+
+<footer class="sitefoot">
+  <div class="wrap">
+    <span class="sys">hangar network // sites · <b>cloud</b> · games</span>
+    <span class="placard">Brazas Tecnologia Ltda. · CNPJ 66.856.116/0001-35 · <a class="fliplink" href="#">privacidade</a> · <a class="fliplink" href="#">termos</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hangar Sites — Crie sua loja online com inteligência artificial</title>
+<link rel="stylesheet" href="../hangar-theme.css">
+<style>
+/* página: diagramação herdada da landing Brazas (pesquisada) */
+.hero { padding: 60px 0 0; }
+.hero-grid { display: grid; grid-template-columns: minmax(0, 11fr) minmax(0, 9fr); gap: 56px; align-items: center; padding-bottom: 64px; }
+.hero h1 { font-size: clamp(32px, 4.8vw, 52px); margin: 20px 0 18px; }
+.hero .lead { max-width: 46ch; color: var(--text-muted); font-size: 16px; margin: 0 0 28px; }
+.hero .lead b { color: var(--text-primary); }
+
+/* mockup da loja com fotos reais */
+.bay { padding: 14px; }
+.bay-head { display: flex; justify-content: space-between; align-items: center; padding: 2px 4px 12px; border-bottom: 1px solid var(--hcn-gm-700); margin-bottom: 12px; }
+.bay-head .url { font-family: var(--hcn-font-mono); font-size: 12px; letter-spacing: .04em; }
+.bay-head .url b { color: var(--system); font-weight: 400; }
+.shelf { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; }
+.item { border-radius: 4px; overflow: hidden; background: var(--surface-overlay); border: 1px solid rgba(0,0,0,.5); }
+.item .ph { height: 96px; overflow: hidden; }
+.item .ph img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.item .meta { padding: 8px 10px 10px; }
+.item .meta b { display: block; font-size: 11.5px; font-weight: 600; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.item .meta span { font-family: var(--hcn-font-mono); font-size: 11px; color: var(--accent-hover-text); font-variant-numeric: tabular-nums; }
+.bay-foot { display: flex; justify-content: space-between; align-items: center; padding-top: 12px; }
+
+/* prova social */
+.proof { border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); background: #101114; }
+.proof .wrap { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 12px; padding: 22px 24px; }
+.stat { text-align: center; }
+.stat b { display: block; font-size: 24px; font-weight: 800; letter-spacing: -0.02em; font-variant-numeric: tabular-nums; }
+.stat span { font-size: 12px; color: var(--text-faint); }
+
+section { padding: 64px 0; }
+.sechead { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; }
+.sechead .rule { flex: 1; height: 1px; background: linear-gradient(90deg, var(--edge-light), transparent); }
+.secsub { margin: -18px 0 30px; color: var(--text-muted); max-width: 62ch; }
+
+/* dois modos */
+.modes { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+.mode { overflow: hidden; display: flex; flex-direction: column; }
+.mode .photo-frame { border-radius: 5px 5px 0 0; border: none; box-shadow: none; height: 210px; }
+.mode .body { padding: 20px 22px 24px; display: flex; flex-direction: column; gap: 8px; flex: 1; }
+.mode h3 { margin: 0; font-size: 17px; font-weight: 800; letter-spacing: -0.01em; }
+.mode p { margin: 0; font-size: 13.5px; color: var(--text-muted); }
+.mode .sys { margin-top: auto; padding-top: 12px; }
+
+/* como funciona */
+.steps { grid-template-columns: repeat(3, 1fr); }
+.step h3 { margin: 10px 0 6px; font-size: 15.5px; font-weight: 700; }
+.step p { margin: 0; font-size: 13.5px; color: var(--text-muted); }
+.stepnum { font-family: var(--hcn-font-mono); font-size: 11px; letter-spacing: .18em; color: var(--accent-hover-text); }
+
+/* IA express */
+.ia { background: #101114; border-top: 1px solid var(--hairline); border-bottom: 1px solid var(--hairline); }
+.ia-grid { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 48px; align-items: center; }
+.chat { padding: 18px; display: flex; flex-direction: column; gap: 10px; }
+.msg { max-width: 85%; padding: 10px 14px; border-radius: 8px; font-size: 13px; line-height: 1.5; }
+.msg--user { align-self: flex-end; background: var(--surface-overlay); border: 1px solid var(--edge-light); }
+.msg--ai { align-self: flex-start; background: linear-gradient(180deg, rgba(242,101,34,.14), rgba(242,101,34,.06)); border: 1px solid rgba(242,101,34,.3); }
+.msg--ai .sys { display: block; margin-bottom: 4px; color: var(--accent-hover-text); text-transform: lowercase; }
+.chat .btn { align-self: flex-start; }
+
+/* preços + pagamento */
+.paylogos { display: flex; gap: 8px; align-items: center; margin-top: 18px; }
+.paylogos .pill { font-family: var(--hcn-font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); border: 1px solid var(--hcn-gm-700); border-radius: 999px; padding: 4px 12px; }
+.paylogos .pill--pix { color: var(--system); border-color: var(--system-dim); }
+
+.ctaband { text-align: center; padding: 68px 0 76px; background: #101114; }
+.ctaband h2 { font-size: clamp(24px, 3.4vw, 34px); margin: 0 0 10px; }
+.ctaband p { color: var(--text-muted); margin: 0 0 24px; }
+
+@media (max-width: 860px) {
+  .hero-grid, .modes, .ia-grid { grid-template-columns: 1fr; }
+  .shelf { grid-template-columns: repeat(2, 1fr); }
+}
+</style>
+</head>
+<body class="hangar hangar--halo-orange">
+
+<div class="statusbar">
+  <span class="sys">hangar network // sites <span class="led led--steel"></span>&nbsp; cloud · games</span>
+  <span class="placard">status: <b>operacional</b></span>
+</div>
+
+<div class="wrap">
+  <nav class="mainnav" aria-label="Principal">
+    <a class="wordmark" href="#">Hangar<span>Sites</span></a>
+    <ul>
+      <li><a href="#modos">Modos</a></li>
+      <li><a href="#como-funciona">Como funciona</a></li>
+      <li><a href="#ia">IA</a></li>
+      <li><a href="#planos">Planos</a></li>
+      <li><a href="#">Entrar</a></li>
+    </ul>
+    <a class="btn" href="#">Criar minha loja</a>
+  </nav>
+</div>
+
+<header class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="plate">Setor · Sites <span class="led"></span></span>
+      <h1 class="display">Crie sua loja online com <em>inteligência artificial</em>.</h1>
+      <p class="lead">
+        Loja de <b>produtos</b> ou agenda de <b>serviços</b> — você escolhe, a IA
+        monta. No ar em minutos, com Pix e cartão configurados.
+        <b>1 mês grátis, sem cartão de crédito.</b>
+      </p>
+      <div>
+        <a class="btn btn--lg" href="#">Criar minha loja grátis</a>
+        <a class="btn btn--ghost btn--lg" href="#ia" style="margin-left:10px;">Ver a IA em ação</a>
+        <span class="reassure">Sem cartão de crédito · Cancele quando quiser · Depois, R$ 9,90/mês + 2,5% por venda</span>
+      </div>
+    </div>
+    <div class="panel panel--rivets bay" aria-hidden="true">
+      <div class="bay-head">
+        <span class="url"><b>megan</b>.brazas.shop</span>
+        <span class="sys">tema por ia</span>
+      </div>
+      <div class="shelf">
+        <div class="item"><div class="ph"><img src="../assets/sweets.jpg" alt=""></div><div class="meta"><b>Trufas artesanais — cx. 9</b><span>R$ 42,00</span></div></div>
+        <div class="item"><div class="ph"><img src="../assets/cupcakes.jpg" alt=""></div><div class="meta"><b>Cupcake festa — un.</b><span>R$ 8,50</span></div></div>
+        <div class="item"><div class="ph"><img src="../assets/macarons.jpg" alt=""></div><div class="meta"><b>Macarons — cx. 12</b><span>R$ 54,00</span></div></div>
+      </div>
+      <div class="bay-foot">
+        <span class="placard">split ativo · pix na hora</span>
+        <span class="btn btn--sm">Comprar</span>
+      </div>
+    </div>
+  </div>
+  <div class="proof">
+    <div class="wrap">
+      <div class="stat"><b>132</b><span>lojas no ar</span></div>
+      <div class="stat"><b>R$ 4,7M</b><span>em vendas processadas</span></div>
+      <div class="stat"><b>~3 min</b><span>da ideia à loja publicada</span></div>
+      <div class="stat"><b>99,98%</b><span>uptime na borda global</span></div>
+    </div>
+  </div>
+</header>
+
+<section id="modos">
+  <div class="wrap">
+    <div class="sechead"><span class="plate">Dois modos, uma plataforma</span><span class="rule"></span></div>
+    <p class="secsub">Venda o que você faz — do jeito que você trabalha. Os dois modos saem com IA de atendimento incluída.</p>
+    <div class="modes">
+      <div class="panel mode">
+        <div class="photo-frame"><img class="photo" src="../assets/sweets.jpg" alt="Vitrine de doces artesanais"><span class="badge plate">modo · produtos</span></div>
+        <div class="body">
+          <h3>Loja de produtos</h3>
+          <p>Vitrine, carrinho, estoque, frete por raio e pedidos com Pix ou cartão em até 12x. Cada venda cai com o split já dividido.</p>
+          <span class="sys">catálogo · estoque · pedidos · cupons</span>
+        </div>
+      </div>
+      <div class="panel mode">
+        <div class="photo-frame"><img class="photo" src="../assets/barber.jpg" alt="Barbeiro atendendo cliente"><span class="badge plate">modo · serviços</span></div>
+        <div class="body">
+          <h3>Agendamento de serviços</h3>
+          <p>Agenda com horários, sinal antecipado para segurar a vaga, lembretes automáticos e assinaturas mensais para clientes fiéis.</p>
+          <span class="sys">agenda · sinal · lembretes · assinaturas</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="como-funciona" style="padding-top: 0;">
+  <div class="wrap">
+    <div class="sechead"><span class="plate">Como funciona</span><span class="rule"></span></div>
+    <div class="strip steps">
+      <div class="step"><span class="stepnum">01</span><h3>Descreva seu negócio</h3><p>Nome, o que você vende, o clima da sua marca. Duas frases bastam.</p></div>
+      <div class="step"><span class="stepnum">02</span><h3>A IA desenha a loja</h3><p>Cores, tipografia, layout e textos — um tema exclusivo, não um template repetido. Ajuste o que quiser.</p></div>
+      <div class="step"><span class="stepnum">03</span><h3>Publique e venda</h3><p>Sua loja no ar em sualoja.brazas.shop com Pix e cartão prontos. O primeiro pedido pode chegar hoje.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="ia" id="ia">
+  <div class="wrap ia-grid">
+    <div>
+      <span class="plate">IA de vendas <span class="led"></span></span>
+      <h2 class="display" style="font-size: clamp(24px, 3.4vw, 34px); margin: 18px 0 14px;">
+        Sua loja atende sozinha. <em>Compra e agendamento express.</em>
+      </h2>
+      <p style="color: var(--text-muted); max-width: 52ch; margin: 0 0 22px;">
+        Ative a IA da Hangar e seus clientes compram ou agendam conversando —
+        ela encontra o produto, sugere o horário, fecha o pedido e cobra no Pix.
+        Você só recebe a notificação de venda.
+      </p>
+      <a class="btn" href="#">Ativar IA na minha loja</a>
+      <span class="reassure">Incluída em todos os planos · Você aprova cada regra de atendimento</span>
+    </div>
+    <div class="panel panel--flat chat" aria-hidden="true">
+      <div class="msg msg--user">Queria 50 docinhos pra sábado, tem como?</div>
+      <div class="msg msg--ai"><span class="sys">ia · doces da megan</span>Tem sim! O Kit Festa (50 docinhos) sai por R$ 120,00 e a Megan entrega no sábado de manhã. Quer fechar no Pix?</div>
+      <div class="msg msg--user">Fecha!</div>
+      <div class="msg msg--ai"><span class="sys">ia · doces da megan</span>Pedido criado ✓ — aqui está o seu código Pix. Assim que o pagamento cair, a produção começa.</div>
+    </div>
+  </div>
+</section>
+
+<section id="planos">
+  <div class="wrap">
+    <div class="sechead"><span class="plate">Planos</span><span class="rule"></span></div>
+    <p class="secsub">Comece grátis, cresça quando as vendas crescerem. Sem surpresa no fim do mês.</p>
+    <div class="plan-grid">
+      <div class="panel plan">
+        <h3>Teste</h3>
+        <div class="price">R$ 0<small> — 1 mês grátis</small></div>
+        <ul>
+          <li>Loja completa (produtos ou serviços)</li>
+          <li>Tema gerado por IA</li>
+          <li>Pix e cartão com split</li>
+        </ul>
+        <a class="btn btn--ghost" href="#">Criar conta grátis</a>
+        <span class="reassure">Sem cartão de crédito, sem cobrança.</span>
+      </div>
+      <div class="panel plan plan--reco">
+        <span class="reco-badge">Recomendado</span>
+        <h3>Loja</h3>
+        <div class="price">R$ 9,90<small> /mês + 2,5% por venda</small></div>
+        <ul>
+          <li>Tudo do Teste, sem limites</li>
+          <li>IA de vendas express incluída</li>
+          <li>E-mails com a sua marca</li>
+          <li>Suporte por WhatsApp</li>
+        </ul>
+        <a class="btn" href="#">Começar agora — R$ 9,90/mês</a>
+        <span class="reassure">Cancele quando quiser · Só paga comissão quando vende</span>
+      </div>
+      <div class="panel plan">
+        <h3>Pro</h3>
+        <div class="price">R$ 49<small> /mês + 1,5% por venda</small></div>
+        <ul>
+          <li>Comissão reduzida</li>
+          <li>Assinaturas e venda por WhatsApp</li>
+          <li>Relatórios avançados</li>
+          <li>Suporte prioritário</li>
+        </ul>
+        <a class="btn btn--ghost" href="#">Assinar Pro</a>
+      </div>
+    </div>
+    <div class="paylogos">
+      <span class="placard">pagamentos:</span>
+      <span class="pill pill--pix">Pix</span><span class="pill">Visa</span><span class="pill">Master</span><span class="pill">Elo</span><span class="pill">Boleto</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top: 0;">
+  <div class="wrap">
+    <div class="radio">
+      <div class="placard">// transmissão recebida · betim-mg</div>
+      <blockquote>“Abri a loja num domingo à noite, sem saber nada de site. Na segunda o primeiro pedido caiu no Pix — e o design a IA fez melhor do que eu faria.”</blockquote>
+      <cite>Megan · Doces da Megan — <a class="fliplink" href="#" onclick="return false">megan.brazas.shop</a></cite>
+    </div>
+  </div>
+</section>
+
+<section class="ctaband hazard-top">
+  <div class="wrap">
+    <h2 class="display">Pronto para <em>decolar</em>?</h2>
+    <p>Crie a loja hoje. O primeiro pedido pode chegar antes do café esfriar.</p>
+    <a class="btn btn--lg" href="#">Criar minha loja grátis</a>
+    <span class="reassure">1 mês grátis · Sem cartão de crédito · Cancele quando quiser</span>
+  </div>
+</section>
+
+<footer class="sitefoot">
+  <div class="wrap">
+    <span class="sys">hangar network // <b>sites</b> · cloud · games</span>
+    <span class="placard">Brazas Tecnologia Ltda. · CNPJ 66.856.116/0001-35 · <a class="fliplink" href="#">privacidade</a> · <a class="fliplink" href="#">termos</a></span>
+  </div>
+</footer>
+
+</body>
+</html>

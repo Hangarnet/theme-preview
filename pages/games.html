@@ -1,0 +1,250 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Hangar Games — A maior comunidade de games do Brasil está de volta</title>
+<link rel="stylesheet" href="../hangar-theme.css">
+<style>
+.hero { position: relative; padding: 76px 0 60px; overflow: hidden; }
+.hero-bg { position: absolute; inset: 0; }
+.hero-bg img { width: 100%; height: 100%; object-fit: cover; opacity: .3; }
+.hero-bg::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(18,19,22,.5) 0%, rgba(18,19,22,.88) 65%, var(--surface-canvas) 100%); }
+.hero .wrap { position: relative; }
+.hero h1 { font-size: clamp(30px, 4.6vw, 50px); margin: 20px 0 16px; max-width: 24ch; }
+.hero .lead { max-width: 52ch; color: var(--text-muted); font-size: 16px; margin: 0 0 26px; }
+.hero .lead b { color: var(--text-primary); }
+.era { font-family: var(--hcn-font-mono); font-size: 11px; letter-spacing: .18em; color: var(--accent-hover-text); }
+
+section { padding: 60px 0; }
+.sechead { display: flex; align-items: center; gap: 16px; margin-bottom: 28px; }
+.sechead .rule { flex: 1; height: 1px; background: linear-gradient(90deg, var(--edge-light), transparent); }
+.secsub { margin: -16px 0 28px; color: var(--text-muted); max-width: 64ch; }
+
+/* cobertura: baias de jogos com hero image */
+.gamesgrid { grid-template-columns: repeat(5, 1fr); }
+.gamesgrid .game { padding: 0; display: flex; flex-direction: column; }
+.game .ph { position: relative; height: 150px; overflow: hidden; }
+.game .ph img { width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 300ms ease; }
+.game:hover .ph img { transform: scale(1.05); }
+.game .ph::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(18,19,22,.12) 0%, transparent 40%, rgba(18,19,22,.82) 100%);
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,.6); }
+.game .ph .sys { position: absolute; left: 12px; bottom: 10px; z-index: 1; }
+.game .gbody { padding: 14px 16px 18px; }
+.game h3 { margin: 0 0 4px; font-size: 15px; font-weight: 800; letter-spacing: -0.01em; }
+.game p { margin: 0; font-size: 12px; color: var(--text-faint); }
+
+/* layout portal: notícias + HCA lado a lado */
+.portal { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 24px; align-items: start; }
+.blockhead { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--hairline); }
+.blockhead .plate { font-size: 9.5px; padding: 5px 12px 5px 26px; }
+.blockbody { padding: 8px 14px 12px; }
+.morelink { font-size: 12px; color: var(--text-faint); text-decoration: none; }
+
+/* HCA ladder */
+.ladder { width: 100%; border-collapse: collapse; font-size: 13px; }
+.ladder th { font-family: var(--hcn-font-mono); font-size: 9.5px; letter-spacing: .16em; text-transform: lowercase; color: var(--system); text-align: left; padding: 8px 6px; border-bottom: 1px solid var(--hairline); font-weight: 400; }
+.ladder td { padding: 8px 6px; border-bottom: 1px solid rgba(255,255,255,.04); }
+.ladder td.pts { font-family: var(--hcn-font-mono); font-variant-numeric: tabular-nums; text-align: right; color: var(--accent-hover-text); }
+.ladder .pos { font-family: var(--hcn-font-mono); color: var(--text-faint); }
+.ladder tr:first-child td { color: var(--text-primary); font-weight: 600; }
+
+/* Hnet TV — cards com foto */
+.tvgrid { grid-template-columns: repeat(3, 1fr); }
+.tvgrid .tv { padding: 0; display: flex; flex-direction: column; }
+.tv .ph { position: relative; height: 170px; overflow: hidden; }
+.tv .ph img { width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 300ms ease; }
+.tv:hover .ph img { transform: scale(1.05); }
+.tv .ph::after { content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, rgba(18,19,22,.1) 0%, transparent 45%, rgba(18,19,22,.8) 100%);
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,.6); }
+.tv .ph .live { position: absolute; left: 12px; bottom: 10px; z-index: 1; margin: 0; }
+.tv .live { display: inline-flex; align-items: center; gap: 7px; font-family: var(--hcn-font-mono); font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; color: #ff6b67;
+  background: rgba(10,11,13,.72); padding: 4px 10px; border-radius: 3px; backdrop-filter: blur(4px); }
+.tv .off { color: var(--text-faint); }
+.tv .tbody { padding: 14px 16px 18px; }
+.tv h3 { margin: 0 0 3px; font-size: 14.5px; font-weight: 700; }
+.tv p { margin: 0 0 2px; font-size: 12.5px; color: var(--text-muted); }
+.tv .sys { display: block; margin-top: 8px; }
+
+/* fórum */
+.forum { grid-template-columns: repeat(2, 1fr); }
+.fcat { display: flex; justify-content: space-between; align-items: center; gap: 14px; }
+.fcat .info h3 { margin: 0 0 3px; font-size: 14.5px; font-weight: 700; }
+.fcat .info p { margin: 0; font-size: 12.5px; color: var(--text-faint); }
+.fcat .count { font-family: var(--hcn-font-mono); font-size: 11px; color: var(--system); text-align: right; font-variant-numeric: tabular-nums; flex: none; }
+
+.ctaband { text-align: center; padding: 66px 0 74px; background: #101114; }
+.ctaband h2 { font-size: clamp(24px, 3.4vw, 34px); margin: 0 0 10px; }
+.ctaband p { color: var(--text-muted); margin: 0 0 24px; max-width: 56ch; margin-inline: auto; }
+
+@media (max-width: 960px) { .gamesgrid { grid-template-columns: repeat(2, 1fr); } .tvgrid { grid-template-columns: 1fr; } }
+@media (max-width: 860px) { .portal, .forum { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body class="hangar hangar--halo-steel">
+
+<div class="statusbar">
+  <span class="sys">hangar network // games <span class="led led--steel"></span>&nbsp; sites · cloud</span>
+  <span class="placard">hca temporada 1 · <b>inscrições abertas</b></span>
+</div>
+
+<div class="wrap">
+  <nav class="mainnav" aria-label="Principal">
+    <a class="wordmark" href="#">Hangar<span>Games</span></a>
+    <ul>
+      <li><a href="#cobertura">Cobertura</a></li>
+      <li><a href="#hca">HCA</a></li>
+      <li><a href="#tv">Hnet TV</a></li>
+      <li><a href="#forum">Fórum</a></li>
+      <li><a href="#">Entrar</a></li>
+    </ul>
+    <a class="btn" href="#">Criar conta</a>
+  </nav>
+</div>
+
+<header class="hero">
+  <div class="hero-bg" aria-hidden="true"><img src="../assets/esports.jpg" alt=""></div>
+  <div class="wrap">
+    <span class="plate">Setor · Games <span class="led"></span></span>
+    <h1 class="display">A maior comunidade de games do Brasil <em>está de volta</em>.</h1>
+    <p class="lead">
+      De 1998 a 2005, a Hangar Network foi a casa dos jogadores brasileiros —
+      notícias, replays, downloads, fóruns gigantes e o <b>HCA</b>, nosso sistema
+      de campeonatos. O hangar reabriu. <b>Mesma alma, novos jogos.</b>
+    </p>
+    <div>
+      <a class="btn btn--lg" href="#">Entrar na comunidade</a>
+      <a class="btn btn--ghost btn--lg" href="#hca" style="margin-left:10px;">Ver campeonatos</a>
+      <span class="reassure">Conta grátis · Um login para toda a rede Hangar</span>
+    </div>
+    <p class="era" style="margin-top: 26px;">est. 1998 — schangar.com.br · reativada 2026</p>
+  </div>
+</header>
+
+<section id="cobertura" style="padding-top: 44px;">
+  <div class="wrap">
+    <div class="sechead"><span class="plate">Cobertura</span><span class="rule"></span></div>
+    <p class="secsub">Notícias, análises e cenário competitivo dos jogos que a comunidade joga.</p>
+    <div class="strip gamesgrid">
+      <div class="game">
+        <div class="ph"><img src="../assets/g-valorant.jpg" alt=""><span class="sys">g-01 · fps tático</span></div>
+        <div class="gbody"><h3>Valorant</h3><p>VCT, cenário BR e agentes</p></div>
+      </div>
+      <div class="game">
+        <div class="ph"><img src="../assets/g-dota.jpg" alt=""><span class="sys">g-02 · moba</span></div>
+        <div class="gbody"><h3>Dota 2</h3><p>The International e pubs</p></div>
+      </div>
+      <div class="game">
+        <div class="ph"><img src="../assets/g-lol.jpg" alt=""><span class="sys">g-03 · moba</span></div>
+        <div class="gbody"><h3>League of Legends</h3><p>CBLOL e Worlds</p></div>
+      </div>
+      <div class="game">
+        <div class="ph"><img src="../assets/g-sc2.jpg" alt=""><span class="sys">g-04 · rts</span></div>
+        <div class="gbody"><h3>StarCraft II</h3><p>A casa de origem do hangar</p></div>
+      </div>
+      <div class="game">
+        <div class="ph"><img src="../assets/g-wow.jpg" alt=""><span class="sys">g-05 · mmorpg</span></div>
+        <div class="gbody"><h3>World of Warcraft</h3><p>Raides, M+ e guildas BR</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="hca" style="padding-top: 0;">
+  <div class="wrap portal">
+    <div class="panel panel--flat">
+      <div class="blockhead">
+        <span class="plate">Notícias</span>
+        <a class="morelink fliplink" href="#">arquivo completo →</a>
+      </div>
+      <div class="blockbody">
+        <div class="newsrow"><time>02/07 18:40</time><span class="tag">valorant</span><a class="fliplink" href="#" onclick="return false">VCT Americas: brasileiros garantem vaga nos playoffs</a></div>
+        <div class="newsrow"><time>02/07 14:12</time><span class="tag">hca</span><a class="fliplink" href="#" onclick="return false">HCA Temporada 1: inscrições abertas para Valorant e Dota 2</a></div>
+        <div class="newsrow"><time>01/07 21:03</time><span class="tag">dota 2</span><a class="fliplink" href="#" onclick="return false">Guia do patch: o que muda no meta antes do TI</a></div>
+        <div class="newsrow"><time>01/07 10:30</time><span class="tag">lol</span><a class="fliplink" href="#" onclick="return false">CBLOL: tabela da segunda etapa e o que esperar</a></div>
+        <div class="newsrow"><time>30/06 19:55</time><span class="tag">sc2</span><a class="fliplink" href="#" onclick="return false">Replay comentado: a defesa impossível em Alcyone</a></div>
+        <div class="newsrow"><time>30/06 09:14</time><span class="tag">wow</span><a class="fliplink" href="#" onclick="return false">Corrida mundial: guildas BR no top 100 da nova raide</a></div>
+      </div>
+    </div>
+    <div class="panel panel--rivets">
+      <div class="blockhead">
+        <span class="plate">HCA · Combat Arena</span>
+        <span class="sys">temporada 1</span>
+      </div>
+      <div class="blockbody">
+        <table class="ladder">
+          <thead><tr><th>#</th><th>equipe</th><th style="text-align:right">pts</th></tr></thead>
+          <tbody>
+            <tr><td class="pos">01</td><td>Fúria de Aço</td><td class="pts">1.840</td></tr>
+            <tr><td class="pos">02</td><td>Zerg BH</td><td class="pts">1.795</td></tr>
+            <tr><td class="pos">03</td><td>Capivara Rush</td><td class="pts">1.710</td></tr>
+            <tr><td class="pos">04</td><td>Os Imortais do Sul</td><td class="pts">1.655</td></tr>
+            <tr><td class="pos">05</td><td>Torre 3 Gaming</td><td class="pts">1.590</td></tr>
+          </tbody>
+        </table>
+        <div style="padding: 14px 4px 6px;">
+          <a class="btn btn--sm" href="#">Inscrever minha equipe</a>
+          <span class="reassure">Grátis nesta temporada · Ladder, chaves e premiação</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="tv" style="padding-top: 0;">
+  <div class="wrap">
+    <div class="sechead"><span class="plate">Hnet TV</span><span class="rule"></span></div>
+    <p class="secsub">O radar do cenário: quem está no ar agora entre streamers, podcasts e canais do competitivo BR.</p>
+    <div class="strip tvgrid">
+      <div class="tv">
+        <div class="ph"><img src="../assets/tv-1.jpg" alt=""><span class="live"><span class="led led--live"></span> ao vivo · twitch</span></div>
+        <div class="tbody"><h3>ranqueada até radiante</h3><p>Valorant · 4.2k assistindo</p><span class="sys">tv-01 · stream</span></div>
+      </div>
+      <div class="tv">
+        <div class="ph"><img src="../assets/tv-2.jpg" alt=""><span class="live"><span class="led led--live"></span> ao vivo · youtube</span></div>
+        <div class="tbody"><h3>tier list do patch — dota 2</h3><p>Análise · 1.8k assistindo</p><span class="sys">tv-02 · stream</span></div>
+      </div>
+      <div class="tv">
+        <div class="ph"><img src="../assets/tv-3.jpg" alt=""><span class="live off"><span class="led led--dim"></span> podcast · novo ep</span></div>
+        <div class="tbody"><h3>Papo de Hangar #12</h3><p>A história do cenário BR de RTS, com convidados de 2002</p><span class="sys">tv-03 · podcast</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="forum" style="padding-top: 0;">
+  <div class="wrap">
+    <div class="sechead"><span class="plate">Fórum</span><span class="rule"></span></div>
+    <p class="secsub">Os enormes fóruns de volta — agora com o mesmo login da rede inteira.</p>
+    <div class="strip forum">
+      <div class="fcat"><div class="info"><h3>Estratégia &amp; Guias</h3><p>Builds, rotas, drafts e teoria de jogo</p></div><span class="count">12.4k tópicos<br>última resposta há 2 min</span></div>
+      <div class="fcat"><div class="info"><h3>Recrutamento</h3><p>Monte equipe para o HCA, encontre guilda e duo</p></div><span class="count">3.1k tópicos<br>última resposta há 7 min</span></div>
+      <div class="fcat"><div class="info"><h3>Replays &amp; Análises</h3><p>Envie sua partida e receba análise da comunidade</p></div><span class="count">5.8k tópicos<br>última resposta há 11 min</span></div>
+      <div class="fcat"><div class="info"><h3>Off-topic / Hangar Bar</h3><p>A mesa do bar de sempre, desde 1998</p></div><span class="count">28.9k tópicos<br>última resposta agora</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="ctaband hazard-top">
+  <div class="wrap">
+    <h2 class="display">O hangar reabriu. <em>Falta você.</em></h2>
+    <p>Crie sua conta, entre no fórum e inscreva sua equipe no HCA — o mesmo espírito de 1998, com os jogos de agora.</p>
+    <a class="btn btn--lg" href="#">Entrar na comunidade</a>
+    <span class="reassure">Grátis · Um login para sites, cloud e games</span>
+  </div>
+</section>
+
+<footer class="sitefoot">
+  <div class="wrap">
+    <span class="sys">hangar network // sites · cloud · <b>games</b></span>
+    <span class="placard">Brazas Tecnologia Ltda. · CNPJ 66.856.116/0001-35 · est. 1998 · <a class="fliplink" href="#">privacidade</a></span>
+  </div>
+</footer>
+
+</body>
+</html>
