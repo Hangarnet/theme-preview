@@ -38,8 +38,14 @@ section { padding: 60px 0; }
 .game h3 { margin: 0 0 4px; font-size: 15px; font-weight: 800; letter-spacing: -0.01em; }
 .game p { margin: 0; font-size: 12px; color: var(--text-faint); }
 
-/* layout portal: notícias + HCA lado a lado */
-.portal { display: grid; grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); gap: 24px; align-items: start; }
+/* HCA — bloco de arena: manchete + ladder */
+.hcagrid { display: grid; grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr);
+  gap: 44px; align-items: center; }
+.hca-copy > .sys { display: block; margin-bottom: 12px; }
+.hca-copy p { margin: 0 0 18px; color: var(--text-muted); max-width: 46ch; }
+.hca-copy .points { margin: 0 0 22px; padding: 0; list-style: none;
+  display: flex; flex-direction: column; gap: 7px; font-size: 13.5px; color: var(--text-muted); }
+.hca-copy .points li::before { content: "— "; color: var(--accent); }
 .blockhead { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--hairline); }
 .blockhead .plate { font-size: 9.5px; padding: 5px 12px 5px 26px; }
 .blockbody { padding: 8px 14px 12px; }
@@ -84,7 +90,7 @@ section { padding: 60px 0; }
 .ctaband p { color: var(--text-muted); margin: 0 0 24px; max-width: 56ch; margin-inline: auto; }
 
 @media (max-width: 960px) { .gamesgrid { grid-template-columns: repeat(2, 1fr); } .tvgrid { grid-template-columns: 1fr; } }
-@media (max-width: 860px) { .portal, .forum { grid-template-columns: 1fr; } }
+@media (max-width: 860px) { .hcagrid, .forum { grid-template-columns: 1fr; } }
 </style>
 </head>
 <body class="hangar hangar--halo-steel">
@@ -157,20 +163,20 @@ section { padding: 60px 0; }
 </section>
 
 <section id="hca" style="padding-top: 0;">
-  <div class="wrap portal">
-    <div class="panel panel--flat">
-      <div class="blockhead">
-        <span class="plate">Notícias</span>
-        <a class="morelink fliplink" href="#">arquivo completo →</a>
-      </div>
-      <div class="blockbody">
-        <div class="newsrow"><time>02/07 18:40</time><span class="tag">valorant</span><a class="fliplink" href="#" onclick="return false">VCT Americas: brasileiros garantem vaga nos playoffs</a></div>
-        <div class="newsrow"><time>02/07 14:12</time><span class="tag">hca</span><a class="fliplink" href="#" onclick="return false">HCA Temporada 1: inscrições abertas para Valorant e Dota 2</a></div>
-        <div class="newsrow"><time>01/07 21:03</time><span class="tag">dota 2</span><a class="fliplink" href="#" onclick="return false">Guia do patch: o que muda no meta antes do TI</a></div>
-        <div class="newsrow"><time>01/07 10:30</time><span class="tag">lol</span><a class="fliplink" href="#" onclick="return false">CBLOL: tabela da segunda etapa e o que esperar</a></div>
-        <div class="newsrow"><time>30/06 19:55</time><span class="tag">sc2</span><a class="fliplink" href="#" onclick="return false">Replay comentado: a defesa impossível em Alcyone</a></div>
-        <div class="newsrow"><time>30/06 09:14</time><span class="tag">wow</span><a class="fliplink" href="#" onclick="return false">Corrida mundial: guildas BR no top 100 da nova raide</a></div>
-      </div>
+  <div class="wrap hcagrid">
+    <div class="hca-copy">
+      <span class="sys">arena // hca · temporada 1 <span class="led led--steel"></span></span>
+      <h2 class="headline headline--lg">Hangar Combat Arena. Onde o BR <em>se prova</em>.</h2>
+      <p>De 2001 a 2005, o HCA coroou os melhores do país. A arena reabriu:
+        ladder contínua, chaves automáticas e premiação por temporada —
+        do amador ao tier 1.</p>
+      <ul class="points">
+        <li>Ladder contínua com ranking por jogo</li>
+        <li>Chaves eliminatórias automáticas todo mês</li>
+        <li>Premiação e selo de campeão no perfil</li>
+      </ul>
+      <a class="btn" href="#">Inscrever minha equipe</a>
+      <span class="reassure">Grátis nesta temporada · Valorant e Dota 2</span>
     </div>
     <div class="panel panel--rivets">
       <div class="blockhead">
@@ -189,9 +195,27 @@ section { padding: 60px 0; }
           </tbody>
         </table>
         <div style="padding: 14px 4px 6px;">
-          <a class="btn btn--sm" href="#">Inscrever minha equipe</a>
-          <span class="reassure">Grátis nesta temporada · Ladder, chaves e premiação</span>
+          <a class="morelink fliplink" href="#">ladder completa →</a>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="noticias" style="padding-top: 0;">
+  <div class="wrap">
+    <div class="panel panel--flat">
+      <div class="blockhead">
+        <span class="plate">Notícias</span>
+        <a class="morelink fliplink" href="#">arquivo completo →</a>
+      </div>
+      <div class="blockbody">
+        <div class="newsrow"><time>02/07 18:40</time><span class="tag">valorant</span><a class="fliplink" href="#" onclick="return false">VCT Americas: brasileiros garantem vaga nos playoffs</a></div>
+        <div class="newsrow"><time>02/07 14:12</time><span class="tag">hca</span><a class="fliplink" href="#" onclick="return false">HCA Temporada 1: inscrições abertas para Valorant e Dota 2</a></div>
+        <div class="newsrow"><time>01/07 21:03</time><span class="tag">dota 2</span><a class="fliplink" href="#" onclick="return false">Guia do patch: o que muda no meta antes do TI</a></div>
+        <div class="newsrow"><time>01/07 10:30</time><span class="tag">lol</span><a class="fliplink" href="#" onclick="return false">CBLOL: tabela da segunda etapa e o que esperar</a></div>
+        <div class="newsrow"><time>30/06 19:55</time><span class="tag">sc2</span><a class="fliplink" href="#" onclick="return false">Replay comentado: a defesa impossível em Alcyone</a></div>
+        <div class="newsrow"><time>30/06 09:14</time><span class="tag">wow</span><a class="fliplink" href="#" onclick="return false">Corrida mundial: guildas BR no top 100 da nova raide</a></div>
       </div>
     </div>
   </div>
@@ -199,8 +223,9 @@ section { padding: 60px 0; }
 
 <section id="tv" style="padding-top: 0;">
   <div class="wrap">
-    <div class="sechead"><span class="plate">Hnet TV</span><span class="rule"></span></div>
-    <p class="secsub">O radar do cenário: quem está no ar agora entre streamers, podcasts e canais do competitivo BR.</p>
+    <span class="sys">transmissão // hnet tv <span class="led led--live"></span></span>
+    <h2 class="headline headline--lg" style="margin-top: 12px;">Quem está <em>no ar</em> agora.</h2>
+    <p class="secsub" style="margin: 0 0 28px;">Streamers, podcasts e canais do competitivo BR — o radar do cenário em tempo real.</p>
     <div class="strip tvgrid">
       <div class="tv">
         <div class="ph"><img src="../assets/tv-1.jpg" alt=""><span class="live"><span class="led led--live"></span> ao vivo · twitch</span></div>
