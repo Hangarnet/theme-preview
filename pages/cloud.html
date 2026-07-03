@@ -18,6 +18,48 @@
 .hero .lead { max-width: 50ch; color: var(--text-muted); font-size: 16.5px; margin: 0 0 28px; }
 .hero .lead b { color: var(--text-primary); }
 
+/* selo de patrocinador — placa usinada rebitada ao casco, DNA do .seal (igual ao games).
+   Verde NVIDIA (#76B900) só existe aqui dentro (filete energizado). */
+.sponsor {
+  position: absolute; right: 24px; top: 50%; transform: translateY(-46%);
+  display: flex; flex-direction: column; align-items: center; gap: 11px;
+  padding: 20px 42px 17px;
+  background-color: #232629;
+  background-image: var(--hcn-brush), var(--hcn-hairlines), var(--hcn-sweep),
+    linear-gradient(180deg, #34383e, #22252a 55%, #1b1e22);
+  clip-path: polygon(14px 0, calc(100% - 14px) 0, 100% 14px,
+    100% calc(100% - 14px), calc(100% - 14px) 100%, 14px 100%,
+    0 calc(100% - 14px), 0 14px);
+  box-shadow:
+    inset 0 0 0 1px rgba(0,0,0,.6), inset 0 0 0 2px rgba(255,255,255,.06),
+    inset 0 1px 0 rgba(255,255,255,.1), inset 0 -8px 14px -8px rgba(0,0,0,.55);
+  filter: drop-shadow(0 5px 9px rgba(0,0,0,.8)) drop-shadow(0 22px 48px rgba(0,0,0,.65));
+}
+.sponsor::before, .sponsor::after { /* parafusos laterais com fenda */
+  content: ""; position: absolute; top: 50%; transform: translateY(-50%);
+  width: 8px; height: 8px; border-radius: 50%;
+  background:
+    linear-gradient(52deg, transparent 43%, rgba(0,0,0,.65) 47%, rgba(0,0,0,.65) 53%, transparent 57%),
+    radial-gradient(circle at 32% 28%, #8a9099, #3c4046 52%, #0e0f11 96%);
+  box-shadow: inset 0 -1px 1px rgba(255,255,255,.15), 0 1px 2px rgba(0,0,0,.7);
+}
+.sponsor::before { left: 10px; } .sponsor::after { right: 10px; }
+.sponsor .k {
+  font-family: var(--hcn-font-mono); font-size: 10px; letter-spacing: .34em;
+  text-transform: uppercase; color: var(--text-faint);
+  text-shadow: 0 -1px 0 rgba(0,0,0,.65); margin-right: -.34em; white-space: nowrap;
+}
+.sponsor img { height: 84px; display: block; margin-top: 2px;
+  filter: drop-shadow(0 2px 3px rgba(0,0,0,.7)); }
+.sponsor .pline {
+  width: 100%; height: 2px; border-radius: 1px; margin-top: 2px;
+  background: linear-gradient(90deg, transparent, #76b900 22%, #9fd428 50%, #76b900 78%, transparent);
+  box-shadow: 0 0 6px rgba(118,185,0,.55), 0 0 16px rgba(118,185,0,.25);
+}
+@media (max-width: 880px) {
+  .sponsor { position: static; transform: none; display: inline-flex; margin: 30px 0 4px; }
+}
+
 section { padding: 64px 0; }
 .sechead { display: flex; align-items: center; gap: 16px; margin-bottom: 30px; }
 .sechead .rule { flex: 1; height: 1px; background: linear-gradient(90deg, var(--edge-light), transparent); }
@@ -133,6 +175,11 @@ section { padding: 64px 0; }
       <a class="btn btn--ghost btn--lg" href="#mcp" style="margin-left:10px;">Ver o deploy por IA</a>
       <span class="reassure">A partir de R$ 19/mês · Pague com Pix · Cancele quando quiser</span>
     </div>
+    <aside class="sponsor" aria-label="Patrocinador oficial: NVIDIA">
+      <span class="k">Patrocinador oficial</span>
+      <img src="../assets/nvidia-full-white.svg" alt="NVIDIA">
+      <span class="pline" aria-hidden="true"></span>
+    </aside>
   </div>
 </header>
 
