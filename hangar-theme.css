@@ -362,6 +362,40 @@
 .plan ul li::before { content: "— "; color: var(--accent); }
 .plan .btn { align-self: flex-start; margin-top: 4px; }
 
+/* ═══ Painel holográfico (nav aço-azul projetado) ════════════════════ */
+.holonav { position: relative; display: inline-flex; align-items: center; gap: 2px;
+  padding: 5px 8px; border-radius: 6px; overflow: hidden;
+  background: linear-gradient(180deg, rgba(105,170,215,.11), rgba(105,170,215,.03) 60%, rgba(105,170,215,.07));
+  border: 1px solid rgba(105,170,215,.38);
+  backdrop-filter: blur(10px) saturate(1.25);
+  box-shadow:
+    0 0 20px rgba(105,170,215,.16), 0 1px 2px rgba(0,0,0,.5),
+    inset 0 0 26px rgba(105,170,215,.07),
+    inset 0 1px 0 rgba(255,255,255,.16), inset 0 -1px 0 rgba(0,0,0,.4); }
+.holonav::before { /* scanlines do holograma */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(180deg,
+    rgba(105,170,215,.08) 0 1px, transparent 1px 3px); }
+.holonav::after { /* varredura de projeção */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(100deg, transparent 30%,
+    rgba(191,224,247,.10) 48%, rgba(191,224,247,.03) 55%, transparent 72%); }
+.holonav a { position: relative; z-index: 1; text-decoration: none;
+  font-family: var(--hcn-font-mono); font-size: 11.5px; letter-spacing: .18em;
+  text-transform: lowercase; color: var(--system);
+  padding: 7px 14px; border-radius: 4px;
+  transition: color 120ms ease, background-color 120ms ease, text-shadow 120ms ease; }
+.holonav a:hover, .holonav a:focus-visible { color: #cfe7fa;
+  background: rgba(105,170,215,.13);
+  text-shadow: 0 0 9px rgba(105,170,215,.9), 0 0 22px rgba(105,170,215,.5); }
+.holonav a[aria-current] { color: #cfe7fa;
+  text-shadow: 0 0 9px rgba(105,170,215,.9); }
+.holonav a[aria-current]::after { content: ""; position: absolute;
+  left: 12px; right: 12px; bottom: 3px; height: 1px;
+  background: var(--system); box-shadow: 0 0 6px rgba(105,170,215,.9); }
+.holonav .sep { width: 1px; align-self: stretch; margin: 4px 2px;
+  background: linear-gradient(180deg, transparent, rgba(105,170,215,.35), transparent); }
+
 /* ═══ Nav / rodapé padrão ════════════════════════════════════════════ */
 .statusbar { display: flex; justify-content: space-between; align-items: center; gap: 16px;
   padding: 8px 24px; background: #0b0c0e; border-bottom: 1px solid var(--edge-dark);
