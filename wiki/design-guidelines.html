@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Guidelines do tema — Wiki Hangar Network</title>
+<link rel="icon" href="../logo/hangar-emblem.svg">
+<link rel="stylesheet" href="../hangar-theme.css">
+<link rel="stylesheet" href="./wiki.css">
+</head>
+<body class="hangar">
+
+<div class="statusbar">
+  <span class="sys">hangar network // wiki · design · guidelines <span class="led"></span></span>
+  <span class="placard">tema único · <b>vigente</b></span>
+</div>
+
+<div class="wikigrid">
+  <aside class="sidebar">
+    <a class="brand" href="../pages/index.html">
+      <img src="../logo/hangar-network.svg" alt="Hangar Network">
+    </a>
+    <nav class="wnav" aria-label="Wiki">
+      <a href="./index.html">Início</a>
+      <a href="./projeto.html">Projeto</a>
+      <a href="./projeto-cloud.html" class="sub">Hangar Cloud</a>
+      <a href="./projeto-sites.html" class="sub">Hangar Sites</a>
+      <a href="./projeto-games.html" class="sub">Hangar Games</a>
+      <a href="./users.html">Users, auth, points &amp; tiers</a>
+      <a href="./pesquisas.html">Pesquisas</a>
+      <a href="./pesquisa-empacotamento.html" class="sub">Empacotamento</a>
+      <a href="./pesquisa-gamificacao.html" class="sub">Gamificação</a>
+      <a href="./design.html">Design</a>
+      <a href="./design-logos.html" class="sub">Logos</a>
+      <a href="./design-template.html" class="sub">Template</a>
+      <a href="./design-guidelines.html" class="sub" aria-current="page">Guidelines do tema</a>
+    </nav>
+    <a class="back fliplink" href="../pages/index.html">← voltar ao hub</a>
+  </aside>
+
+  <main class="content">
+    <header>
+      <span class="sys sys--crumb">// wiki · design · <b>guidelines</b></span>
+      <h1 class="display">Guidelines do <em>tema</em></h1>
+      <p class="lead">As regras que mantêm a rede coesa: três vozes de cor,
+        três vozes de tipo e o metal construído em camadas.</p>
+    </header>
+
+    <h2>A regra das três vozes</h2>
+    <table>
+      <tr><th>voz</th><th>cor</th><th>onde usar</th><th>nunca em</th></tr>
+      <tr><td class="k">Ação</td><td>Laranja #F26522</td><td>CTAs, indicadores ativos, preço/valor, destaque de manchete</td><td>rótulos de sistema</td></tr>
+      <tr><td class="k">Sistema</td><td>Aço-azul #69AAD7</td><td>códigos de setor, telemetria, tags técnicas, navegação holográfica</td><td>botões e ações</td></tr>
+      <tr><td class="k">Neutros</td><td>Gunmetal 950–200</td><td>todo o resto — casco, painéis, texto</td><td>—</td></tr>
+    </table>
+    <div class="callout callout--warn"><span class="ico">⚠</span>
+      <div><b>Se as vozes disputarem, o laranja vence</b>
+        <p>É a cor de conversão — isolamento total: nada mais na página é
+          laranja. Cores de convidados (verde NVIDIA, vermelho HCA) vivem
+          contidas dentro dos seus badges/logos e não vazam para a UI.</p></div>
+    </div>
+
+    <h2>Vozes tipográficas</h2>
+    <table>
+      <tr><th>voz</th><th>fonte</th><th>papel</th></tr>
+      <tr><td class="k">Display</td><td>Oxanium 800</td><td>manchetes, títulos, wordmark — o letreiro techno herdado de 2001</td></tr>
+      <tr><td class="k">Corpo/UI</td><td>Saira</td><td>texto corrido e interface (fallback Verdana, o corpo original)</td></tr>
+      <tr><td class="k">Mono</td><td>Share Tech Mono</td><td>placards, sys, tags, terminal — os rótulos gravados no metal</td></tr>
+    </table>
+    <ul>
+      <li><b>Placa de seção</b> (subtítulo A) organiza; <b>manchete de bloco</b>
+        (subtítulo B, com uma palavra em brasa) vende — nunca as duas no mesmo bloco</li>
+      <li><b>Breadcrumb B</b>: a linha de contexto acima da manchete, sempre
+        começando em <span class="k" style="font-family:var(--hcn-font-mono)">//</span></li>
+      <li><b>Link ver-todos</b>: o escape do bloco, sempre com seta → no fim</li>
+    </ul>
+
+    <h2>Componentes principais</h2>
+    <table>
+      <tr><th>componente</th><th>o quê</th></tr>
+      <tr><td class="k">plate / seal</td><td>placa usinada com parafusos; o selo octogonal guarda o ano em latão serifado</td></tr>
+      <tr><td class="k">panel / strip</td><td>painéis de metal escovado e baias conectadas (nunca cards soltos)</td></tr>
+      <tr><td class="k">btn</td><td>laranja anodizado com varredura especular; ghost para ação secundária</td></tr>
+      <tr><td class="k">led</td><td>domo de vidro: laranja ativo, aço neutro, vermelho ao vivo</td></tr>
+      <tr><td class="k">holonav</td><td>painel holográfico de navegação — scanlines, glow e blur em aço</td></tr>
+      <tr><td class="k">conduit</td><td>divisor de energia: trilhos que mergulham num V apontando o conteúdo</td></tr>
+      <tr><td class="k">chips / cats / badges</td><td>pills de produto (uma cor por setor), categorias tracejadas e insígnias de comunidade</td></tr>
+    </table>
+
+    <h2>Metal de alta definição</h2>
+    <p>Toda superfície metálica é composta por camadas, nesta ordem:</p>
+    <ul class="steel">
+      <li><b>1 · Grão</b> — ruído fino (feTurbulence, 3.5% alfa)</li>
+      <li><b>2 · Escovação</b> — streaks horizontais + fios de 1px</li>
+      <li><b>3 · Varredura especular</b> — o brilho diagonal que atravessa</li>
+      <li><b>4 · Base</b> — gradiente vertical do gunmetal</li>
+      <li><b>5 · Bordas usinadas</b> — luz em cima/esquerda, sombra embaixo/direita,
+        sombra externa dupla (contato + ambiente)</li>
+    </ul>
+
+    <div class="callout callout--info"><span class="ico">⚙</span>
+      <div><b>Fonte da verdade</b>
+        <p>O CSS canônico (hangar-theme.css) e o guia completo (THEME.md) vivem
+          no acervo interno em docs/design/theme — esta página é o resumo
+          navegável.</p></div>
+    </div>
+
+    <div class="wikifoot">
+      <span class="sys">hangar network // wiki · design · <b>guidelines</b></span>
+      <span class="placard"><a class="fliplink" href="./design.html">← design</a></span>
+    </div>
+  </main>
+</div>
+
+</body>
+</html>
