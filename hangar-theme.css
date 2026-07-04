@@ -273,10 +273,10 @@
   font-weight: 600; font-size: 27px;
   line-height: 1; letter-spacing: .09em; margin-right: -.09em;
   font-variant-numeric: lining-nums;
-  background: linear-gradient(180deg, #c9a86a, #a8813a 45%, #7d5a1f 80%, #61461a 100%);
+  background: linear-gradient(180deg, #d7ba7f, #bc9147 45%, #92691f 80%, #74551c 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
-  text-shadow: 0 1px 0 rgba(255,255,255,.16), 0 -1px 1px rgba(0,0,0,.9),
-    0 -2px 3px rgba(0,0,0,.45);
+  text-shadow: 0 1px 0 rgba(255,255,255,.18), 0 -1px 1px rgba(0,0,0,.85),
+    0 -2px 3px rgba(0,0,0,.4);
 }
 
 /* cápsula cromada (acabamento herdado 2001 — usar com parcimônia) */
