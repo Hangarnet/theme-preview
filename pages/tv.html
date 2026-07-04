@@ -8,14 +8,15 @@
 <link rel="stylesheet" href="../hangar-theme.css">
 <style>
 /* cor de setor da TV — violeta-fósforo: a luz da tela ligada numa sala
-   escura. Só existe em 3 pontos (palavra TV do wordmark, halo do body,
-   filete da sintonia) — contido como o verde NVIDIA em games.html.
-   Nunca em botões, LEDs de live, progresso ou hover: laranja é a única
-   cor de ação, live é sempre LED vermelho. */
+   escura. Só existe em 4 pontos (palavra TV do wordmark, halo do body,
+   filete da sintonia, busca) — contido como o verde NVIDIA em games.html.
+   Nunca em botões, progresso ou hover de ação: laranja é a única cor de
+   ação. Live é LED verde-fósforo ("no ar" = transmissor ligado). */
 :root {
   --tv-phosphor: #a06be8;
   --tv-phosphor-glow: #c9a6ff;
   --tv-phosphor-dim: #5d3f8c;
+  --tv-live: #2fd069;
 }
 .hangar--halo-tv { background:
   radial-gradient(1000px 460px at 50% -8%, rgba(160,107,232,.05), transparent 60%),
@@ -25,21 +26,77 @@
 /* header de produto (logado): link corrente + bloco do usuário no lugar do
    CTA — sem botão laranja no topo, o laranja pertence ao "Assistir agora" */
 .mainnav ul a[aria-current] { color: var(--text-primary); }
-.userchip { display: inline-flex; align-items: center; gap: 9px; }
+.userchip { display: inline-flex; align-items: center; gap: 10px; }
+/* avatar com foto real, recorte circular + anel violeta sutil (setor TV) */
 .avatar { width: 30px; height: 30px; border-radius: 50%; flex: none;
-  border: 1px solid var(--hcn-gm-700);
+  overflow: hidden; border: 1px solid var(--hcn-gm-700);
   background: radial-gradient(circle at 35% 28%, #565b63, #2a2c31 62%, #17181c 96%);
-  box-shadow: inset 0 1px 1px rgba(255,255,255,.14), 0 1px 2px rgba(0,0,0,.6); }
+  box-shadow: 0 0 0 2px rgba(160,107,232,.45), 0 0 10px rgba(160,107,232,.22),
+    0 1px 2px rgba(0,0,0,.6); }
+.avatar img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* nome do usuário legível: mono maior, sem tracking exagerado */
+.userchip .uname { font-family: var(--hcn-font-mono); font-size: 12.5px;
+  letter-spacing: .06em; color: var(--text-primary); }
 
-/* barra de sintonia — o holonav esticado em sintonizador de página;
-   a aba ativa troca o sublinhado aço por laranja (indicador ativo = ação) */
-.tuner { display: flex; width: 100%; margin-top: 2px; }
-.tuner a { flex: none; display: inline-flex; align-items: center; gap: 7px; }
-.tuner a .led { width: 6px; height: 6px; }
-.tuner a[aria-current]::after { height: 2px; bottom: 2px;
+/* ── busca: lupa que expande em campo (momento violeta sancionado — não é
+   CTA, é feição do setor; foco/caret/hover em fósforo, nunca laranja) ── */
+.navsearch { display: flex; align-items: center; }
+.search-btn { display: inline-flex; align-items: center; justify-content: center;
+  width: 32px; height: 32px; padding: 0; border: 0; border-radius: 4px;
+  background: none; color: var(--text-muted); cursor: pointer;
+  transition: color 140ms ease; }
+.search-btn:hover, .search-btn:focus-visible { color: var(--tv-phosphor-glow); }
+.search-btn svg { display: block; }
+.search-input { width: 0; opacity: 0; padding: 6px 0; margin-left: 0;
+  border: 1px solid transparent; border-radius: 4px;
+  background: rgba(10,11,13,.65); font: inherit; font-size: 13px;
+  color: var(--text-primary); caret-color: var(--tv-phosphor); outline: none;
+  transition: width 200ms ease-out, opacity 200ms ease-out,
+    padding 200ms ease-out, margin 200ms ease-out, border-color 200ms ease-out; }
+.navsearch.open .search-input { width: 190px; opacity: 1; padding: 6px 12px;
+  margin-left: 6px; border-color: var(--tv-phosphor-dim); }
+.navsearch.open .search-input:focus { border-color: var(--tv-phosphor);
+  box-shadow: 0 0 0 2px rgba(160,107,232,.2), 0 0 12px rgba(160,107,232,.25); }
+/* o anel de foco do tema é laranja; aqui o foco já é o próprio campo
+   violeta (borda + glow), então o outline global sai de cena */
+.hangar .search-input:focus-visible { outline: none; }
+.search-input::placeholder { color: var(--text-faint); }
+
+/* barra de sintonia — variante própria da TV (.tvnav): mesmo conceito do
+   holonav (painel aço projetado), mas com tipografia maior e tracking
+   relaxado p/ legibilidade, e sem LEDs — a contagem de canais no ar é
+   texto simples. A aba ativa segue laranja (indicador ativo = ação). */
+.tvnav { position: relative; display: flex; width: 100%; margin-top: 2px;
+  align-items: center; gap: 2px; padding: 6px 10px; border-radius: 6px;
+  overflow: hidden;
+  background: linear-gradient(180deg, rgba(105,170,215,.10), rgba(105,170,215,.03) 60%, rgba(105,170,215,.06));
+  border: 1px solid rgba(105,170,215,.34);
+  backdrop-filter: blur(10px) saturate(1.2);
+  box-shadow: 0 0 20px rgba(105,170,215,.14), 0 1px 2px rgba(0,0,0,.5),
+    inset 0 1px 0 rgba(255,255,255,.14), inset 0 -1px 0 rgba(0,0,0,.4); }
+.tvnav::before { /* scanlines mais suaves que o holonav p/ não sujar o tipo */
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(180deg,
+    rgba(105,170,215,.05) 0 1px, transparent 1px 4px); }
+.tvnav a { position: relative; z-index: 1; flex: none; display: inline-flex;
+  align-items: baseline; gap: 8px; text-decoration: none;
+  font-family: var(--hcn-font-mono); font-size: 13px; letter-spacing: .09em;
+  text-transform: lowercase; color: #b9c6d2;
+  padding: 8px 15px; border-radius: 4px;
+  transition: color 120ms ease, background-color 120ms ease, text-shadow 120ms ease; }
+.tvnav a:hover, .tvnav a:focus-visible { color: #e6f2fc;
+  background: rgba(105,170,215,.12);
+  text-shadow: 0 0 9px rgba(105,170,215,.8); }
+.tvnav a[aria-current] { color: #eef6fd;
+  text-shadow: 0 0 9px rgba(105,170,215,.7); }
+.tvnav a[aria-current]::after { content: ""; position: absolute;
+  left: 13px; right: 13px; bottom: 3px; height: 2px; border-radius: 1px;
   background: linear-gradient(90deg, var(--hcn-orange-hot), var(--hcn-orange));
   box-shadow: 0 0 6px rgba(255,128,0,.75); }
-.tuner .add { margin-left: auto; color: var(--system-dim); }
+.tvnav .n { font-size: 11px; color: var(--system); } /* contagem no ar */
+.tvnav .sep { width: 1px; align-self: stretch; margin: 4px 2px; flex: none;
+  background: linear-gradient(180deg, transparent, rgba(105,170,215,.32), transparent); }
+.tvnav .add { margin-left: auto; color: var(--system-dim); }
 /* filete de sintonia — a receita do .pline do patrocinador, em violeta */
 .tuner-line { height: 2px; border-radius: 1px; margin-top: 7px;
   background: linear-gradient(90deg, transparent, var(--tv-phosphor-dim) 18%,
@@ -52,30 +109,49 @@ section { padding: 44px 0 0; }
 .blockhead .plate { font-size: 9.5px; padding: 5px 12px 5px 26px; }
 .blockbody { padding: 8px 14px 12px; }
 
-/* thumb: mesma receita .ph/.live de games.html (vinheta + hover scale) */
+/* thumb: mesma receita .ph/.live de games.html (vinheta + hover scale),
+   agora com foto real + scanlines de fósforo por cima (assinatura da casa) */
 .ph { position: relative; overflow: hidden; border-radius: 5px 5px 0 0; }
 .ph img { width: 100%; height: 100%; object-fit: cover; display: block;
   transition: transform 300ms ease; }
+.ph::before { content: ""; position: absolute; inset: 0; z-index: 1;
+  pointer-events: none;
+  background: repeating-linear-gradient(180deg,
+    rgba(255,255,255,.03) 0 1px, transparent 1px 3px); }
 .ph::after { content: ""; position: absolute; inset: 0; pointer-events: none;
   background: linear-gradient(180deg, rgba(18,19,22,.12) 0%, transparent 40%, rgba(18,19,22,.82) 100%);
   box-shadow: inset 0 -1px 0 rgba(0,0,0,.6); }
-.live { display: inline-flex; align-items: center; gap: 7px; font-family: var(--hcn-font-mono); font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; color: #ff6b67;
+.live { display: inline-flex; align-items: center; gap: 7px; font-family: var(--hcn-font-mono); font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; color: #5ce596;
   background: rgba(10,11,13,.72); padding: 4px 10px; border-radius: 3px; backdrop-filter: blur(4px); }
 .off { color: var(--text-faint); }
-.ph .live { position: absolute; left: 12px; bottom: 10px; z-index: 1; margin: 0; }
-.dur { position: absolute; right: 10px; bottom: 10px; z-index: 1;
+.ph .live { position: absolute; left: 12px; bottom: 10px; z-index: 2; margin: 0; }
+.dur { position: absolute; right: 10px; bottom: 10px; z-index: 2;
   font-family: var(--hcn-font-mono); font-size: 10.5px; color: var(--text-muted);
   font-variant-numeric: tabular-nums;
   background: rgba(10,11,13,.72); padding: 2px 7px; border-radius: 3px; }
 
-/* tela CSS — thumbs sem asset: fósforo tintado + scanlines fazem a imagem */
-.scr { position: absolute; inset: 0; display: block;
-  background-image: var(--hcn-noise),
-    radial-gradient(130% 100% at var(--sx, 30%) 18%, var(--stint, rgba(105,170,215,.26)), transparent 64%),
-    linear-gradient(160deg, #24272d, #101114 72%);
-  transition: transform 300ms ease; }
-.scr::before { content: ""; position: absolute; inset: 0;
-  background: repeating-linear-gradient(180deg, rgba(255,255,255,.028) 0 1px, transparent 1px 3px); }
+/* live = LED verde-fósforo (ajuste v2): domo nítido, glow de fósforo e
+   pulso lento — "no ar" é transmissor ligado, não alarme vermelho */
+.hangar .led--live {
+  background: radial-gradient(circle at 38% 30%, #d9ffe6, var(--tv-live) 45%, #0c6b31 90%);
+  box-shadow: 0 0 5px 1px rgba(47,208,105,.7), 0 0 14px rgba(47,208,105,.32),
+    inset 0 -1px 1px rgba(0,0,0,.4), inset 0 1px 1px rgba(255,255,255,.55);
+  animation: live-pulse 2.4s ease-in-out infinite; }
+@keyframes live-pulse {
+  0%, 100% { box-shadow: 0 0 5px 1px rgba(47,208,105,.7), 0 0 14px rgba(47,208,105,.32),
+    inset 0 -1px 1px rgba(0,0,0,.4), inset 0 1px 1px rgba(255,255,255,.55); }
+  50% { box-shadow: 0 0 3px 1px rgba(47,208,105,.4), 0 0 8px rgba(47,208,105,.16),
+    inset 0 -1px 1px rgba(0,0,0,.4), inset 0 1px 1px rgba(255,255,255,.45); }
+}
+
+/* selo de plataforma — marca real em SVG (Twitch/YouTube/podcast), sempre
+   no topo-direita do thumb, legível no tamanho de card */
+.pbadge { position: absolute; top: 8px; right: 8px; z-index: 2;
+  display: inline-flex; align-items: center; justify-content: center;
+  width: 26px; height: 21px; background: rgba(10,11,13,.78);
+  border-radius: 4px; backdrop-filter: blur(4px);
+  box-shadow: 0 1px 2px rgba(0,0,0,.5); }
+.pbadge svg { display: block; }
 
 /* ── mural "no ar": 1 principal + 2 laterais, a parede de monitores ── */
 .onair { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
@@ -116,7 +192,7 @@ section { padding: 44px 0 0; }
 .vcard h3, .acard h3 { margin: 0 0 3px; font-family: var(--hcn-font-ui);
   font-size: 13.5px; font-weight: 700; line-height: 1.35;
   display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
-.vcard:hover .scr, .acard:hover .scr { transform: scale(1.05); }
+.vcard:hover .ph img, .acard:hover .ph img { transform: scale(1.05); }
 /* no hover do card, o título faz o flip laranja-sobre-preto (herança 2002) */
 .vcard:hover .t, .acard:hover .t, .onair-side:hover .t {
   color: var(--accent-hover-text); background: #000; border-radius: 2px;
@@ -134,8 +210,13 @@ section { padding: 44px 0 0; }
 .shelves { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
 .shelfmini { display: flex; gap: 11px; align-items: center; padding: 9px 2px;
   border-bottom: 1px solid var(--hairline); }
-.shelfmini .scr { position: relative; inset: auto; width: 72px; height: 40px;
-  flex: none; border-radius: 3px; border: 1px solid rgba(0,0,0,.6); }
+.shelfmini .mthumb { position: relative; overflow: hidden; width: 72px;
+  height: 40px; flex: none; border-radius: 3px; border: 1px solid rgba(0,0,0,.6); }
+.shelfmini .mthumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.shelfmini .mthumb::after { content: ""; position: absolute; inset: 0;
+  background: repeating-linear-gradient(180deg,
+      rgba(255,255,255,.03) 0 1px, transparent 1px 3px),
+    linear-gradient(180deg, rgba(18,19,22,.1), rgba(18,19,22,.35)); }
 .shelfmini .t { margin: 0; font-size: 12.5px; font-weight: 600; line-height: 1.35; }
 .shelfmini .src { font-family: var(--hcn-font-mono); font-size: 10px;
   letter-spacing: .06em; color: var(--text-faint); }
@@ -157,7 +238,7 @@ section { padding: 44px 0 0; }
 .antena-foot { padding: 16px 4px 0; }
 
 @media (max-width: 860px) {
-  .tuner { overflow-x: auto; }
+  .tvnav { overflow-x: auto; }
   .onair { grid-template-columns: 1fr; }
   .onair-main .ph { height: 240px; }
   .onair-duo { grid-template-rows: none; grid-template-columns: 1fr 1fr; }
@@ -167,6 +248,21 @@ section { padding: 44px 0 0; }
 </style>
 </head>
 <body class="hangar hangar--halo-tv">
+
+<!-- marcas de plataforma (símbolos SVG referenciados pelos .pbadge) -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-twitch" viewBox="0 0 24 24">
+    <path fill="#9146FF" d="M11.571 4.714h1.715v5.143H11.57zm4.715 0H18v5.143h-1.714zM6 0L1.714 4.286v15.428h5.143V24l4.286-4.286h3.428L22.286 12V0zm14.571 11.143l-3.428 3.428h-3.429l-3 3v-3H6.857V1.714h13.714Z"/>
+  </symbol>
+  <symbol id="i-youtube" viewBox="0 0 24 18">
+    <rect width="24" height="17" y=".5" rx="4" fill="#FF0000"/>
+    <path fill="#fff" d="M9.6 4.9l6.4 4.1-6.4 4.1z"/>
+  </symbol>
+  <symbol id="i-podcast" viewBox="0 0 24 24">
+    <rect x="9" y="2.5" width="6" height="11" rx="3" fill="#69aad5"/>
+    <path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3.5" fill="none" stroke="#69aad5" stroke-width="2" stroke-linecap="round"/>
+  </symbol>
+</svg>
 
 <div class="statusbar">
   <span class="sys">hangar network // tv <span class="led led--steel"></span> · games · cloud · sites</span>
@@ -183,18 +279,23 @@ section { padding: 44px 0 0; }
       <li><a href="#" onclick="return false">Canais</a></li>
       <li><a href="#" onclick="return false">Estantes</a></li>
       <li><a href="#" onclick="return false">Guia</a></li>
-      <li><a href="#" onclick="return false">Buscar</a></li>
+      <li class="navsearch">
+        <button class="search-btn" type="button" aria-label="Buscar" aria-expanded="false">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" aria-hidden="true"><circle cx="10.5" cy="10.5" r="6.5"/><path d="M20.5 20.5l-5.2-5.2"/></svg>
+        </button>
+        <input class="search-input" type="search" placeholder="Buscar na TV…" aria-label="Buscar na TV" tabindex="-1">
+      </li>
     </ul>
-    <span class="userchip"><span class="avatar" aria-hidden="true"></span><span class="sys">rafa_mnz</span></span>
+    <span class="userchip"><span class="avatar" aria-hidden="true"><img src="../assets/tv/avatar-rafa.jpg" alt=""></span><span class="uname">rafa_mnz</span></span>
   </nav>
 
   <!-- sintonia: um clique re-sintoniza a página inteira ([data-game]) -->
-  <nav class="holonav tuner" aria-label="Sintonia por jogo">
+  <nav class="tvnav tuner" aria-label="Sintonia por jogo">
     <a href="#" data-tune="todos" aria-current="true">todos</a>
     <span class="sep"></span>
-    <a href="#" data-tune="cs2">cs2 <span class="led led--live"></span> 3</a>
+    <a href="#" data-tune="cs2">cs2 <span class="n">3 no ar</span></a>
     <span class="sep"></span>
-    <a href="#" data-tune="lol">lol <span class="led led--live"></span> 2</a>
+    <a href="#" data-tune="lol">lol <span class="n">2 no ar</span></a>
     <span class="sep"></span>
     <a href="#" data-tune="fgc">fightcade</a>
     <span class="sep"></span>
@@ -213,7 +314,7 @@ section { padding: 44px 0 0; }
       <article class="panel panel--rivets onair-main" data-game="cs2">
         <div class="ph">
           <img src="../assets/tv-1.jpg" alt="">
-          <span class="live"><span class="led led--live"></span> ao vivo · twitch</span>
+          <span class="live"><span class="led led--live"></span> ao vivo</span> <span class="pbadge" title="Twitch"><svg width="13" height="13" aria-hidden="true"><use href="#i-twitch"/></svg></span>
         </div>
         <div class="obody">
           <h2>Tribuna do Barão — Major de CS2, semifinal BR</h2>
@@ -229,7 +330,7 @@ section { padding: 44px 0 0; }
         <a class="panel panel--flat onair-side" href="#" onclick="return false" data-game="lol">
           <div class="ph">
             <img src="../assets/tv-2.jpg" alt="">
-            <span class="live"><span class="led led--live"></span> ao vivo · twitch</span>
+            <span class="live"><span class="led led--live"></span> ao vivo</span> <span class="pbadge" title="Twitch"><svg width="13" height="13" aria-hidden="true"><use href="#i-twitch"/></svg></span>
           </div>
           <div class="obody">
             <h3><span class="t">SoloQ Challenger — rumo ao top 10 do server</span></h3>
@@ -239,7 +340,7 @@ section { padding: 44px 0 0; }
         <a class="panel panel--flat onair-side" href="#" onclick="return false" data-game="fgc">
           <div class="ph">
             <img src="../assets/tv-3.jpg" alt="">
-            <span class="live off"><span class="led led--dim"></span> estreia · youtube</span>
+            <span class="live off"><span class="led led--dim"></span> estreia</span> <span class="pbadge" title="YouTube"><svg width="15" height="12" aria-hidden="true"><use href="#i-youtube"/></svg></span>
           </div>
           <div class="obody">
             <h3><span class="t">Estreia: top 8 do Torneio Hadouken — KOF 2002 UM</span></h3>
@@ -258,8 +359,8 @@ section { padding: 44px 0 0; }
     <div class="rail">
       <a class="vcard panel panel--flat" href="#" onclick="return false" data-game="sc2">
         <div class="ph">
-          <span class="scr" style="--stint:rgba(105,170,215,.28)"></span>
-          <span class="live off"><span class="led led--dim"></span> vod · youtube</span>
+          <img src="../assets/tv/pc-rig-blue.jpg" alt="" loading="lazy">
+          <span class="live off"><span class="led led--dim"></span> vod</span> <span class="pbadge" title="YouTube"><svg width="15" height="12" aria-hidden="true"><use href="#i-youtube"/></svg></span>
           <span class="dur">47 min</span>
           <span class="progress" aria-hidden="true"><i style="width:62%"></i></span>
         </div>
@@ -270,8 +371,8 @@ section { padding: 44px 0 0; }
       </a>
       <a class="vcard panel panel--flat" href="#" onclick="return false" data-game="fgc">
         <div class="ph">
-          <span class="scr" style="--stint:rgba(226,106,106,.2);--sx:64%"></span>
-          <span class="live off"><span class="led led--dim"></span> vod · youtube</span>
+          <img src="../assets/tv/arcade-neon.jpg" alt="" loading="lazy">
+          <span class="live off"><span class="led led--dim"></span> vod</span> <span class="pbadge" title="YouTube"><svg width="15" height="12" aria-hidden="true"><use href="#i-youtube"/></svg></span>
           <span class="dur">1h 12min</span>
           <span class="progress" aria-hidden="true"><i style="width:78%"></i></span>
         </div>
@@ -282,8 +383,8 @@ section { padding: 44px 0 0; }
       </a>
       <a class="vcard panel panel--flat" href="#" onclick="return false" data-game="multi">
         <div class="ph">
-          <span class="scr" style="--stint:rgba(202,190,176,.16);--sx:44%"></span>
-          <span class="live off"><span class="led led--dim"></span> podcast · ep 12</span>
+          <img src="../assets/tv/mic-studio.jpg" alt="" loading="lazy">
+          <span class="live off"><span class="led led--dim"></span> podcast · ep 12</span> <span class="pbadge" title="Podcast"><svg width="13" height="13" aria-hidden="true"><use href="#i-podcast"/></svg></span>
           <span class="dur">1h 38min</span>
           <span class="progress" aria-hidden="true"><i style="width:34%"></i></span>
         </div>
@@ -294,8 +395,8 @@ section { padding: 44px 0 0; }
       </a>
       <a class="vcard panel panel--flat" href="#" onclick="return false" data-game="cs2">
         <div class="ph">
-          <span class="scr" style="--stint:rgba(214,178,106,.2);--sx:70%"></span>
-          <span class="live off"><span class="led led--dim"></span> vod · twitch</span>
+          <img src="../assets/tv/crowd-orange.jpg" alt="" loading="lazy">
+          <span class="live off"><span class="led led--dim"></span> vod</span> <span class="pbadge" title="Twitch"><svg width="13" height="13" aria-hidden="true"><use href="#i-twitch"/></svg></span>
           <span class="dur">3h 05min</span>
           <span class="progress" aria-hidden="true"><i style="width:12%"></i></span>
         </div>
@@ -318,11 +419,11 @@ section { padding: 44px 0 0; }
         <div class="blockhead"><span class="plate">Noites de FGC</span><span class="sys">6 itens · editar</span></div>
         <div class="blockbody">
           <div class="shelfmini">
-            <span class="scr" style="--stint:rgba(226,106,106,.2)"></span>
+            <span class="mthumb"><img src="../assets/tv/pad-moody.jpg" alt="" loading="lazy"></span>
             <div><p class="t">Mind games: o arremesso que ninguém viu</p><span class="src">Dojo do Krauser · youtube</span></div>
           </div>
           <div class="shelfmini">
-            <span class="scr" style="--stint:rgba(226,106,106,.16);--sx:68%"></span>
+            <span class="mthumb"><img src="../assets/tv/arcade-prizes.jpg" alt="" loading="lazy"></span>
             <div><p class="t">Top 8 SF III: 3rd Strike — Fightcade BR</p><span class="src">Canal Hadouken · youtube</span></div>
           </div>
           <div class="shelffoot"><a class="morelink fliplink" href="#" onclick="return false">abrir estante →</a></div>
@@ -332,11 +433,11 @@ section { padding: 44px 0 0; }
         <div class="blockhead"><span class="plate">Aulas de CS2</span><span class="sys">9 itens · editar</span></div>
         <div class="blockbody">
           <div class="shelfmini">
-            <span class="scr" style="--stint:rgba(214,178,106,.22)"></span>
+            <span class="mthumb"><img src="../assets/tv/keyboard-neon.jpg" alt="" loading="lazy"></span>
             <div><p class="t">Smokes de Mirage em 12 minutos</p><span class="src">fps_helena · twitch vod</span></div>
           </div>
           <div class="shelfmini">
-            <span class="scr" style="--stint:rgba(214,178,106,.16);--sx:62%"></span>
+            <span class="mthumb"><img src="../assets/tv/screen-analysis.jpg" alt="" loading="lazy"></span>
             <div><p class="t">Demo comentada: leitura de rotação</p><span class="src">Barão do Bomb · twitch vod</span></div>
           </div>
           <div class="shelffoot"><a class="morelink fliplink" href="#" onclick="return false">abrir estante →</a></div>
@@ -346,11 +447,11 @@ section { padding: 44px 0 0; }
         <div class="blockhead"><span class="plate">Clássicos do Hangar</span><span class="sys">4 itens · editar</span></div>
         <div class="blockbody">
           <div class="shelfmini">
-            <span class="scr" style="--stint:rgba(105,170,215,.26)"></span>
+            <span class="mthumb"><img src="../assets/tv/crt-classic.jpg" alt="" loading="lazy"></span>
             <div><p class="t">BW 2004: a final que definiu uma era</p><span class="src">Zergaria BR · youtube</span></div>
           </div>
           <div class="shelfmini">
-            <span class="scr" style="--stint:rgba(202,190,176,.16);--sx:58%"></span>
+            <span class="mthumb"><img src="../assets/tv/mic-boom.jpg" alt="" loading="lazy"></span>
             <div><p class="t">Papo de Hangar #9 — LAN houses de BH</p><span class="src">podcast</span></div>
           </div>
           <div class="shelffoot"><a class="morelink fliplink" href="#" onclick="return false">abrir estante →</a></div>
@@ -371,8 +472,8 @@ section { padding: 44px 0 0; }
       <div class="rail">
         <a class="vcard panel panel--flat" href="#" onclick="return false">
           <div class="ph">
-            <span class="scr" style="--stint:rgba(214,178,106,.24)"></span>
-            <span class="live"><span class="led led--live"></span> ao vivo · twitch</span>
+            <img src="../assets/tv/keyboard-neon.jpg" alt="" loading="lazy">
+            <span class="live"><span class="led led--live"></span> ao vivo</span> <span class="pbadge" title="Twitch"><svg width="13" height="13" aria-hidden="true"><use href="#i-twitch"/></svg></span>
           </div>
           <div class="vbody">
             <h3><span class="t">fps_helena — treino de mira: rotina diária</span></h3>
@@ -381,8 +482,8 @@ section { padding: 44px 0 0; }
         </a>
         <a class="vcard panel panel--flat" href="#" onclick="return false">
           <div class="ph">
-            <span class="scr" style="--stint:rgba(214,178,106,.18);--sx:66%"></span>
-            <span class="live off"><span class="led led--dim"></span> vod · twitch</span>
+            <img src="../assets/tv/screen-analysis.jpg" alt="" loading="lazy">
+            <span class="live off"><span class="led led--dim"></span> vod</span> <span class="pbadge" title="Twitch"><svg width="13" height="13" aria-hidden="true"><use href="#i-twitch"/></svg></span>
             <span class="dur">24 min</span>
           </div>
           <div class="vbody">
@@ -392,8 +493,8 @@ section { padding: 44px 0 0; }
         </a>
         <a class="vcard panel panel--flat" href="#" onclick="return false">
           <div class="ph">
-            <span class="scr" style="--stint:rgba(178,190,150,.2);--sx:40%"></span>
-            <span class="live"><span class="led led--live"></span> ao vivo · twitch</span>
+            <img src="../assets/tv/setup-dark.jpg" alt="" loading="lazy">
+            <span class="live"><span class="led led--live"></span> ao vivo</span> <span class="pbadge" title="Twitch"><svg width="13" height="13" aria-hidden="true"><use href="#i-twitch"/></svg></span>
           </div>
           <div class="vbody">
             <h3><span class="t">Torre 3 Gaming — scrim aberta, ranqueada da equipe</span></h3>
@@ -402,8 +503,8 @@ section { padding: 44px 0 0; }
         </a>
         <a class="vcard panel panel--flat" href="#" onclick="return false">
           <div class="ph">
-            <span class="scr" style="--stint:rgba(214,178,106,.16);--sx:74%"></span>
-            <span class="live off"><span class="led led--dim"></span> vod · youtube</span>
+            <img src="../assets/tv/controller-dark.jpg" alt="" loading="lazy">
+            <span class="live off"><span class="led led--dim"></span> vod</span> <span class="pbadge" title="YouTube"><svg width="15" height="12" aria-hidden="true"><use href="#i-youtube"/></svg></span>
             <span class="dur">18 min</span>
           </div>
           <div class="vbody">
@@ -419,8 +520,8 @@ section { padding: 44px 0 0; }
         <!-- mesmo item do herói — repetir é ok, âncora da linha -->
         <a class="vcard panel panel--flat" href="#" onclick="return false">
           <div class="ph">
-            <span class="scr" style="--stint:rgba(84,180,190,.24)"></span>
-            <span class="live"><span class="led led--live"></span> ao vivo · twitch</span>
+            <img src="../assets/tv/esports-station.jpg" alt="" loading="lazy">
+            <span class="live"><span class="led led--live"></span> ao vivo</span> <span class="pbadge" title="Twitch"><svg width="13" height="13" aria-hidden="true"><use href="#i-twitch"/></svg></span>
           </div>
           <div class="vbody">
             <h3><span class="t">MidOuFeed — SoloQ Challenger</span></h3>
@@ -429,8 +530,8 @@ section { padding: 44px 0 0; }
         </a>
         <a class="vcard panel panel--flat" href="#" onclick="return false">
           <div class="ph">
-            <span class="scr" style="--stint:rgba(84,180,190,.18);--sx:62%"></span>
-            <span class="live off"><span class="led led--dim"></span> vod · youtube</span>
+            <img src="../assets/tv/laptop-glow.jpg" alt="" loading="lazy">
+            <span class="live off"><span class="led led--dim"></span> vod</span> <span class="pbadge" title="YouTube"><svg width="15" height="12" aria-hidden="true"><use href="#i-youtube"/></svg></span>
             <span class="dur">15 min</span>
           </div>
           <div class="vbody">
@@ -440,8 +541,8 @@ section { padding: 44px 0 0; }
         </a>
         <a class="vcard panel panel--flat" href="#" onclick="return false">
           <div class="ph">
-            <span class="scr" style="--stint:rgba(140,160,210,.2);--sx:36%"></span>
-            <span class="live"><span class="led led--live"></span> ao vivo · twitch</span>
+            <img src="../assets/tv/lan-squad.jpg" alt="" loading="lazy">
+            <span class="live"><span class="led led--live"></span> ao vivo</span> <span class="pbadge" title="Twitch"><svg width="13" height="13" aria-hidden="true"><use href="#i-twitch"/></svg></span>
           </div>
           <div class="vbody">
             <h3><span class="t">Fúria de Aço — treino de draft aberto</span></h3>
@@ -450,8 +551,8 @@ section { padding: 44px 0 0; }
         </a>
         <a class="vcard panel panel--flat" href="#" onclick="return false">
           <div class="ph">
-            <span class="scr" style="--stint:rgba(84,180,190,.16);--sx:72%"></span>
-            <span class="live off"><span class="led led--dim"></span> vod · youtube</span>
+            <img src="../assets/tv/controller-cyan.jpg" alt="" loading="lazy">
+            <span class="live off"><span class="led led--dim"></span> vod</span> <span class="pbadge" title="YouTube"><svg width="15" height="12" aria-hidden="true"><use href="#i-youtube"/></svg></span>
             <span class="dur">31 min</span>
           </div>
           <div class="vbody">
@@ -476,8 +577,8 @@ section { padding: 44px 0 0; }
     <div class="strip antena">
       <a class="acard" href="#" onclick="return false" data-game="sc2">
         <div class="ph">
-          <span class="scr" style="--stint:rgba(105,170,215,.3)"></span>
-          <span class="live off"><span class="led led--dim"></span> vod · youtube</span>
+          <img src="../assets/tv/crt-classic.jpg" alt="" loading="lazy">
+          <span class="live off"><span class="led led--dim"></span> vod</span> <span class="pbadge" title="YouTube"><svg width="15" height="12" aria-hidden="true"><use href="#i-youtube"/></svg></span>
         </div>
         <div class="abody">
           <h3><span class="t">BW 2004: a final que definiu uma era — remasterizada</span></h3>
@@ -488,8 +589,8 @@ section { padding: 44px 0 0; }
       </a>
       <a class="acard" href="#" onclick="return false" data-game="multi">
         <div class="ph">
-          <span class="scr" style="--stint:rgba(202,190,176,.18);--sx:60%"></span>
-          <span class="live off"><span class="led led--dim"></span> vod · youtube</span>
+          <img src="../assets/tv/retro-lab.jpg" alt="" loading="lazy">
+          <span class="live off"><span class="led led--dim"></span> vod</span> <span class="pbadge" title="YouTube"><svg width="15" height="12" aria-hidden="true"><use href="#i-youtube"/></svg></span>
         </div>
         <div class="abody">
           <h3><span class="t">Documentário: a LAN house que formou campeões</span></h3>
@@ -500,8 +601,8 @@ section { padding: 44px 0 0; }
       </a>
       <a class="acard" href="#" onclick="return false" data-game="lol">
         <div class="ph">
-          <span class="scr" style="--stint:rgba(84,180,190,.22);--sx:42%"></span>
-          <span class="live off"><span class="led led--dim"></span> vod · twitch</span>
+          <img src="../assets/tv/crowd-purple.jpg" alt="" loading="lazy">
+          <span class="live off"><span class="led led--dim"></span> vod</span> <span class="pbadge" title="Twitch"><svg width="13" height="13" aria-hidden="true"><use href="#i-twitch"/></svg></span>
         </div>
         <div class="abody">
           <h3><span class="t">Maratona CBLOL retrô — as viradas históricas</span></h3>
@@ -512,8 +613,8 @@ section { padding: 44px 0 0; }
       </a>
       <a class="acard" href="#" onclick="return false" data-game="fgc">
         <div class="ph">
-          <span class="scr" style="--stint:rgba(226,106,106,.18);--sx:70%"></span>
-          <span class="live off"><span class="led led--dim"></span> podcast · ep 13</span>
+          <img src="../assets/tv/mic-boom.jpg" alt="" loading="lazy">
+          <span class="live off"><span class="led led--dim"></span> podcast · ep 13</span> <span class="pbadge" title="Podcast"><svg width="13" height="13" aria-hidden="true"><use href="#i-podcast"/></svg></span>
         </div>
         <div class="abody">
           <h3><span class="t">Papo de Hangar #13 — especial fightgames, com o Krauser</span></h3>
@@ -570,6 +671,35 @@ section { padding: 44px 0 0; }
       });
       document.querySelector('.onair').classList.toggle('onair--tuned', tune !== 'todos');
     });
+  });
+})();
+
+/* Busca: a lupa expande o campo (~200ms, ease-out). Esc fecha sempre;
+   blur fecha quando o campo está vazio (relatedTarget evita o flicker
+   blur→click quando o fechamento vem do próprio botão). */
+(function () {
+  var li = document.querySelector('.navsearch');
+  var btn = li.querySelector('.search-btn');
+  var input = li.querySelector('.search-input');
+  function open() {
+    li.classList.add('open');
+    btn.setAttribute('aria-expanded', 'true');
+    input.removeAttribute('tabindex');
+    input.focus();
+  }
+  function close() {
+    li.classList.remove('open');
+    btn.setAttribute('aria-expanded', 'false');
+    input.setAttribute('tabindex', '-1');
+  }
+  btn.addEventListener('click', function () {
+    if (li.classList.contains('open')) { close(); } else { open(); }
+  });
+  input.addEventListener('keydown', function (ev) {
+    if (ev.key === 'Escape') { ev.preventDefault(); close(); btn.focus(); }
+  });
+  input.addEventListener('blur', function (ev) {
+    if (input.value.trim() === '' && ev.relatedTarget !== btn) close();
   });
 })();
 </script>
