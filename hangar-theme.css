@@ -251,7 +251,8 @@
   box-shadow:
     inset 0 0 0 1px rgba(0,0,0,.6), inset 0 0 0 2px rgba(255,255,255,.06),
     inset 0 1px 0 rgba(255,255,255,.1), inset 0 -8px 14px -8px rgba(0,0,0,.55);
-  filter: drop-shadow(0 4px 7px rgba(0,0,0,.65)) drop-shadow(0 16px 32px rgba(0,0,0,.5));
+  filter: drop-shadow(0 5px 8px rgba(0,0,0,.8)) drop-shadow(0 14px 22px rgba(0,0,0,.6))
+    drop-shadow(0 30px 55px rgba(0,0,0,.5));
 }
 .seal::before, .seal::after { /* parafusos laterais com fenda */
   content: ""; position: absolute; top: 50%; transform: translateY(-50%);
@@ -267,14 +268,15 @@
   text-transform: uppercase; color: var(--text-faint);
   text-shadow: 0 -1px 0 rgba(0,0,0,.65); margin-right: -.38em;
 }
-.seal b { /* o ano gravado em latão — serifa tradicional, voz de tradição */
+.seal b { /* o ano ENCRAVADO no latão — afundado na placa, luz por baixo */
   font-family: Georgia, "Times New Roman", "Noto Serif", serif;
   font-weight: 600; font-size: 27px;
   line-height: 1; letter-spacing: .09em; margin-right: -.09em;
   font-variant-numeric: lining-nums;
-  background: linear-gradient(180deg, #e6c98d, #cfa452 40%, #a97b2c 72%, #8a6120 100%);
+  background: linear-gradient(180deg, #c9a86a, #a8813a 45%, #7d5a1f 80%, #61461a 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
-  filter: drop-shadow(0 1px 1px rgba(0,0,0,.65));
+  text-shadow: 0 1px 0 rgba(255,255,255,.16), 0 -1px 1px rgba(0,0,0,.9),
+    0 -2px 3px rgba(0,0,0,.45);
 }
 
 /* cápsula cromada (acabamento herdado 2001 — usar com parcimônia) */

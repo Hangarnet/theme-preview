@@ -24,7 +24,9 @@
   justify-content: center; text-align: center; padding: 48px 24px 84px; }
 .hero-logo { width: min(560px, 82vw); height: auto;
   filter: drop-shadow(0 10px 34px rgba(0,0,0,.75)); }
-.hero-center .seal { margin-bottom: 36px; }
+/* selo como carimbo: canto inferior direito, levemente torto */
+.hero-center .seal { position: absolute; right: clamp(24px, 7vw, 110px);
+  bottom: 10px; margin: 0; transform: rotate(-5deg); }
 .tagline { margin: 34px 0 0; color: var(--text-muted); font-size: 15.5px;
   letter-spacing: .02em; }
 .tagline b { color: var(--text-primary); font-weight: 600; }
