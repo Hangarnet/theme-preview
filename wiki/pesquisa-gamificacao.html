@@ -42,56 +42,40 @@
     <header>
       <span class="sys sys--crumb">// wiki · pesquisas · <b>gamificação</b></span>
       <h1 class="display">Gamificação: moeda, tiers e <em>integrações</em></h1>
-      <p class="lead">Evidências de plataformas de games (Twitch, Steam, Roblox,
-        Duolingo) sobre moeda de pontos, níveis e pontes com plataformas
-        externas.</p>
+      <p class="lead">Evidências de plataformas de games (Twitch, Steam, Roblox, Duolingo) sobre moeda de pontos, níveis e pontes com plataformas externas.</p>
     </header>
 
-    <div class="statrow">
-      <div class="stat"><b>1,8x</b><span>ROI de fidelidade com tiers vs sem tiers</span></div>
-      <div class="stat"><b>+25%</b><span>conclusão de lições com as Leagues do Duolingo</span></div>
-      <div class="stat"><b>47→28%</b><span>queda do churn do Duolingo com gamificação</span></div>
-      <div class="stat"><b>+18%</b><span>tempo assistido com Channel Points na Twitch</span></div>
-    </div>
-
-    <div class="callout callout--ok"><span class="ico">✓</span>
-      <div><b>Earned-only é a receita segura</b>
-        <p>Pontos nunca compráveis, gastáveis em status/cosméticos/conveniência —
-          fora da zona regulatória (UE 2025, loot boxes) e zero pay-to-win.</p></div>
-    </div>
-    <div class="callout callout--info"><span class="ico">⇄</span>
-      <div><b>Hub-and-spoke: ler de fora, premiar dentro</b>
-        <p>Não existe troca de moeda entre plataformas. A Twitch é a única ponte
-          real (channel points → pontos hnet via recompensa autorizada); a Steam
-          é só leitura de atividade (biblioteca, horas, conquistas).</p></div>
-    </div>
-    <div class="callout callout--warn"><span class="ico">⚠</span>
-      <div><b>Nunca exportar pontos para valor real</b>
-        <p>Venda ou gift card quebra ToS de parceiros e atrai o regulador. A moeda
-          hnet é beco sem saída de valor: entra atividade, sai status.</p></div>
-    </div>
-
-    <h2>Key insights</h2>
-    <ul>
-      <li><b>Moeda vale a pena se circula</b>: o valor está no ciclo ganhar →
-        acumular → gastar; sem sinks, vira número morto e inflaciona</li>
-      <li><b>Moeda + tiers se completam</b>: a moeda dá o loop de curto prazo,
-        os tiers o arco de longo prazo (dupla usada por Twitch e Duolingo)</li>
-      <li><b>Steam Points não tem API</b> — nunca prometer "importar pontos"
-        no marketing</li>
-      <li><b>Como funciona a ponte Twitch</b>: streamer autoriza via OAuth →
-        criamos a custom reward no canal → resgate dispara webhook (EventSub) →
-        creditamos na conta vinculada. 100% dentro do ToS</li>
-    </ul>
-
-    <h2>Referência</h2>
-    <ul class="steel">
-      <li><b>Pesquisa Claude (instância separada) · 03/07/2026</b> — inclui
-        X/Twitter, Twitch (Channel Points/EventSub), Steam (Web API/OpenID),
-        Roblox, Duolingo Leagues e regulação de moedas virtuais (UE 2025).
-        Arquivo completo:
-        <i>references/research/2026-07-03-gamificacao-moeda-tiers-integracoes.md</i></li>
-    </ul>
+<div class="statrow">
+  <div class="stat"><b>1,8x</b><span>ROI de fidelidade com tiers vs sem tiers</span></div>
+  <div class="stat"><b>+25%</b><span>conclusão de lições com as Leagues do Duolingo</span></div>
+  <div class="stat"><b>47→28%</b><span>queda do churn do Duolingo com gamificação</span></div>
+  <div class="stat"><b>+18%</b><span>tempo assistido com Channel Points na Twitch</span></div>
+</div><div class="callout callout--ok"><span class="ico">✓</span>
+  <div><b>Earned-only é a receita segura</b>
+    <p>Pontos nunca compráveis, gastáveis em status/cosméticos/conveniência —
+      fora da zona regulatória (UE 2025, loot boxes) e zero pay-to-win.</p></div>
+</div>
+<div class="callout callout--info"><span class="ico">⇄</span>
+  <div><b>Hub-and-spoke: ler de fora, premiar dentro</b>
+    <p>Não existe troca de moeda entre plataformas. A Twitch é a única ponte
+      real (channel points → pontos hnet via recompensa autorizada); a Steam
+      é só leitura de atividade (biblioteca, horas, conquistas).</p></div>
+</div>
+<div class="callout callout--warn"><span class="ico">⚠</span>
+  <div><b>Nunca exportar pontos para valor real</b>
+    <p>Venda ou gift card quebra ToS de parceiros e atrai o regulador. A moeda
+      hnet é beco sem saída de valor: entra atividade, sai status.</p></div>
+</div><h2>Key insights</h2>
+<ul>
+<li><b>Moeda vale a pena se circula</b>: o valor está no ciclo ganhar → acumular → gastar; sem sinks, vira número morto e inflaciona</li>
+<li><b>Moeda + tiers se completam</b>: a moeda dá o loop de curto prazo, os tiers o arco de longo prazo (dupla usada por Twitch e Duolingo)</li>
+<li><b>Steam Points não tem API</b> — nunca prometer &quot;importar pontos&quot; no marketing</li>
+<li><b>Como funciona a ponte Twitch</b>: streamer autoriza via OAuth → criamos a custom reward no canal → resgate dispara webhook (EventSub) → creditamos na conta vinculada. 100% dentro do ToS</li>
+</ul>
+<h2>Referência</h2>
+<ul class="steel">
+<li><b>Pesquisa Claude (instância separada) · 03/07/2026</b> — inclui X/Twitter, Twitch (Channel Points/EventSub), Steam (Web API/OpenID), Roblox, Duolingo Leagues e regulação de moedas virtuais (UE 2025). Arquivo completo: <em>references/research/2026-07-03-gamificacao-moeda-tiers-integracoes.md</em></li>
+</ul>
 
     <div class="wikifoot">
       <span class="sys">hangar network // wiki · pesquisas · <b>gamificação</b></span>
