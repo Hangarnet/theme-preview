@@ -1,0 +1,578 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="../logo/hangar-emblem.svg">
+<title>HNet TV — Seus canais estão no ar</title>
+<link rel="stylesheet" href="../hangar-theme.css">
+<style>
+/* cor de setor da TV — violeta-fósforo: a luz da tela ligada numa sala
+   escura. Só existe em 3 pontos (palavra TV do wordmark, halo do body,
+   filete da sintonia) — contido como o verde NVIDIA em games.html.
+   Nunca em botões, LEDs de live, progresso ou hover: laranja é a única
+   cor de ação, live é sempre LED vermelho. */
+:root {
+  --tv-phosphor: #a06be8;
+  --tv-phosphor-glow: #c9a6ff;
+  --tv-phosphor-dim: #5d3f8c;
+}
+.hangar--halo-tv { background:
+  radial-gradient(1000px 460px at 50% -8%, rgba(160,107,232,.05), transparent 60%),
+  var(--surface-canvas); }
+.hangar [hidden] { display: none !important; } /* o filtro da sintonia usa [hidden] */
+
+/* header de produto (logado): link corrente + bloco do usuário no lugar do
+   CTA — sem botão laranja no topo, o laranja pertence ao "Assistir agora" */
+.mainnav ul a[aria-current] { color: var(--text-primary); }
+.userchip { display: inline-flex; align-items: center; gap: 9px; }
+.avatar { width: 30px; height: 30px; border-radius: 50%; flex: none;
+  border: 1px solid var(--hcn-gm-700);
+  background: radial-gradient(circle at 35% 28%, #565b63, #2a2c31 62%, #17181c 96%);
+  box-shadow: inset 0 1px 1px rgba(255,255,255,.14), 0 1px 2px rgba(0,0,0,.6); }
+
+/* barra de sintonia — o holonav esticado em sintonizador de página;
+   a aba ativa troca o sublinhado aço por laranja (indicador ativo = ação) */
+.tuner { display: flex; width: 100%; margin-top: 2px; }
+.tuner a { flex: none; display: inline-flex; align-items: center; gap: 7px; }
+.tuner a .led { width: 6px; height: 6px; }
+.tuner a[aria-current]::after { height: 2px; bottom: 2px;
+  background: linear-gradient(90deg, var(--hcn-orange-hot), var(--hcn-orange));
+  box-shadow: 0 0 6px rgba(255,128,0,.75); }
+.tuner .add { margin-left: auto; color: var(--system-dim); }
+/* filete de sintonia — a receita do .pline do patrocinador, em violeta */
+.tuner-line { height: 2px; border-radius: 1px; margin-top: 7px;
+  background: linear-gradient(90deg, transparent, var(--tv-phosphor-dim) 18%,
+    var(--tv-phosphor) 50%, var(--tv-phosphor-dim) 82%, transparent);
+  box-shadow: 0 0 6px rgba(160,107,232,.5), 0 0 16px rgba(160,107,232,.22); }
+
+section { padding: 44px 0 0; }
+.guia-sec { padding-bottom: 64px; }
+.blockhead { display: flex; align-items: center; justify-content: space-between; padding: 12px 16px; border-bottom: 1px solid var(--hairline); }
+.blockhead .plate { font-size: 9.5px; padding: 5px 12px 5px 26px; }
+.blockbody { padding: 8px 14px 12px; }
+
+/* thumb: mesma receita .ph/.live de games.html (vinheta + hover scale) */
+.ph { position: relative; overflow: hidden; border-radius: 5px 5px 0 0; }
+.ph img { width: 100%; height: 100%; object-fit: cover; display: block;
+  transition: transform 300ms ease; }
+.ph::after { content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: linear-gradient(180deg, rgba(18,19,22,.12) 0%, transparent 40%, rgba(18,19,22,.82) 100%);
+  box-shadow: inset 0 -1px 0 rgba(0,0,0,.6); }
+.live { display: inline-flex; align-items: center; gap: 7px; font-family: var(--hcn-font-mono); font-size: 9.5px; letter-spacing: .16em; text-transform: uppercase; color: #ff6b67;
+  background: rgba(10,11,13,.72); padding: 4px 10px; border-radius: 3px; backdrop-filter: blur(4px); }
+.off { color: var(--text-faint); }
+.ph .live { position: absolute; left: 12px; bottom: 10px; z-index: 1; margin: 0; }
+.dur { position: absolute; right: 10px; bottom: 10px; z-index: 1;
+  font-family: var(--hcn-font-mono); font-size: 10.5px; color: var(--text-muted);
+  font-variant-numeric: tabular-nums;
+  background: rgba(10,11,13,.72); padding: 2px 7px; border-radius: 3px; }
+
+/* tela CSS — thumbs sem asset: fósforo tintado + scanlines fazem a imagem */
+.scr { position: absolute; inset: 0; display: block;
+  background-image: var(--hcn-noise),
+    radial-gradient(130% 100% at var(--sx, 30%) 18%, var(--stint, rgba(105,170,215,.26)), transparent 64%),
+    linear-gradient(160deg, #24272d, #101114 72%);
+  transition: transform 300ms ease; }
+.scr::before { content: ""; position: absolute; inset: 0;
+  background: repeating-linear-gradient(180deg, rgba(255,255,255,.028) 0 1px, transparent 1px 3px); }
+
+/* ── mural "no ar": 1 principal + 2 laterais, a parede de monitores ── */
+.onair { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr);
+  gap: 18px; margin-top: 26px; }
+.onair-duo { display: grid; grid-template-rows: 1fr 1fr; gap: 18px; }
+/* sintonizado num jogo só sobra 1 monitor no mural: vira tela cheia */
+.onair--tuned { grid-template-columns: 1fr; }
+.onair--tuned .onair-duo { display: contents; }
+.onair--tuned .onair-side .ph { height: 300px; }
+.onair-main { display: flex; flex-direction: column; }
+.onair-main::before, .onair-main::after { z-index: 2; } /* rebites sobre o thumb */
+.onair-main .ph { height: 370px; }
+.obody { padding: 16px 18px 18px; }
+.onair-main h2 { margin: 0 0 4px; font-size: 20px; font-weight: 800; letter-spacing: -0.01em; }
+.onair-main .meta { font-size: 13px; color: var(--text-muted); }
+.onair-main .obody > .sys { display: block; margin: 7px 0 15px; }
+.onair .ctas { display: flex; align-items: center; gap: 10px; }
+.onair-side { display: flex; flex-direction: column; text-decoration: none; }
+.onair-side .ph { height: 160px; }
+.onair-side .obody { padding: 12px 14px 14px; }
+.onair-side h3 { margin: 0 0 3px; font-size: 14.5px; font-weight: 700; }
+.onair-side:hover .ph img { transform: scale(1.05); }
+.meta { margin: 0; font-size: 12px; color: var(--text-faint); }
+
+/* ── fileira rolável (não é .strip: baia soldada não rola) ── */
+.rail { display: grid; grid-auto-flow: column; grid-auto-columns: 250px; gap: 14px;
+  overflow-x: auto; padding: 2px 2px 10px; scroll-snap-type: x proximity;
+  scrollbar-width: thin; scrollbar-color: var(--hcn-gm-700) #101114; }
+.rail > * { scroll-snap-align: start; }
+.rail::-webkit-scrollbar { height: 8px; }
+.rail::-webkit-scrollbar-track { background: #101114; border-radius: 4px; }
+.rail::-webkit-scrollbar-thumb { background: var(--hcn-gm-700); border-radius: 4px; }
+
+/* ── anatomia do card de vídeo (fileiras + antena) ── */
+.vcard { display: flex; flex-direction: column; text-decoration: none; }
+.vcard .ph { height: 140px; }
+.vcard .vbody { padding: 11px 13px 13px; }
+.vcard h3, .acard h3 { margin: 0 0 3px; font-family: var(--hcn-font-ui);
+  font-size: 13.5px; font-weight: 700; line-height: 1.35;
+  display: -webkit-box; -webkit-box-orient: vertical; -webkit-line-clamp: 2; overflow: hidden; }
+.vcard:hover .scr, .acard:hover .scr { transform: scale(1.05); }
+/* no hover do card, o título faz o flip laranja-sobre-preto (herança 2002) */
+.vcard:hover .t, .acard:hover .t, .onair-side:hover .t {
+  color: var(--accent-hover-text); background: #000; border-radius: 2px;
+  box-decoration-break: clone; -webkit-box-decoration-break: clone; }
+
+/* barra de progresso — só na fileira "continuar assistindo"; laranja
+   legítimo: indicador da atividade do próprio usuário */
+.progress { position: absolute; left: 0; right: 0; bottom: 0; height: 4px;
+  z-index: 1; background: #101114; }
+.progress i { display: block; height: 100%;
+  background: linear-gradient(90deg, var(--hcn-orange-hot), var(--hcn-orange)); }
+
+/* ── estantes: coleções curadas pelo usuário ── */
+/* auto-fit: colunas vazias somem quando a sintonia esconde estantes */
+.shelves { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 18px; }
+.shelfmini { display: flex; gap: 11px; align-items: center; padding: 9px 2px;
+  border-bottom: 1px solid var(--hairline); }
+.shelfmini .scr { position: relative; inset: auto; width: 72px; height: 40px;
+  flex: none; border-radius: 3px; border: 1px solid rgba(0,0,0,.6); }
+.shelfmini .t { margin: 0; font-size: 12.5px; font-weight: 600; line-height: 1.35; }
+.shelfmini .src { font-family: var(--hcn-font-mono); font-size: 10px;
+  letter-spacing: .06em; color: var(--text-faint); }
+.shelffoot { padding: 12px 4px 4px; }
+
+/* linhas por jogo */
+.gamerow { margin-bottom: 26px; }
+.rowhead { display: flex; justify-content: space-between; align-items: baseline;
+  gap: 14px; margin: 0 0 12px; }
+
+/* ── antena: vitrine editorial fixa (aqui sim .strip) ── */
+.antena { grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); margin-top: 26px; }
+.antena .acard { padding: 0; display: flex; flex-direction: column; text-decoration: none; }
+.acard .ph { height: 120px; border-radius: 0; }
+.acard .abody { padding: 12px 14px 16px; display: flex; flex-direction: column; gap: 5px; flex: 1; }
+.acard .abody .sys { margin-top: auto; padding-top: 8px; }
+.votes { font-family: var(--hcn-font-mono); font-size: 11px; color: var(--text-muted);
+  font-variant-numeric: tabular-nums; } /* a seta é telemetria, não ação */
+.antena-foot { padding: 16px 4px 0; }
+
+@media (max-width: 860px) {
+  .tuner { overflow-x: auto; }
+  .onair { grid-template-columns: 1fr; }
+  .onair-main .ph { height: 240px; }
+  .onair-duo { grid-template-rows: none; grid-template-columns: 1fr 1fr; }
+  .shelves { grid-template-columns: 1fr; }
+  .rail { grid-auto-columns: 210px; }
+}
+</style>
+</head>
+<body class="hangar hangar--halo-tv">
+
+<div class="statusbar">
+  <span class="sys">hangar network // tv <span class="led led--steel"></span> · games · cloud · sites</span>
+  <span class="placard">no ar agora: <b>3 dos seus canais</b></span>
+</div>
+
+<div class="wrap">
+  <!-- hnet-tv.svg regenerado em violeta-fósforo (gradiente gb + finish
+       "phosphor" adicionado ao gen-logos.mjs) — débito do spec quitado -->
+  <nav class="mainnav" aria-label="Principal">
+    <a class="wordmark" href="./index.html"><img src="../logo/hnet-tv.svg" alt="HNet TV" style="height:46px;display:block;filter:drop-shadow(0 2px 6px rgba(0,0,0,.6))"></a>
+    <ul>
+      <li><a href="#" aria-current="page" onclick="return false">Início</a></li>
+      <li><a href="#" onclick="return false">Canais</a></li>
+      <li><a href="#" onclick="return false">Estantes</a></li>
+      <li><a href="#" onclick="return false">Guia</a></li>
+      <li><a href="#" onclick="return false">Buscar</a></li>
+    </ul>
+    <span class="userchip"><span class="avatar" aria-hidden="true"></span><span class="sys">rafa_mnz</span></span>
+  </nav>
+
+  <!-- sintonia: um clique re-sintoniza a página inteira ([data-game]) -->
+  <nav class="holonav tuner" aria-label="Sintonia por jogo">
+    <a href="#" data-tune="todos" aria-current="true">todos</a>
+    <span class="sep"></span>
+    <a href="#" data-tune="cs2">cs2 <span class="led led--live"></span> 3</a>
+    <span class="sep"></span>
+    <a href="#" data-tune="lol">lol <span class="led led--live"></span> 2</a>
+    <span class="sep"></span>
+    <a href="#" data-tune="fgc">fightcade</a>
+    <span class="sep"></span>
+    <a href="#" data-tune="sc2">sc2</a>
+    <a class="add" href="#" onclick="return false">+ adicionar jogo</a>
+  </nav>
+  <div class="tuner-line" aria-hidden="true"></div>
+</div>
+
+<!-- ④ mural "no ar" — as 3 recomendações visíveis de uma vez, sem carrossel -->
+<section>
+  <div class="wrap">
+    <span class="sys sys--crumb">// no ar · recomendados pra você <span class="led led--live"></span></span>
+    <h1 class="headline headline--lg">Seus canais estão <em>no ar</em>.</h1>
+    <div class="onair">
+      <article class="panel panel--rivets onair-main" data-game="cs2">
+        <div class="ph">
+          <img src="../assets/tv-1.jpg" alt="">
+          <span class="live"><span class="led led--live"></span> ao vivo · twitch</span>
+        </div>
+        <div class="obody">
+          <h2>Tribuna do Barão — Major de CS2, semifinal BR</h2>
+          <p class="meta">Barão do Bomb · CS2 · 38.2k assistindo</p>
+          <span class="sys">curadoria: guarnição cs2 · 412 indicações</span>
+          <div class="ctas">
+            <a class="btn" href="#" onclick="return false">Assistir agora</a>
+            <a class="btn btn--ghost btn--sm" href="#" onclick="return false">+ estante</a>
+          </div>
+        </div>
+      </article>
+      <div class="onair-duo">
+        <a class="panel panel--flat onair-side" href="#" onclick="return false" data-game="lol">
+          <div class="ph">
+            <img src="../assets/tv-2.jpg" alt="">
+            <span class="live"><span class="led led--live"></span> ao vivo · twitch</span>
+          </div>
+          <div class="obody">
+            <h3><span class="t">SoloQ Challenger — rumo ao top 10 do server</span></h3>
+            <p class="meta">MidOuFeed · LoL · 6.8k assistindo</p>
+          </div>
+        </a>
+        <a class="panel panel--flat onair-side" href="#" onclick="return false" data-game="fgc">
+          <div class="ph">
+            <img src="../assets/tv-3.jpg" alt="">
+            <span class="live off"><span class="led led--dim"></span> estreia · youtube</span>
+          </div>
+          <div class="obody">
+            <h3><span class="t">Estreia: top 8 do Torneio Hadouken — KOF 2002 UM</span></h3>
+            <p class="meta">Dojo do Krauser · FGC · estreia às 21:00</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑤ continuar assistindo — a única fileira com progresso -->
+<section>
+  <div class="wrap">
+    <div class="sechead"><span class="plate">Continuar assistindo</span><span class="rule"></span><a class="morelink fliplink" href="#" onclick="return false">histórico completo →</a></div>
+    <div class="rail">
+      <a class="vcard panel panel--flat" href="#" onclick="return false" data-game="sc2">
+        <div class="ph">
+          <span class="scr" style="--stint:rgba(105,170,215,.28)"></span>
+          <span class="live off"><span class="led led--dim"></span> vod · youtube</span>
+          <span class="dur">47 min</span>
+          <span class="progress" aria-hidden="true"><i style="width:62%"></i></span>
+        </div>
+        <div class="vbody">
+          <h3><span class="t">Replay comentado: a defesa impossível em Alcyone</span></h3>
+          <p class="meta">Zergaria BR · youtube</p>
+        </div>
+      </a>
+      <a class="vcard panel panel--flat" href="#" onclick="return false" data-game="fgc">
+        <div class="ph">
+          <span class="scr" style="--stint:rgba(226,106,106,.2);--sx:64%"></span>
+          <span class="live off"><span class="led led--dim"></span> vod · youtube</span>
+          <span class="dur">1h 12min</span>
+          <span class="progress" aria-hidden="true"><i style="width:78%"></i></span>
+        </div>
+        <div class="vbody">
+          <h3><span class="t">Final KOF 2002 UM — Torneio Hadouken, FT10</span></h3>
+          <p class="meta">Dojo do Krauser · youtube</p>
+        </div>
+      </a>
+      <a class="vcard panel panel--flat" href="#" onclick="return false" data-game="multi">
+        <div class="ph">
+          <span class="scr" style="--stint:rgba(202,190,176,.16);--sx:44%"></span>
+          <span class="live off"><span class="led led--dim"></span> podcast · ep 12</span>
+          <span class="dur">1h 38min</span>
+          <span class="progress" aria-hidden="true"><i style="width:34%"></i></span>
+        </div>
+        <div class="vbody">
+          <h3><span class="t">Papo de Hangar #12 — a história do RTS BR</span></h3>
+          <p class="meta">Papo de Hangar · podcast</p>
+        </div>
+      </a>
+      <a class="vcard panel panel--flat" href="#" onclick="return false" data-game="cs2">
+        <div class="ph">
+          <span class="scr" style="--stint:rgba(214,178,106,.2);--sx:70%"></span>
+          <span class="live off"><span class="led led--dim"></span> vod · twitch</span>
+          <span class="dur">3h 05min</span>
+          <span class="progress" aria-hidden="true"><i style="width:12%"></i></span>
+        </div>
+        <div class="vbody">
+          <h3><span class="t">VOD: melhores momentos do Major — dia 2</span></h3>
+          <p class="meta">Barão do Bomb · twitch</p>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ⑥ suas estantes — o usuário como curador -->
+<section>
+  <div class="wrap">
+    <div class="sechead"><span class="plate">Suas estantes</span><span class="rule"></span><a class="morelink fliplink" href="#" onclick="return false">todas as estantes →</a></div>
+    <p class="secsub">Você organiza, a TV lembra — suas coleções de VODs e canais.</p>
+    <div class="shelves">
+      <div class="panel shelf" data-game="fgc">
+        <div class="blockhead"><span class="plate">Noites de FGC</span><span class="sys">6 itens · editar</span></div>
+        <div class="blockbody">
+          <div class="shelfmini">
+            <span class="scr" style="--stint:rgba(226,106,106,.2)"></span>
+            <div><p class="t">Mind games: o arremesso que ninguém viu</p><span class="src">Dojo do Krauser · youtube</span></div>
+          </div>
+          <div class="shelfmini">
+            <span class="scr" style="--stint:rgba(226,106,106,.16);--sx:68%"></span>
+            <div><p class="t">Top 8 SF III: 3rd Strike — Fightcade BR</p><span class="src">Canal Hadouken · youtube</span></div>
+          </div>
+          <div class="shelffoot"><a class="morelink fliplink" href="#" onclick="return false">abrir estante →</a></div>
+        </div>
+      </div>
+      <div class="panel shelf" data-game="cs2">
+        <div class="blockhead"><span class="plate">Aulas de CS2</span><span class="sys">9 itens · editar</span></div>
+        <div class="blockbody">
+          <div class="shelfmini">
+            <span class="scr" style="--stint:rgba(214,178,106,.22)"></span>
+            <div><p class="t">Smokes de Mirage em 12 minutos</p><span class="src">fps_helena · twitch vod</span></div>
+          </div>
+          <div class="shelfmini">
+            <span class="scr" style="--stint:rgba(214,178,106,.16);--sx:62%"></span>
+            <div><p class="t">Demo comentada: leitura de rotação</p><span class="src">Barão do Bomb · twitch vod</span></div>
+          </div>
+          <div class="shelffoot"><a class="morelink fliplink" href="#" onclick="return false">abrir estante →</a></div>
+        </div>
+      </div>
+      <div class="panel shelf" data-game="sc2">
+        <div class="blockhead"><span class="plate">Clássicos do Hangar</span><span class="sys">4 itens · editar</span></div>
+        <div class="blockbody">
+          <div class="shelfmini">
+            <span class="scr" style="--stint:rgba(105,170,215,.26)"></span>
+            <div><p class="t">BW 2004: a final que definiu uma era</p><span class="src">Zergaria BR · youtube</span></div>
+          </div>
+          <div class="shelfmini">
+            <span class="scr" style="--stint:rgba(202,190,176,.16);--sx:58%"></span>
+            <div><p class="t">Papo de Hangar #9 — LAN houses de BH</p><span class="src">podcast</span></div>
+          </div>
+          <div class="shelffoot"><a class="morelink fliplink" href="#" onclick="return false">abrir estante →</a></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑦ dos seus jogos — uma linha por jogo, ordem = horas jogadas.
+     fgc e sc2 não ganham linha própria no protótipo: o conteúdo deles
+     vive nas estantes e na antena. -->
+<section>
+  <div class="wrap">
+    <div class="sechead"><span class="plate">Dos seus jogos</span><span class="rule"></span></div>
+    <div class="gamerow" data-game="cs2">
+      <div class="rowhead"><span class="sys">// cs2 · vc jogou 34h este mês</span><a class="morelink fliplink" href="#" onclick="return false">tudo de cs2 →</a></div>
+      <div class="rail">
+        <a class="vcard panel panel--flat" href="#" onclick="return false">
+          <div class="ph">
+            <span class="scr" style="--stint:rgba(214,178,106,.24)"></span>
+            <span class="live"><span class="led led--live"></span> ao vivo · twitch</span>
+          </div>
+          <div class="vbody">
+            <h3><span class="t">fps_helena — treino de mira: rotina diária</span></h3>
+            <p class="meta">2.1k assistindo</p>
+          </div>
+        </a>
+        <a class="vcard panel panel--flat" href="#" onclick="return false">
+          <div class="ph">
+            <span class="scr" style="--stint:rgba(214,178,106,.18);--sx:66%"></span>
+            <span class="live off"><span class="led led--dim"></span> vod · twitch</span>
+            <span class="dur">24 min</span>
+          </div>
+          <div class="vbody">
+            <h3><span class="t">Análise tática: como o Brasil venceu o pistol round</span></h3>
+            <p class="meta">Barão do Bomb · twitch</p>
+          </div>
+        </a>
+        <a class="vcard panel panel--flat" href="#" onclick="return false">
+          <div class="ph">
+            <span class="scr" style="--stint:rgba(178,190,150,.2);--sx:40%"></span>
+            <span class="live"><span class="led led--live"></span> ao vivo · twitch</span>
+          </div>
+          <div class="vbody">
+            <h3><span class="t">Torre 3 Gaming — scrim aberta, ranqueada da equipe</span></h3>
+            <p class="meta">890 assistindo</p>
+          </div>
+        </a>
+        <a class="vcard panel panel--flat" href="#" onclick="return false">
+          <div class="ph">
+            <span class="scr" style="--stint:rgba(214,178,106,.16);--sx:74%"></span>
+            <span class="live off"><span class="led led--dim"></span> vod · youtube</span>
+            <span class="dur">18 min</span>
+          </div>
+          <div class="vbody">
+            <h3><span class="t">Guia de granadas: Inferno pós-patch</span></h3>
+            <p class="meta">fps_helena · youtube</p>
+          </div>
+        </a>
+      </div>
+    </div>
+    <div class="gamerow" data-game="lol">
+      <div class="rowhead"><span class="sys">// lol · vc jogou 18h este mês</span><a class="morelink fliplink" href="#" onclick="return false">tudo de lol →</a></div>
+      <div class="rail">
+        <!-- mesmo item do herói — repetir é ok, âncora da linha -->
+        <a class="vcard panel panel--flat" href="#" onclick="return false">
+          <div class="ph">
+            <span class="scr" style="--stint:rgba(84,180,190,.24)"></span>
+            <span class="live"><span class="led led--live"></span> ao vivo · twitch</span>
+          </div>
+          <div class="vbody">
+            <h3><span class="t">MidOuFeed — SoloQ Challenger</span></h3>
+            <p class="meta">6.8k assistindo</p>
+          </div>
+        </a>
+        <a class="vcard panel panel--flat" href="#" onclick="return false">
+          <div class="ph">
+            <span class="scr" style="--stint:rgba(84,180,190,.18);--sx:62%"></span>
+            <span class="live off"><span class="led led--dim"></span> vod · youtube</span>
+            <span class="dur">15 min</span>
+          </div>
+          <div class="vbody">
+            <h3><span class="t">CBLOL: resumo da semana em 15 min</span></h3>
+            <p class="meta">Replay BR · youtube</p>
+          </div>
+        </a>
+        <a class="vcard panel panel--flat" href="#" onclick="return false">
+          <div class="ph">
+            <span class="scr" style="--stint:rgba(140,160,210,.2);--sx:36%"></span>
+            <span class="live"><span class="led led--live"></span> ao vivo · twitch</span>
+          </div>
+          <div class="vbody">
+            <h3><span class="t">Fúria de Aço — treino de draft aberto</span></h3>
+            <p class="meta">1.2k assistindo</p>
+          </div>
+        </a>
+        <a class="vcard panel panel--flat" href="#" onclick="return false">
+          <div class="ph">
+            <span class="scr" style="--stint:rgba(84,180,190,.16);--sx:72%"></span>
+            <span class="live off"><span class="led led--dim"></span> vod · youtube</span>
+            <span class="dur">31 min</span>
+          </div>
+          <div class="vbody">
+            <h3><span class="t">Do ferro ao ouro: fundamentos de wave</span></h3>
+            <p class="meta">TiaDoTopo · youtube</p>
+          </div>
+        </a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ⑧ divisor: separa o território "seu" do território "da comunidade" -->
+<div class="conduit" role="presentation"><span class="node"></span></div>
+
+<!-- ⑨ antena da comunidade — curadoria das guarnições + editorial -->
+<section style="padding-top: 0;">
+  <div class="wrap">
+    <span class="sys sys--crumb">// antena da comunidade · curadoria aberta</span>
+    <h2 class="headline headline--lg">A antena captou: <em>vale sintonizar</em>.</h2>
+    <p class="secsub">O que as guarnições e a redação estão indicando pra quem joga o que você joga.</p>
+    <div class="strip antena">
+      <a class="acard" href="#" onclick="return false" data-game="sc2">
+        <div class="ph">
+          <span class="scr" style="--stint:rgba(105,170,215,.3)"></span>
+          <span class="live off"><span class="led led--dim"></span> vod · youtube</span>
+        </div>
+        <div class="abody">
+          <h3><span class="t">BW 2004: a final que definiu uma era — remasterizada</span></h3>
+          <p class="meta">Zergaria BR · youtube</p>
+          <span class="sys">curadoria: guarnição sc2</span>
+          <span class="votes">412 ▲ indicações</span>
+        </div>
+      </a>
+      <a class="acard" href="#" onclick="return false" data-game="multi">
+        <div class="ph">
+          <span class="scr" style="--stint:rgba(202,190,176,.18);--sx:60%"></span>
+          <span class="live off"><span class="led led--dim"></span> vod · youtube</span>
+        </div>
+        <div class="abody">
+          <h3><span class="t">Documentário: a LAN house que formou campeões</span></h3>
+          <p class="meta">Canal Overclock BR · youtube</p>
+          <span class="sys">curadoria: editorial hnet</span>
+          <span class="votes">388 ▲ indicações</span>
+        </div>
+      </a>
+      <a class="acard" href="#" onclick="return false" data-game="lol">
+        <div class="ph">
+          <span class="scr" style="--stint:rgba(84,180,190,.22);--sx:42%"></span>
+          <span class="live off"><span class="led led--dim"></span> vod · twitch</span>
+        </div>
+        <div class="abody">
+          <h3><span class="t">Maratona CBLOL retrô — as viradas históricas</span></h3>
+          <p class="meta">Replay BR · twitch</p>
+          <span class="sys">curadoria: guarnição lol</span>
+          <span class="votes">245 ▲ indicações</span>
+        </div>
+      </a>
+      <a class="acard" href="#" onclick="return false" data-game="fgc">
+        <div class="ph">
+          <span class="scr" style="--stint:rgba(226,106,106,.18);--sx:70%"></span>
+          <span class="live off"><span class="led led--dim"></span> podcast · ep 13</span>
+        </div>
+        <div class="abody">
+          <h3><span class="t">Papo de Hangar #13 — especial fightgames, com o Krauser</span></h3>
+          <p class="meta">Papo de Hangar · podcast</p>
+          <span class="sys">curadoria: editorial hnet</span>
+          <span class="votes">197 ▲ indicações</span>
+        </div>
+      </a>
+    </div>
+    <div class="antena-foot"><a class="morelink fliplink" href="#" onclick="return false">como funciona a curadoria →</a></div>
+  </div>
+</section>
+
+<!-- ⑩ guia — o .newsrow já é uma grade horária, zero CSS novo -->
+<section class="guia-sec">
+  <div class="wrap">
+    <div class="panel panel--flat">
+      <div class="blockhead">
+        <span class="plate">Guia · hoje 04/07</span>
+        <a class="morelink fliplink" href="#" onclick="return false">guia completo →</a>
+      </div>
+      <div class="blockbody">
+        <div class="newsrow"><time>19:00</time><span class="tag">cs2</span><a class="fliplink" href="#" onclick="return false">Barão do Bomb — Tribuna: final do Major</a></div>
+        <div class="newsrow"><time>21:00</time><span class="tag">fgc</span><a class="fliplink" href="#" onclick="return false">Dojo do Krauser — Estreia: top 8 Torneio Hadouken</a></div>
+        <div class="newsrow"><time>22:00</time><span class="tag">cs2</span><a class="fliplink" href="#" onclick="return false">fps_helena — Ranqueada com inscritos</a></div>
+        <div class="newsrow"><time>23:30</time><span class="tag">podcast</span><a class="fliplink" href="#" onclick="return false">Papo de Hangar — Gravação ao vivo do #14</a></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer class="sitefoot">
+  <div class="wrap">
+    <span class="sys">hangar network // games · <b>tv</b> · cloud · sites</span>
+    <span class="placard">Brazas Tecnologia Ltda. · est. 1998 · <a class="fliplink" href="#">privacidade</a></span>
+  </div>
+</footer>
+
+<script>
+/* Sintonia: o único JS da página. Clique numa aba alterna aria-current e
+   esconde/mostra os elementos [data-game]; "todos" reseta, "multi" (podcasts
+   e editoriais da casa) sobrevive a qualquer sintonia. Sem estado além do DOM. */
+(function () {
+  var tabs = document.querySelectorAll('.tuner a[data-tune]');
+  var items = document.querySelectorAll('[data-game]');
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function (ev) {
+      ev.preventDefault();
+      tabs.forEach(function (t) { t.removeAttribute('aria-current'); });
+      tab.setAttribute('aria-current', 'true');
+      var tune = tab.dataset.tune;
+      items.forEach(function (el) {
+        el.hidden = tune !== 'todos' && el.dataset.game !== tune && el.dataset.game !== 'multi';
+      });
+      document.querySelector('.onair').classList.toggle('onair--tuned', tune !== 'todos');
+    });
+  });
+})();
+</script>
+
+</body>
+</html>
