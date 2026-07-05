@@ -24,9 +24,8 @@
   justify-content: center; text-align: center; padding: 48px 24px 84px; }
 .hero-logo { width: min(560px, 82vw); height: auto;
   filter: drop-shadow(0 10px 34px rgba(0,0,0,.75)); }
-/* selo como carimbo: canto inferior direito */
-.hero-center .seal { position: absolute; right: clamp(24px, 7vw, 110px);
-  bottom: 10px; margin: 0; }
+/* selo como carimbo: fecho da página, centralizado antes do rodapé */
+.sealrow { display: flex; justify-content: center; padding: 8px 24px 64px; }
 .tagline { margin: 34px 0 0; color: var(--text-muted); font-size: 15.5px;
   letter-spacing: .02em; }
 .tagline b { color: var(--text-primary); font-weight: 600; }
@@ -75,7 +74,6 @@ section { padding: 72px 0 96px; }
   </div>
 
   <div class="hero-center">
-    <span class="seal"><span class="k">desde</span><b>1998</b></span>
     <img class="hero-logo" src="../logo/hangar-network-electric.svg" alt="Hangar Network">
     <p class="tagline">it's about time.</p>
   </div>
@@ -110,6 +108,10 @@ section { padding: 72px 0 96px; }
     </div>
   </div>
 </section>
+
+<div class="sealrow">
+  <span class="seal"><span class="k">desde</span><b>1998</b></span>
+</div>
 
 <footer class="sitefoot">
   <div class="wrap">
