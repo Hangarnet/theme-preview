@@ -78,6 +78,30 @@ real em registrador que venda premium (Porkbun/Namecheap) antes de decidir.
 | @k: hangarnetwork.net | ❌ registrado | terceiro |
 | @k: hcn.com.br | ❌ registrado | terceiro |
 
+## Plano de conquista — hangar.com.br
+
+Estado atual (06/07): **on_hold** — expirou em 01/06, o DNS foi suspenso em
+15/06 e o domínio segue vinculado ao titular durante a carência.
+
+| fase | quando | o que acontece |
+|---|---|---|
+| @k: 1 · carência | 01/06 → ~13/09/2026 | Titular ainda pode renovar (104 dias pós-expiração). Se renovar, fim de jogo — a vigília detecta |
+| @k: 2 · liberação | rodada mensal seguinte | Domínio entra no **processo de liberação** (datas publicadas com ~2 meses de antecedência); janela de candidaturas de ~7 dias (15h às 15h) |
+| @k: 3 · candidatura | na janela | Candidatar-se pela conta Registro.br (Victor já tem). **1 candidato** → leva pelo preço normal (~R$ 40). **2+ candidatos** → processo competitivo |
+| @k: 4 · competitivo | se disputado | Leilão de ofertas sucessivas (mínimo R$ 50, incrementos por faixa); vencedor paga via Pix/boleto |
+
+{.steel}
+
+- **Vigília ativa**: `references/domains-and-business/watch-hangar.sh` (rodar
+  1x/dia) — alerta quando o status sair de on_hold, tanto para renovação
+  quanto para o início da liberação
+- **Decidir antes o orçamento máximo**: "hangar" é palavra genérica — há
+  chance real de dropcatchers na disputa; entrar no leilão sem teto definido
+  é armadilha
+- Detalhe da regra: se houver 2+ candidatos e a rodada não abrir o
+  competitivo, o domínio **não é liberado** e espera a rodada seguinte
+- Resultados de cada rodada: registro.br/dominio/processo-de-liberacao/resultado/
+
 ## Registrados por terceiros — vigiar
 
 Titulares e expiração via RDAP público do Registro.br:

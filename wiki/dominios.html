@@ -273,6 +273,49 @@ real em registrador que venda premium (Porkbun/Namecheap) antes de decidir.</p>
 <td>terceiro</td>
 </tr>
 </tbody></table>
+<h2>Plano de conquista — hangar.com.br</h2>
+<p>Estado atual (06/07): <b>on_hold</b> — expirou em 01/06, o DNS foi suspenso em
+15/06 e o domínio segue vinculado ao titular durante a carência.</p>
+<table>
+<thead>
+<tr>
+<th>fase</th>
+<th>quando</th>
+<th>o que acontece</th>
+</tr>
+</thead>
+<tbody><tr>
+<td class="k">1 · carência</td>
+<td>01/06 → ~13/09/2026</td>
+<td>Titular ainda pode renovar (104 dias pós-expiração). Se renovar, fim de jogo — a vigília detecta</td>
+</tr>
+<tr>
+<td class="k">2 · liberação</td>
+<td>rodada mensal seguinte</td>
+<td>Domínio entra no <b>processo de liberação</b> (datas publicadas com ~2 meses de antecedência); janela de candidaturas de ~7 dias (15h às 15h)</td>
+</tr>
+<tr>
+<td class="k">3 · candidatura</td>
+<td>na janela</td>
+<td>Candidatar-se pela conta Registro.br (Victor já tem). <b>1 candidato</b> → leva pelo preço normal (~R$ 40). <b>2+ candidatos</b> → processo competitivo</td>
+</tr>
+<tr>
+<td class="k">4 · competitivo</td>
+<td>se disputado</td>
+<td>Leilão de ofertas sucessivas (mínimo R$ 50, incrementos por faixa); vencedor paga via Pix/boleto</td>
+</tr>
+</tbody></table>
+<ul class="steel">
+<li><b>Vigília ativa</b>: <code>references/domains-and-business/watch-hangar.sh</code> (rodar
+1x/dia) — alerta quando o status sair de on_hold, tanto para renovação
+quanto para o início da liberação</li>
+<li><b>Decidir antes o orçamento máximo</b>: &quot;hangar&quot; é palavra genérica — há
+chance real de dropcatchers na disputa; entrar no leilão sem teto definido
+é armadilha</li>
+<li>Detalhe da regra: se houver 2+ candidatos e a rodada não abrir o
+competitivo, o domínio <b>não é liberado</b> e espera a rodada seguinte</li>
+<li>Resultados de cada rodada: registro.br/dominio/processo-de-liberacao/resultado/</li>
+</ul>
 <h2>Registrados por terceiros — vigiar</h2>
 <p>Titulares e expiração via RDAP público do Registro.br:</p>
 <table>

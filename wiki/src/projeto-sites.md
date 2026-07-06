@@ -42,3 +42,9 @@ Capabilities construídas e funcionando (por isso esta página dispensa specs lo
       como manda a pesquisa de empacotamento. Roda multi-tenant na infra do
       <a class="fliplink" href="./projeto-cloud.html">Hangar Cloud</a>.</p></div>
 </div>
+
+## Plano ativo
+
+O resgate da base sob a marca nova — criação expressa de loja + admin
+remodelado, prontos para smoke test — está planejado e rastreado:
+<a class="fliplink" href="./projeto-sites-plano.html">plano: base funcional →</a>
