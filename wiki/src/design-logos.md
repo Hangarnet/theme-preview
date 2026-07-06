@@ -1,52 +1,22 @@
-<!doctype html>
-<html lang="pt-BR">
-<head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Logos — Wiki Hangar Network</title>
-<link rel="icon" href="../logo/hangar-emblem.svg">
-<link rel="stylesheet" href="../hangar-theme.css">
-<link rel="stylesheet" href="./wiki.css">
-</head>
-<body class="hangar">
+---
+title: Logos — Wiki Hangar Network
+nav: design-logos
+status: hangar network // wiki · design · logos
+led: plain
+placard: identidade · <b>proposta v1</b>
+crumb: // wiki · design · <b>logos</b>
+h1: A família de <em>logos</em>
+lead: >
+  Letreiro redesenhado em vetor sobre as matrizes de 2004
+  (metal em brasa) e 2005 (cromo). O sistema: <b>HANGAR</b> sempre em cromo; a palavra do setor na
+  cor do próprio setor — brasa (network/games), aço-azul (cloud) e ouro
+  (sites). O HCA foge da regra de propósito: vermelho de guerra com
+  buracos de bala.
+foot_sys: hangar network // wiki · design · <b>logos</b>
+foot_placard: <a class="fliplink" href="./design.html">← design</a>
+---
+## Wordmarks
 
-<div class="statusbar">
-  <span class="sys">hangar network // wiki · design · logos <span class="led"></span></span>
-  <span class="placard">identidade · <b>proposta v1</b></span>
-</div>
-
-<div class="wikigrid">
-  <aside class="sidebar">
-    <a class="brand" href="../pages/index.html">
-      <img src="../logo/hangar-network.svg" alt="Hangar Network">
-    </a>
-    <nav class="wnav" aria-label="Wiki">
-      <a href="./index.html">Início</a>
-      <a href="./projeto.html">Projeto</a>
-      <a href="./projeto-cloud.html" class="sub">Hangar Cloud</a>
-      <a href="./projeto-sites.html" class="sub">Hangar Sites</a>
-      <a href="./projeto-games.html" class="sub">Hangar Games</a>
-      <a href="./dominios.html" class="sub">Domínios</a>
-      <a href="./users.html">Users, auth, points &amp; tiers</a>
-      <a href="./pesquisas.html">Pesquisas</a>
-      <a href="./pesquisa-empacotamento.html" class="sub">Empacotamento</a>
-      <a href="./pesquisa-gamificacao.html" class="sub">Gamificação</a>
-      <a href="./design.html">Design</a>
-      <a href="./design-logos.html" class="sub" aria-current="page">Logos</a>
-      <a href="./design-template.html" class="sub">Template</a>
-      <a href="./design-guidelines.html" class="sub">Guidelines do tema</a>
-    </nav>
-    <a class="back fliplink" href="../pages/index.html">← voltar ao hub</a>
-  </aside>
-
-  <main class="content">
-    <header>
-      <span class="sys sys--crumb">// wiki · design · <b>logos</b></span>
-      <h1 class="display">A família de <em>logos</em></h1>
-      <p class="lead">Letreiro redesenhado em vetor sobre as matrizes de 2004 (metal em brasa) e 2005 (cromo). O sistema: <b>HANGAR</b> sempre em cromo; a palavra do setor na cor do próprio setor — brasa (network/games), aço-azul (cloud) e ouro (sites). O HCA foge da regra de propósito: vermelho de guerra com buracos de bala.</p>
-    </header>
-
-<h2>Wordmarks</h2>
 <div class="logogrid">
   <figure class="panel logocard">
     <img src="../logo/hangar-network.svg" alt="Hangar Network — principal">
@@ -76,7 +46,10 @@
     <img src="../logo/hangar-games.svg" alt="Hangar Games">
     <figcaption><span class="placard">setor</span><span class="sys">games</span></figcaption>
   </figure>
-</div><h2>Sub-marcas e emblema</h2>
+</div>
+
+## Sub-marcas e emblema
+
 <div class="logogrid">
   <figure class="panel logocard">
     <img src="../logo/hnet-tv.svg" alt="Hnet TV">
@@ -94,19 +67,11 @@
     <div class="onlight"><img src="../logo/hangar-network.svg" alt="Sobre fundo claro"></div>
     <figcaption><span class="placard">sobre claro</span><span class="sys">teste de fundo</span></figcaption>
   </figure>
-</div><div class="callout callout--info"><span class="ico">⚙</span>
+</div>
+
+<div class="callout callout--info"><span class="ico">⚙</span>
   <div><b>Vetor de verdade</b>
     <p>Os logos são SVG com as letras convertidas em paths (Oxanium 800) —
       funcionam em qualquer lugar sem depender de fonte. O gerador é
       reproduzível e vive junto dos arquivos no acervo interno.</p></div>
 </div>
-
-    <div class="wikifoot">
-      <span class="sys">hangar network // wiki · design · <b>logos</b></span>
-      <span class="placard"><a class="fliplink" href="./design.html">← design</a></span>
-    </div>
-  </main>
-</div>
-
-</body>
-</html>

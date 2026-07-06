@@ -166,7 +166,7 @@
   border-left: 3px solid; border-radius: 6px; padding: 14px 18px;
   margin: 16px 0; max-width: 70ch; }
 .callout .ico { font-size: 16px; line-height: 1.4; }
-.callout b { display: block; color: var(--text-primary); margin-bottom: 2px; }
+.callout > div > b { display: block; color: var(--text-primary); margin-bottom: 2px; }
 .callout p { margin: 0; font-size: 13.5px; }
 .callout--ok   { border-color: #76b900; background: rgba(118,185,0,.07); }
 .callout--warn { border-color: var(--hcn-orange-hot); background: rgba(255,128,0,.07); }
