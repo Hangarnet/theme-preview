@@ -27,32 +27,38 @@ Registrados pelo Leonardo — a base da marca está segura:
 | @k: hangarnet.com.br | Leonardo Xavier | @pts: 2027-08-04 |
 | @k: hangarcloud.com.br | Leonardo Xavier | @pts: 2027-07-02 |
 
-## A matriz — hnet · hangarnet · hangar
+## A matriz — hnet · hangarnet · hangar · hca
 
 ✅ livre · ❌ registrado · 🟢 nosso · 🔥 expirado (vigiar) · 🟡 checagem parcial (só DNS) · ⚠️ livre, mas provável preço premium
 
-| tld | hnet | hangarnet | hangar |
-|---|---|---|---|
-| @k: .com | ❌ | ❌ | ❌ |
-| @k: .com.br | ❌ | 🟢 nosso | 🔥 expirado |
-| @k: .net | ❌ | ✅ | ❌ |
-| @k: .net.br | ❌ | ✅ | ❌ expira 24/07 |
-| @k: .org | ❌ | ✅ | ❌ |
-| @k: .io | ✅ | ✅ | ✅ ⚠️ |
-| @k: .co | ✅ | ✅ | ✅ ⚠️ |
-| @k: .dev | ❌ | ✅ | ❌ |
-| @k: .app | ❌ | ✅ | ❌ |
-| @k: .cloud | ❌ | ✅ | ❌ |
-| @k: .network | ❌ | ✅ | ❌ |
-| @k: .tv | ✅ | 🟡 | ❌ |
-| @k: .gg | ✅ | ✅ | ✅ ⚠️ |
-| @k: .tech | ❌ | 🟡 | ❌ |
-| @k: .games | ✅ | ✅ | ❌ |
-| @k: .site | ❌ | 🟡 | 🟡 |
+| tld | hnet | hangarnet | hangar | hca |
+|---|---|---|---|---|
+| @k: .com | ❌ | ❌ | ❌ | ❌ |
+| @k: .com.br | ❌ | 🟢 nosso | 🔥 expirado | ❌ |
+| @k: .net | ❌ | ✅ | ❌ | ❌ |
+| @k: .net.br | ❌ | ✅ | ❌ expira 24/07 | ✅ |
+| @k: .org | ❌ | ✅ | ❌ | ❌ |
+| @k: .io | ✅ ⚠️ | ✅ | ✅ ⚠️ | ✅ ⚠️ |
+| @k: .co | ✅ | ✅ | ✅ ⚠️ | ✅ ⚠️ |
+| @k: .dev | ❌ | ✅ | ❌ | ❌ |
+| @k: .app | ❌ | ✅ | ❌ | ❌ |
+| @k: .cloud | ❌ | ✅ | ❌ | ❌ |
+| @k: .network | ❌ | ✅ | ❌ | ❌ |
+| @k: .tv | ✅ ⚠️ premium* | 🟡 | ❌ | 🟡 ⚠️ |
+| @k: .gg | ✅ | ✅ | ✅ ⚠️ | ✅ ⚠️ |
+| @k: .tech | ❌ | 🟡 | ❌ | 🟡 |
+| @k: .games | ✅ | ✅ | ❌ | ✅ |
+| @k: .site | ❌ | 🟡 | 🟡 | 🟡 |
 
 A coluna **hangarnet** é a mais aberta: quase todos os TLDs relevantes estão
 livres (.net, .org, .io, .dev, .app, .cloud, .network, .gg, .games) — dá para
-fechar o cerco da marca inteira por pouco.
+fechar o cerco da marca inteira por pouco. Na coluna **hca**, os destaques são
+**hca.net.br** e **hca.games** (livres, preço padrão); os TLDs internacionais
+de 2–3 letras (.io, .co, .gg, .tv) quase certamente caem no tier premium.
+
+\* **hnet.tv** (06/07): não registrado no registry, mas o Cloudflare recusa a
+venda — forte indício de tier premium/reservado da Verisign. Verificar preço
+real em registrador que venda premium (Porkbun/Namecheap) antes de decidir.
 
 ## Nomes compostos e sub-marcas
 
@@ -63,7 +69,6 @@ fechar o cerco da marca inteira por pouco.
 | @k: hangargames.com.br | ✅ livre | setor games |
 | @k: hangartv.com.br | ✅ livre | Hnet TV |
 | @k: hangarcombatarena.com.br | ✅ livre | HCA por extenso |
-| @k: hca.gg | ✅ livre | HCA curto, TLD gamer |
 | @k: hangarnet.gg | ✅ livre | |
 | @k: hangarnetwork.com | ❌ registrado | terceiro |
 | @k: hangarnetwork.net | ❌ registrado | terceiro |
