@@ -20,11 +20,11 @@ foot_placard: <a class="fliplink" href="./projeto.html">← projeto</a>
 
 ## Já garantidos
 
-Registrados pelo Leonardo — a base da marca está segura:
+Registrados pelos sócios — a base da marca está segura:
 
 | domínio | titular | expira |
 |---|---|---|
-| @k: hangarnet.com.br | Leonardo Xavier | @pts: 2027-08-04 |
+| @k: hangarnet.com.br | Victor Souto | @pts: 2027-08-04 |
 | @k: hangarcloud.com.br | Leonardo Xavier | @pts: 2027-07-02 |
 | @k: hnet.tv.br | Victor Souto | @pts: 2029-07-06 |
 
