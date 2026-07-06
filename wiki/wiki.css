@@ -23,7 +23,7 @@
 .wnav .navrow { display: flex; align-items: center; }
 .wnav .navrow a { flex: 1; }
 .wnav .tgl { background: none; border: none; cursor: pointer;
-  color: var(--text-faint); font-size: 10px; padding: 6px 9px;
+  color: var(--text-faint); font-size: 20px; line-height: 1; padding: 2px 9px 4px;
   transition: transform 150ms ease, color 150ms ease; }
 .wnav .tgl:hover { color: var(--text-primary); }
 .wnav .navgroup .kids { display: none; }
