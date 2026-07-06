@@ -26,6 +26,7 @@ Registrados pelo Leonardo — a base da marca está segura:
 |---|---|---|
 | @k: hangarnet.com.br | Leonardo Xavier | @pts: 2027-08-04 |
 | @k: hangarcloud.com.br | Leonardo Xavier | @pts: 2027-07-02 |
+| @k: hnet.tv.br | Victor Souto | @pts: 2029-07-06 |
 
 ## A matriz — hnet · hangarnet · hangar · hca
 
@@ -37,6 +38,7 @@ Registrados pelo Leonardo — a base da marca está segura:
 | @k: .com.br | ❌ | 🟢 nosso | 🔥 expirado | ❌ |
 | @k: .net | ❌ | ✅ | ❌ | ❌ |
 | @k: .net.br | ❌ | ✅ | ❌ expira 24/07 | ✅ |
+| @k: .tv.br | 🟢 nosso | ✅ | ✅ | ✅ |
 | @k: .org | ❌ | ✅ | ❌ | ❌ |
 | @k: .io | ✅ ⚠️ | ✅ | ✅ ⚠️ | ✅ ⚠️ |
 | @k: .co | ✅ | ✅ | ✅ ⚠️ | ✅ ⚠️ |
@@ -52,7 +54,9 @@ Registrados pelo Leonardo — a base da marca está segura:
 
 A coluna **hangarnet** é a mais aberta: quase todos os TLDs relevantes estão
 livres (.net, .org, .io, .dev, .app, .cloud, .network, .gg, .games) — dá para
-fechar o cerco da marca inteira por pouco. Na coluna **hca**, os destaques são
+fechar o cerco da marca inteira por pouco. Na linha **.tv.br**, além do hnet.tv.br já nosso, **hangar.tv.br está
+livre** — o único "hangar" disponível em domínio brasileiro. Na coluna
+**hca**, os destaques são
 **hca.net.br** e **hca.games** (livres, preço padrão); os TLDs internacionais
 de 2–3 letras (.io, .co, .gg, .tv) quase certamente caem no tier premium.
 
