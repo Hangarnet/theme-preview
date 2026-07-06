@@ -18,12 +18,13 @@ const LINEAR_LOGO_PATH =
 // Navegação — ordem única, replicada em todas as páginas
 const NAV = [
   { key: 'index', href: './index.html', label: 'Início' },
-  { key: 'projeto', href: './projeto.html', label: 'Projeto' },
+  { key: 'projeto', href: './projeto.html', label: 'Projetos' },
   { key: 'projeto-cloud', href: './projeto-cloud.html', label: 'Hangar Cloud', sub: true },
   { key: 'projeto-sites', href: './projeto-sites.html', label: 'Hangar Sites', sub: true },
-  { key: 'projeto-sites-plano', href: './projeto-sites-plano.html', label: 'Plano: base funcional', sub: true },
+  { key: 'projeto-sites-plano', href: './projeto-sites-plano.html', label: 'Plano: base funcional', parent: 'projeto-sites' },
   { key: 'projeto-games', href: './projeto-games.html', label: 'Hangar Games', sub: true },
   { key: 'dominios', href: './dominios.html', label: 'Domínios', sub: true },
+  { key: 'dominios-hangar', href: './dominios-hangar.html', label: 'Plano: hangar.com.br', parent: 'dominios' },
   { key: 'users', href: './users.html', label: 'Users, auth, points &amp; tiers' },
   { key: 'pesquisas', href: './pesquisas.html', label: 'Pesquisas' },
   { key: 'pesquisa-empacotamento', href: './pesquisa-empacotamento.html', label: 'Empacotamento', sub: true },
@@ -96,15 +97,41 @@ const esc = (s) => s.replace(/&(?!amp;|lt;|gt;|quot;|#)/g, '&amp;');
 function page(meta, bodyHtml) {
   const led =
     meta.led === 'none' ? '' : ` <span class="led${meta.led === 'steel' ? ' led--steel' : ''}"></span>`;
-  const nav = NAV.map(
-    (n) =>
-      `      <a href="${n.href}"${n.sub ? ' class="sub"' : ''}${
-        n.key === meta.nav ? ' aria-current="page"' : ''
-      }>${n.label}</a>`
-  ).join('\n');
+  const link = (n, cls) =>
+    `<a href="${n.href}"${cls ? ` class="${cls}"` : ''}${
+      n.key === meta.nav ? ' aria-current="page"' : ''
+    }>${n.label}</a>`;
+  const nav = NAV.filter((n) => !n.parent)
+    .map((n) => {
+      const kids = NAV.filter((k) => k.parent === n.key);
+      if (!kids.length) return `      ${link(n, n.sub ? 'sub' : '')}`;
+      // grupo expansível: fechado por padrão, aberto se a página atual está no ramo
+      const open = meta.nav === n.key || kids.some((k) => k.key === meta.nav);
+      return (
+        `      <div class="navgroup${open ? ' open' : ''}">\n` +
+        `        <div class="navrow">${link(n, n.sub ? 'sub' : '')}` +
+        `<button class="tgl" type="button" aria-expanded="${open}" aria-label="expandir ${n.label}">▸</button></div>\n` +
+        `        <div class="kids">\n` +
+        kids.map((k) => `          ${link(k, 'sub2')}`).join('\n') +
+        `\n        </div>\n      </div>`
+      );
+    })
+    .join('\n');
   const headerVisual = meta.logo
     ? `      <img src="${meta.logo}" alt="${meta.logo_alt || ''}" style="width:220px;margin:6px 0 16px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.55))">`
     : `      <h1 class="display">${meta.h1}</h1>`;
+  const navJs = nav.includes('navgroup')
+    ? `
+<script>
+/* menu: expandir/recolher grupos de terceiro nível */
+document.querySelectorAll('.wnav .tgl').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var g = b.closest('.navgroup');
+    b.setAttribute('aria-expanded', g.classList.toggle('open'));
+  });
+});
+</script>`
+    : '';
   const linearJs = bodyHtml.includes('class="linbadge"') || (meta.lead || '').includes('class="linbadge"')
     ? `
 <script>
@@ -164,7 +191,7 @@ ${bodyHtml}
     </div>
   </main>
 </div>
-${linearJs}
+${navJs}${linearJs}
 </body>
 </html>
 `;

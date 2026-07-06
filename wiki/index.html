@@ -22,12 +22,21 @@
     </a>
     <nav class="wnav" aria-label="Wiki">
       <a href="./index.html" aria-current="page">Início</a>
-      <a href="./projeto.html">Projeto</a>
+      <a href="./projeto.html">Projetos</a>
       <a href="./projeto-cloud.html" class="sub">Hangar Cloud</a>
-      <a href="./projeto-sites.html" class="sub">Hangar Sites</a>
-      <a href="./projeto-sites-plano.html" class="sub">Plano: base funcional</a>
+      <div class="navgroup">
+        <div class="navrow"><a href="./projeto-sites.html" class="sub">Hangar Sites</a><button class="tgl" type="button" aria-expanded="false" aria-label="expandir Hangar Sites">▸</button></div>
+        <div class="kids">
+          <a href="./projeto-sites-plano.html" class="sub2">Plano: base funcional</a>
+        </div>
+      </div>
       <a href="./projeto-games.html" class="sub">Hangar Games</a>
-      <a href="./dominios.html" class="sub">Domínios</a>
+      <div class="navgroup">
+        <div class="navrow"><a href="./dominios.html" class="sub">Domínios</a><button class="tgl" type="button" aria-expanded="false" aria-label="expandir Domínios">▸</button></div>
+        <div class="kids">
+          <a href="./dominios-hangar.html" class="sub2">Plano: hangar.com.br</a>
+        </div>
+      </div>
       <a href="./users.html">Users, auth, points &amp; tiers</a>
       <a href="./pesquisas.html">Pesquisas</a>
       <a href="./pesquisa-empacotamento.html" class="sub">Empacotamento</a>
@@ -85,5 +94,14 @@
   </main>
 </div>
 
+<script>
+/* menu: expandir/recolher grupos de terceiro nível */
+document.querySelectorAll('.wnav .tgl').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var g = b.closest('.navgroup');
+    b.setAttribute('aria-expanded', g.classList.toggle('open'));
+  });
+});
+</script>
 </body>
 </html>

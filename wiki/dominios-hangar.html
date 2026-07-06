@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plano hangar.com.br — Wiki Hangar Network</title>
+<link rel="icon" href="../logo/hangar-emblem.svg">
+<link rel="stylesheet" href="../hangar-theme.css">
+<link rel="stylesheet" href="./wiki.css">
+</head>
+<body class="hangar">
+
+<div class="statusbar">
+  <span class="sys">hangar network // wiki · domínios · hangar.com.br <span class="led led--steel"></span></span>
+  <span class="placard">caçada ativa · <b>fase 1 · carência</b></span>
+</div>
+
+<div class="wikigrid">
+  <aside class="sidebar">
+    <a class="brand" href="../pages/index.html">
+      <img src="../logo/hangar-network.svg" alt="Hangar Network">
+    </a>
+    <nav class="wnav" aria-label="Wiki">
+      <a href="./index.html">Início</a>
+      <a href="./projeto.html">Projetos</a>
+      <a href="./projeto-cloud.html" class="sub">Hangar Cloud</a>
+      <div class="navgroup">
+        <div class="navrow"><a href="./projeto-sites.html" class="sub">Hangar Sites</a><button class="tgl" type="button" aria-expanded="false" aria-label="expandir Hangar Sites">▸</button></div>
+        <div class="kids">
+          <a href="./projeto-sites-plano.html" class="sub2">Plano: base funcional</a>
+        </div>
+      </div>
+      <a href="./projeto-games.html" class="sub">Hangar Games</a>
+      <div class="navgroup open">
+        <div class="navrow"><a href="./dominios.html" class="sub">Domínios</a><button class="tgl" type="button" aria-expanded="true" aria-label="expandir Domínios">▸</button></div>
+        <div class="kids">
+          <a href="./dominios-hangar.html" class="sub2" aria-current="page">Plano: hangar.com.br</a>
+        </div>
+      </div>
+      <a href="./users.html">Users, auth, points &amp; tiers</a>
+      <a href="./pesquisas.html">Pesquisas</a>
+      <a href="./pesquisa-empacotamento.html" class="sub">Empacotamento</a>
+      <a href="./pesquisa-gamificacao.html" class="sub">Gamificação</a>
+      <a href="./design.html">Design</a>
+      <a href="./design-logos.html" class="sub">Logos</a>
+      <a href="./design-template.html" class="sub">Template</a>
+      <a href="./design-guidelines.html" class="sub">Guidelines do tema</a>
+    </nav>
+    <a class="back fliplink" href="../pages/index.html">← voltar ao hub</a>
+  </aside>
+
+  <main class="content">
+    <header>
+      <span class="sys sys--crumb">// wiki · projetos · domínios · <b>hangar.com.br</b></span>
+      <h1 class="display">Plano de conquista — <em>hangar.com.br</em></h1>
+      <p class="lead">O domínio mais valioso da caçada: expirou em 01/06/2026 e o titular não renovou. Este é o mapa completo para disputá-lo no processo de liberação do Registro.br.</p>
+    </header>
+
+<div class="callout callout--warn"><span class="ico">🔥</span>
+  <div><b>Estado atual (06/07): on_hold</b>
+    <p>Expirou em 01/06, o DNS foi suspenso em 15/06 e o domínio segue vinculado ao titular (Ronaldo Y. Morimoto, registrado desde 2021) durante a carência. A vigília diária monitora qualquer mudança de fase.</p></div>
+</div><h2>As quatro fases</h2>
+<table>
+<thead>
+<tr>
+<th>fase</th>
+<th>quando</th>
+<th>o que acontece</th>
+</tr>
+</thead>
+<tbody><tr>
+<td class="k">1 · carência</td>
+<td>01/06 → ~13/09/2026</td>
+<td>Titular ainda pode renovar (104 dias pós-expiração). Se renovar, fim de jogo — a vigília detecta</td>
+</tr>
+<tr>
+<td class="k">2 · liberação</td>
+<td>rodada mensal seguinte</td>
+<td>Domínio entra no <b>processo de liberação</b> (datas publicadas com ~2 meses de antecedência); janela de candidaturas de ~7 dias (15h às 15h)</td>
+</tr>
+<tr>
+<td class="k">3 · candidatura</td>
+<td>na janela</td>
+<td>Candidatar-se pela conta Registro.br (Victor já tem). <b>1 candidato</b> → leva pelo preço normal (~R$ 40). <b>2+ candidatos</b> → processo competitivo</td>
+</tr>
+<tr>
+<td class="k">4 · competitivo</td>
+<td>se disputado</td>
+<td>Leilão de ofertas sucessivas (mínimo R$ 50, incrementos por faixa); vencedor paga via Pix/boleto</td>
+</tr>
+</tbody></table>
+<h2>Datas para não perder</h2>
+<table>
+<thead>
+<tr>
+<th>data</th>
+<th>evento</th>
+<th>ação</th>
+</tr>
+</thead>
+<tbody><tr>
+<td class="k">~13/09/2026</td>
+<td>Fim da carência do titular</td>
+<td>Conferir status; se não renovou, descobrir a rodada de liberação</td>
+</tr>
+<tr>
+<td class="k">rodada seguinte</td>
+<td>Janela de candidatura (~7 dias)</td>
+<td><b>Candidatar-se no primeiro dia</b> — perder a janela = esperar um mês</td>
+</tr>
+<tr>
+<td class="k">resultado</td>
+<td>Publicação da rodada</td>
+<td>Se único candidato: pagar e configurar. Se competitivo: leilão com teto definido</td>
+</tr>
+</tbody></table>
+<h2>Regras de engajamento</h2>
+<ul class="steel">
+<li><b>Vigília ativa</b>: <code>references/domains-and-business/watch-hangar.sh</code> (rodar
+1x/dia) — alerta quando o status sair de on_hold, tanto para renovação
+quanto para o início da liberação</li>
+<li><b>Decidir antes o orçamento máximo</b>: &quot;hangar&quot; é palavra genérica — há
+chance real de dropcatchers na disputa; entrar no leilão sem teto definido
+é armadilha. Plano B digno: hangarnetwork.com.br (livre, R$ 40)</li>
+<li>Detalhe da regra: se houver 2+ candidatos e a rodada não abrir o
+competitivo, o domínio <b>não é liberado</b> e espera a rodada seguinte</li>
+<li>Fontes: registro.br/dominio/processo-de-liberacao/ (regras e calendário) ·
+/resultado/ (rodadas anteriores)</li>
+</ul>
+
+    <div class="wikifoot">
+      <span class="sys">hangar network // wiki · domínios · <b>hangar.com.br</b></span>
+      <span class="placard"><a class="fliplink" href="./dominios.html">← domínios</a></span>
+    </div>
+  </main>
+</div>
+
+<script>
+/* menu: expandir/recolher grupos de terceiro nível */
+document.querySelectorAll('.wnav .tgl').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var g = b.closest('.navgroup');
+    b.setAttribute('aria-expanded', g.classList.toggle('open'));
+  });
+});
+</script>
+</body>
+</html>

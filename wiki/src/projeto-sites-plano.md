@@ -27,6 +27,8 @@ Com a base validada no smoke, os próximos ajustes viram novas issues.
 
 A plataforma (ex-Brazas) já entrega multi-tenant por subdomínio, conta única da rede, onboarding self-service e um admin completo — o grosso é **encaixe e remodel**, não construção. A análise do código (2026-07-06) confirmou os ~90% e revelou os buracos que o plano ataca: a loja criada pelo fluxo expresso não fica ativa de cara, o fluxo de retorno ao onboarding tem um beco sem saída, e restos da marca antiga ainda apontam para o domínio velho.
 
+O plano passou por **revisão técnica de tech lead** (2026-07-06): cada ticket carrega solução técnica verificada contra o código, riscos, critérios de aceite e plano de teste. Veredito: a arquitetura proposta encaixa bem no que já existe — inclusive o ciclo de suspensão de trial, que já está construído e só precisa ser agendado.
+
 ## As frentes
 
 | ticket | frente | prioridade |
@@ -36,7 +38,8 @@ A plataforma (ex-Brazas) já entrega multi-tenant por subdomínio, conta única 
 | {{linear:HAN-8|Landing nova do Hangar Sites no app}} | @k: criação expressa | Alta |
 | {{linear:HAN-10|Admin remodelado como Hangar Sites}} | @k: admin | Alta |
 | {{linear:HAN-9|Subdomínios no domínio hangar}} | @k: domínio | Alta |
-| {{linear:HAN-11|Wizard admin: pré-requisitos de prod}} | @k: admin | Média |
+| {{linear:HAN-11|Wizard admin: pré-requisitos de prod}} | @k: admin | Alta |
+| {{linear:HAN-14|Ciclo de vida do trial em prod}} | @k: operação | Média |
 | {{linear:HAN-12|Smoke test da base (roteiro fim-a-fim)}} | @k: validação | Alta |
 | {{linear:HAN-13|Limpeza final do rebrand}} | @k: pós-smoke | Baixa |
 
@@ -44,8 +47,8 @@ A plataforma (ex-Brazas) já entrega multi-tenant por subdomínio, conta única 
 
 {.steel}
 - **1 — núcleo:** {{linear:HAN-6}} + {{linear:HAN-7}} destravam a criação expressa; {{linear:HAN-8}} e {{linear:HAN-10}} vestem landing e admin com a marca nova
-- **2 — smoke:** {{linear:HAN-12}} roda o roteiro completo (visitante → conta → loja no ar → admin) e gera a lista de próximos ajustes
-- **em paralelo:** {{linear:HAN-9}} confirma o domínio definitivo e prepara o cutover (desenhado para ser só env var + DNS); {{linear:HAN-11}} destrava a criação manual em produção
+- **2 — smoke:** {{linear:HAN-12}} roda o roteiro completo (visitante → conta → loja no ar → admin) e gera a lista de próximos ajustes — bloqueado também por {{linear:HAN-11}}, que destrava a criação manual em produção
+- **em paralelo:** {{linear:HAN-9}} prepara o cutover para o domínio definitivo (hangarnet.com.br, já registrado); {{linear:HAN-14}} agenda a suspensão automática de trial em prod
 - **depois:** {{linear:HAN-13}} — faxina do rebrand, sem bloquear a base
 
 <div class="callout callout--info"><span class="ico">🎯</span>

@@ -22,12 +22,21 @@
     </a>
     <nav class="wnav" aria-label="Wiki">
       <a href="./index.html">Início</a>
-      <a href="./projeto.html">Projeto</a>
+      <a href="./projeto.html">Projetos</a>
       <a href="./projeto-cloud.html" class="sub">Hangar Cloud</a>
-      <a href="./projeto-sites.html" class="sub">Hangar Sites</a>
-      <a href="./projeto-sites-plano.html" class="sub">Plano: base funcional</a>
+      <div class="navgroup">
+        <div class="navrow"><a href="./projeto-sites.html" class="sub">Hangar Sites</a><button class="tgl" type="button" aria-expanded="false" aria-label="expandir Hangar Sites">▸</button></div>
+        <div class="kids">
+          <a href="./projeto-sites-plano.html" class="sub2">Plano: base funcional</a>
+        </div>
+      </div>
       <a href="./projeto-games.html" class="sub">Hangar Games</a>
-      <a href="./dominios.html" class="sub" aria-current="page">Domínios</a>
+      <div class="navgroup open">
+        <div class="navrow"><a href="./dominios.html" class="sub" aria-current="page">Domínios</a><button class="tgl" type="button" aria-expanded="true" aria-label="expandir Domínios">▸</button></div>
+        <div class="kids">
+          <a href="./dominios-hangar.html" class="sub2">Plano: hangar.com.br</a>
+        </div>
+      </div>
       <a href="./users.html">Users, auth, points &amp; tiers</a>
       <a href="./pesquisas.html">Pesquisas</a>
       <a href="./pesquisa-empacotamento.html" class="sub">Empacotamento</a>
@@ -49,7 +58,7 @@
 
 <div class="callout callout--warn"><span class="ico">🔥</span>
   <div><b>Oportunidade: hangar.com.br expirou em 01/06/2026</b>
-    <p>O titular atual não renovou. Se não pagar, o domínio entra no <b>processo de liberação do Registro.br</b> — dá para acompanhar e disputar. É o domínio mais valioso da lista. De olho também em <b>hangar.net.br</b>, que expira em 24/07/2026.</p></div>
+    <p>O titular atual não renovou. Se não pagar, o domínio entra no <b>processo de liberação do Registro.br</b> — dá para acompanhar e disputar. Plano completo: <a class="fliplink" href="./dominios-hangar.html">Plano hangar.com.br</a>. De olho também em <b>hangar.net.br</b>, que expira em 24/07/2026.</p></div>
 </div><h2>Já garantidos</h2>
 <p>Registrados pelos sócios — a base da marca está segura:</p>
 <table>
@@ -274,48 +283,8 @@ real em registrador que venda premium (Porkbun/Namecheap) antes de decidir.</p>
 </tr>
 </tbody></table>
 <h2>Plano de conquista — hangar.com.br</h2>
-<p>Estado atual (06/07): <b>on_hold</b> — expirou em 01/06, o DNS foi suspenso em
-15/06 e o domínio segue vinculado ao titular durante a carência.</p>
-<table>
-<thead>
-<tr>
-<th>fase</th>
-<th>quando</th>
-<th>o que acontece</th>
-</tr>
-</thead>
-<tbody><tr>
-<td class="k">1 · carência</td>
-<td>01/06 → ~13/09/2026</td>
-<td>Titular ainda pode renovar (104 dias pós-expiração). Se renovar, fim de jogo — a vigília detecta</td>
-</tr>
-<tr>
-<td class="k">2 · liberação</td>
-<td>rodada mensal seguinte</td>
-<td>Domínio entra no <b>processo de liberação</b> (datas publicadas com ~2 meses de antecedência); janela de candidaturas de ~7 dias (15h às 15h)</td>
-</tr>
-<tr>
-<td class="k">3 · candidatura</td>
-<td>na janela</td>
-<td>Candidatar-se pela conta Registro.br (Victor já tem). <b>1 candidato</b> → leva pelo preço normal (~R$ 40). <b>2+ candidatos</b> → processo competitivo</td>
-</tr>
-<tr>
-<td class="k">4 · competitivo</td>
-<td>se disputado</td>
-<td>Leilão de ofertas sucessivas (mínimo R$ 50, incrementos por faixa); vencedor paga via Pix/boleto</td>
-</tr>
-</tbody></table>
-<ul class="steel">
-<li><b>Vigília ativa</b>: <code>references/domains-and-business/watch-hangar.sh</code> (rodar
-1x/dia) — alerta quando o status sair de on_hold, tanto para renovação
-quanto para o início da liberação</li>
-<li><b>Decidir antes o orçamento máximo</b>: &quot;hangar&quot; é palavra genérica — há
-chance real de dropcatchers na disputa; entrar no leilão sem teto definido
-é armadilha</li>
-<li>Detalhe da regra: se houver 2+ candidatos e a rodada não abrir o
-competitivo, o domínio <b>não é liberado</b> e espera a rodada seguinte</li>
-<li>Resultados de cada rodada: registro.br/dominio/processo-de-liberacao/resultado/</li>
-</ul>
+<p>O domínio mais valioso da caçada tem página própria com as fases, datas e
+regras de engajamento: <b><a href="./dominios-hangar.html">Plano hangar.com.br</a></b>.</p>
 <h2>Registrados por terceiros — vigiar</h2>
 <p>Titulares e expiração via RDAP público do Registro.br:</p>
 <table>
@@ -367,5 +336,14 @@ provável livre, não conclusivo)</li>
   </main>
 </div>
 
+<script>
+/* menu: expandir/recolher grupos de terceiro nível */
+document.querySelectorAll('.wnav .tgl').forEach(function (b) {
+  b.addEventListener('click', function () {
+    var g = b.closest('.navgroup');
+    b.setAttribute('aria-expanded', g.classList.toggle('open'));
+  });
+});
+</script>
 </body>
 </html>

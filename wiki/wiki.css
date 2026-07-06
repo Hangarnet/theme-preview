@@ -19,6 +19,24 @@
 .wnav a.sub { padding-left: 30px; font-size: 13px; position: relative; }
 .wnav a.sub::before { content: "└"; position: absolute; left: 14px;
   color: var(--text-faint); font-size: 11px; }
+/* grupos expansíveis (terceiro nível) — fechados por padrão */
+.wnav .navrow { display: flex; align-items: center; }
+.wnav .navrow a { flex: 1; }
+.wnav .tgl { background: none; border: none; cursor: pointer;
+  color: var(--text-faint); font-size: 10px; padding: 6px 9px;
+  transition: transform 150ms ease, color 150ms ease; }
+.wnav .tgl:hover { color: var(--text-primary); }
+.wnav .navgroup .kids { display: none; }
+.wnav .navgroup.open .kids { display: block; }
+.wnav .navgroup.open .tgl { transform: rotate(90deg); color: var(--text-muted); }
+.wnav a.sub2 { display: block; padding: 7px 12px 7px 46px; font-size: 12.5px;
+  position: relative; border-left: 2px solid transparent; border-radius: 4px;
+  color: var(--text-muted); text-decoration: none; line-height: 1.35; }
+.wnav a.sub2::before { content: "└"; position: absolute; left: 30px;
+  color: var(--text-faint); font-size: 10px; }
+.wnav a.sub2:hover { color: var(--text-primary); background: rgba(255,255,255,.04); }
+.wnav a.sub2[aria-current] { color: var(--accent-hover-text); font-weight: 600;
+  border-left-color: var(--accent); background: rgba(242,101,34,.06); }
 .sidebar .back { font-size: 12px; }
 
 .content { padding: 44px 48px 80px; max-width: 860px; }
