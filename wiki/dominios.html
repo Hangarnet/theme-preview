@@ -58,7 +58,7 @@
 
 <div class="callout callout--warn"><span class="ico">🔥</span>
   <div><b>Oportunidade: hangar.com.br expirou em 01/06/2026</b>
-    <p>O titular atual não renovou. Se não pagar, o domínio entra no <b>processo de liberação do Registro.br</b> — dá para acompanhar e disputar. Plano completo: <a class="fliplink" href="./dominios-hangar.html">Plano hangar.com.br</a>. De olho também em <b>hangar.net.br</b>, que expira em 24/07/2026.</p></div>
+    <p>O titular atual não renovou. Se não pagar, o domínio entra no <b>processo de liberação do Registro.br</b> — dá para acompanhar e disputar. Plano completo: <a class="fliplink" href="./dominios-hangar.html">Plano hangar.com.br</a> · <a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-15" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-15</a>. De olho também em <b>hangar.net.br</b>, que expira em 24/07/2026.</p></div>
 </div><h2>Já garantidos</h2>
 <p>Registrados pelos sócios — a base da marca está segura:</p>
 <table>
@@ -343,6 +343,19 @@ document.querySelectorAll('.wnav .tgl').forEach(function (b) {
     var g = b.closest('.navgroup');
     b.setAttribute('aria-expanded', g.classList.toggle('open'));
   });
+});
+</script>
+<script>
+/* linbadge: tenta abrir no app desktop do Linear; cai para a web se não houver app */
+document.addEventListener('click', function (e) {
+  var a = e.target.closest('a.linbadge');
+  if (!a) return;
+  e.preventDefault();
+  var t = setTimeout(function () { window.open(a.href, '_blank', 'noopener'); }, 900);
+  var cancel = function () { clearTimeout(t); };
+  document.addEventListener('visibilitychange', cancel, { once: true });
+  window.addEventListener('pagehide', cancel, { once: true });
+  window.location.href = a.href.replace('https://linear.app/', 'linear://');
 });
 </script>
 </body>
