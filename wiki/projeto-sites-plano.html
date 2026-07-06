@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Plano Sites base funcional — Wiki Hangar Network</title>
+<link rel="icon" href="../logo/hangar-emblem.svg">
+<link rel="stylesheet" href="../hangar-theme.css">
+<link rel="stylesheet" href="./wiki.css">
+</head>
+<body class="hangar">
+
+<div class="statusbar">
+  <span class="sys">hangar network // wiki · projeto · sites · plano <span class="led"></span></span>
+  <span class="placard">plano de execução · <b>em andamento</b></span>
+</div>
+
+<div class="wikigrid">
+  <aside class="sidebar">
+    <a class="brand" href="../pages/index.html">
+      <img src="../logo/hangar-network.svg" alt="Hangar Network">
+    </a>
+    <nav class="wnav" aria-label="Wiki">
+      <a href="./index.html">Início</a>
+      <a href="./projeto.html">Projeto</a>
+      <a href="./projeto-cloud.html" class="sub">Hangar Cloud</a>
+      <a href="./projeto-sites.html" class="sub">Hangar Sites</a>
+      <a href="./projeto-sites-plano.html" class="sub" aria-current="page">Plano: base funcional</a>
+      <a href="./projeto-games.html" class="sub">Hangar Games</a>
+      <a href="./dominios.html" class="sub">Domínios</a>
+      <a href="./users.html">Users, auth, points &amp; tiers</a>
+      <a href="./pesquisas.html">Pesquisas</a>
+      <a href="./pesquisa-empacotamento.html" class="sub">Empacotamento</a>
+      <a href="./pesquisa-gamificacao.html" class="sub">Gamificação</a>
+      <a href="./design.html">Design</a>
+      <a href="./design-logos.html" class="sub">Logos</a>
+      <a href="./design-template.html" class="sub">Template</a>
+      <a href="./design-guidelines.html" class="sub">Guidelines do tema</a>
+    </nav>
+    <a class="back fliplink" href="../pages/index.html">← voltar ao hub</a>
+  </aside>
+
+  <main class="content">
+    <header>
+      <span class="sys sys--crumb">// wiki · projeto · hangar sites · <b>plano: base funcional</b></span>
+      <h1 class="display">Sites — <em>base funcional</em></h1>
+      <p class="lead">O plano de resgate da base do Hangar Sites: pegar a plataforma herdada (~90% pronta) e recolocar as duas capabilities centrais no ar sob a marca nova — criação expressa de loja e administração da rede — prontas para smoke test. <span class="cat cat--pro">profissional</span></p>
+    </header>
+
+<h2>Objetivo</h2>
+<p>Base funcionando fim-a-fim para o smoke test, em duas frentes:</p>
+<ul>
+<li><b>Criação expressa de site</b> — clicar em &quot;criar loja&quot; e cair direto no onboarding. Sem conta? Cria na hora — e a conta é <b>global da rede</b> (um login vale na plataforma e em todas as lojas), virando owner/admin da loja criada.</li>
+<li><b>Hangar Sites admin</b> — a administração da rede (ver todas as lojas/sites, criar novas manualmente) remodelada com a marca e o tema novos.</li>
+</ul>
+<p>Com a base validada no smoke, os próximos ajustes viram novas issues.</p>
+<h2>Ponto de partida</h2>
+<p>A plataforma (ex-Brazas) já entrega multi-tenant por subdomínio, conta única da rede, onboarding self-service e um admin completo — o grosso é <b>encaixe e remodel</b>, não construção. A análise do código (2026-07-06) confirmou os ~90% e revelou os buracos que o plano ataca: a loja criada pelo fluxo expresso não fica ativa de cara, o fluxo de retorno ao onboarding tem um beco sem saída, e restos da marca antiga ainda apontam para o domínio velho.</p>
+<h2>As frentes</h2>
+<table>
+<thead>
+<tr>
+<th>ticket</th>
+<th>frente</th>
+<th>prioridade</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-6" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-6<span class="lbl">Ativação da loja no fluxo expresso</span></a></td>
+<td class="k">criação expressa</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td><a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-7" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-7<span class="lbl">Criar loja → conta global → onboarding → dashboard</span></a></td>
+<td class="k">criação expressa</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td><a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-8" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-8<span class="lbl">Landing nova do Hangar Sites no app</span></a></td>
+<td class="k">criação expressa</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td><a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-10" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-10<span class="lbl">Admin remodelado como Hangar Sites</span></a></td>
+<td class="k">admin</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td><a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-9" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-9<span class="lbl">Subdomínios no domínio hangar</span></a></td>
+<td class="k">domínio</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td><a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-11" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-11<span class="lbl">Wizard admin: pré-requisitos de prod</span></a></td>
+<td class="k">admin</td>
+<td>Média</td>
+</tr>
+<tr>
+<td><a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-12" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-12<span class="lbl">Smoke test da base (roteiro fim-a-fim)</span></a></td>
+<td class="k">validação</td>
+<td>Alta</td>
+</tr>
+<tr>
+<td><a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-13" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-13<span class="lbl">Limpeza final do rebrand</span></a></td>
+<td class="k">pós-smoke</td>
+<td>Baixa</td>
+</tr>
+</tbody></table>
+<h2>Sequência</h2>
+<ul class="steel">
+<li><b>1 — núcleo:</b> <a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-6" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-6</a> + <a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-7" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-7</a> destravam a criação expressa; <a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-8" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-8</a> e <a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-10" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-10</a> vestem landing e admin com a marca nova</li>
+<li><b>2 — smoke:</b> <a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-12" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-12</a> roda o roteiro completo (visitante → conta → loja no ar → admin) e gera a lista de próximos ajustes</li>
+<li><b>em paralelo:</b> <a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-9" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-9</a> confirma o domínio definitivo e prepara o cutover (desenhado para ser só env var + DNS); <a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-11" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-11</a> destrava a criação manual em produção</li>
+<li><b>depois:</b> <a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-13" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-13</a> — faxina do rebrand, sem bloquear a base</li>
+</ul>
+<div class="callout callout--info"><span class="ico">🎯</span>
+  <div><b>Acompanhamento</b>
+    <p>O detalhamento técnico de cada frente vive nas issues do
+      <a class="fliplink" href="https://linear.app/hangar-network/project/hangar-sites-base-funcional-6de3a57c0696" target="_blank" rel="noopener">projeto no Linear →</a>
+      Esta página é o mapa; o Linear é o dia a dia.</p></div>
+</div>
+
+    <div class="wikifoot">
+      <span class="sys">hangar network // wiki · projeto · sites · <b>plano</b></span>
+      <span class="placard"><a class="fliplink" href="./projeto-sites.html">← hangar sites</a> · atualizada em 2026-07-06</span>
+    </div>
+  </main>
+</div>
+
+<script>
+/* linbadge: tenta abrir no app desktop do Linear; cai para a web se não houver app */
+document.addEventListener('click', function (e) {
+  var a = e.target.closest('a.linbadge');
+  if (!a) return;
+  e.preventDefault();
+  var t = setTimeout(function () { window.open(a.href, '_blank', 'noopener'); }, 900);
+  var cancel = function () { clearTimeout(t); };
+  document.addEventListener('visibilitychange', cancel, { once: true });
+  window.addEventListener('pagehide', cancel, { once: true });
+  window.location.href = a.href.replace('https://linear.app/', 'linear://');
+});
+</script>
+</body>
+</html>
