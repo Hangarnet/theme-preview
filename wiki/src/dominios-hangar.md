@@ -15,7 +15,7 @@ foot_placard: <a class="fliplink" href="./dominios.html">← domínios</a>
 ---
 <div class="callout callout--warn"><span class="ico">🔥</span>
   <div><b>Estado atual (06/07): on_hold</b>
-    <p>Expirou em 01/06, o DNS foi suspenso em 15/06 e o domínio segue vinculado ao titular (Ronaldo Y. Morimoto, registrado desde 2021) durante a carência. A vigília diária monitora qualquer mudança de fase.</p></div>
+    <p>Expirou em 01/06, o DNS foi suspenso em 15/06 e o domínio segue vinculado ao titular (Ronaldo Y. Morimoto, registrado desde 2021) durante a carência. A vigília diária monitora qualquer mudança de fase. Acompanhamento: {{linear:HAN-15|aquisição hangar.com.br}}</p></div>
 </div>
 
 ## As quatro fases

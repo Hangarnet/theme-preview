@@ -17,10 +17,13 @@
 
 <div class="wikigrid">
   <aside class="sidebar">
-    <a class="brand" href="../pages/index.html">
-      <img src="../logo/hangar-network.svg" alt="Hangar Network">
-    </a>
-    <nav class="wnav" aria-label="Wiki">
+    <div class="sidehead">
+      <a class="brand" href="../pages/index.html">
+        <img src="../logo/hangar-network.svg" alt="Hangar Network">
+      </a>
+      <button class="wmenu-tgl" type="button" aria-expanded="false" aria-controls="wnav">menu</button>
+    </div>
+    <nav class="wnav" id="wnav" aria-label="Wiki">
       <a href="./index.html">Início</a>
       <a href="./projeto.html">Projetos</a>
       <a href="./projeto-cloud.html" class="sub">Hangar Cloud</a>
@@ -60,7 +63,7 @@
   <div><b>Estado atual (06/07): on_hold</b>
     <p>Expirou em 01/06, o DNS foi suspenso em 15/06 e o domínio segue vinculado ao titular (Ronaldo Y. Morimoto, registrado desde 2021) durante a carência. A vigília diária monitora qualquer mudança de fase. Acompanhamento: <a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-15" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-15<span class="lbl">aquisição hangar.com.br</span></a></p></div>
 </div><h2>As quatro fases</h2>
-<table>
+<div class="tablewrap"><table>
 <thead>
 <tr>
 <th>fase</th>
@@ -88,9 +91,9 @@
 <td>se disputado</td>
 <td>Leilão de ofertas sucessivas (mínimo R$ 50, incrementos por faixa); vencedor paga via Pix/boleto</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <h2>Datas para não perder</h2>
-<table>
+<div class="tablewrap"><table>
 <thead>
 <tr>
 <th>data</th>
@@ -113,7 +116,7 @@
 <td>Publicação da rodada</td>
 <td>Se único candidato: pagar e configurar. Se competitivo: leilão com teto definido</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <h2>Regras de engajamento</h2>
 <ul class="steel">
 <li><b>Vigília ativa</b>: <code>references/domains-and-business/watch-hangar.sh</code> (rodar
@@ -135,6 +138,15 @@ competitivo, o domínio <b>não é liberado</b> e espera a rodada seguinte</li>
   </main>
 </div>
 
+<script>
+/* menu mobile: o botão do sidebar abre/fecha a navegação da wiki */
+(function () {
+  var b = document.querySelector('.wmenu-tgl');
+  b.addEventListener('click', function () {
+    b.setAttribute('aria-expanded', b.closest('.sidebar').classList.toggle('open'));
+  });
+})();
+</script>
 <script>
 /* menu: expandir/recolher grupos de terceiro nível */
 document.querySelectorAll('.wnav .tgl').forEach(function (b) {

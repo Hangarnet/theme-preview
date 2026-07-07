@@ -48,8 +48,11 @@ section { padding: 72px 0 96px; }
 .verticals > a:hover .go { text-shadow: 0 0 8px rgba(105,170,215,.8); }
 
 @media (max-width: 700px) {
-  .hero { min-height: 70vh; }
-  .holonav { display: none; }
+  .hero { min-height: 62vh; }
+  .hero-center { padding: 40px 20px 56px; }
+  /* o holonav cabe no mobile — centralizado, quebrando se precisar */
+  .topbar { justify-content: center; }
+  .holonav { flex-wrap: wrap; justify-content: center; }
 }
 </style>
 </head>
@@ -115,7 +118,7 @@ section { padding: 72px 0 96px; }
 
 <footer class="sitefoot">
   <div class="wrap">
-    <span class="sys">hangar network // <b>hub</b> · sites · cloud · games</span>
+    <span class="sys">hangar network // <b>hub</b> · <a href="./sites.html">sites</a> · <a href="./cloud.html">cloud</a> · <a href="./games.html">games</a></span>
     <span class="placard">Brazas Tecnologia Ltda. · <a class="fliplink" href="../wiki/index.html">wiki</a> · <a class="fliplink" href="./logos.html">logos</a></span>
   </div>
 </footer>

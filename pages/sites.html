@@ -66,7 +66,7 @@ section { padding: 64px 0; }
 .chat .btn { align-self: flex-start; }
 
 /* preços + pagamento */
-.paylogos { display: flex; gap: 8px; align-items: center; margin-top: 18px; }
+.paylogos { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 18px; }
 .paylogos .pill { font-family: var(--hcn-font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); border: 1px solid var(--hcn-gm-700); border-radius: 999px; padding: 4px 12px; }
 .paylogos .pill--pix { color: var(--system); border-color: var(--system-dim); }
 
@@ -83,7 +83,7 @@ section { padding: 64px 0; }
 <body class="hangar hangar--halo-orange">
 
 <div class="statusbar">
-  <span class="sys">hangar network // sites <span class="led led--steel"></span>&nbsp; cloud · games · tv</span>
+  <span class="sys"><span class="sb-net"><a href="./index.html">hangar network</a> // sites <span class="led led--steel"></span></span> <span class="sb-links">&nbsp;<a href="./cloud.html">cloud</a> · <a href="./games.html">games</a> · <a href="./tv.html">tv</a></span></span>
   <span class="placard">status: <b>operacional</b></span>
 </div>
 
@@ -112,8 +112,10 @@ section { padding: 64px 0; }
         <b>1 mês grátis, sem cartão de crédito.</b>
       </p>
       <div>
-        <a class="btn btn--lg" href="#">Criar minha loja grátis</a>
-        <a class="btn btn--ghost btn--lg" href="#ia" style="margin-left:10px;">Ver a IA em ação</a>
+        <div class="ctapair">
+          <a class="btn btn--lg" href="#">Criar minha loja grátis</a>
+          <a class="btn btn--ghost btn--lg" href="#ia">Ver a IA em ação</a>
+        </div>
         <span class="reassure">Sem cartão de crédito · Cancele quando quiser · Depois, R$ 9,90/mês + 2,5% por venda</span>
       </div>
     </div>
@@ -272,7 +274,7 @@ section { padding: 64px 0; }
 
 <footer class="sitefoot">
   <div class="wrap">
-    <span class="sys">hangar network // <b>sites</b> · cloud · games · tv</span>
+    <span class="sys"><a href="./index.html">hangar network</a> // <b>sites</b> · <a href="./cloud.html">cloud</a> · <a href="./games.html">games</a> · <a href="./tv.html">tv</a></span>
     <span class="placard">Brazas Tecnologia Ltda. · CNPJ 66.856.116/0001-35 · <a class="fliplink" href="#">privacidade</a> · <a class="fliplink" href="#">termos</a></span>
   </div>
 </footer>

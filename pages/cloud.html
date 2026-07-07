@@ -96,7 +96,7 @@ section { padding: 64px 0; }
 .term { font-family: var(--hcn-font-mono); font-size: 12px; line-height: 1.8;
   background: rgba(10,11,13,.78); border: 1px solid rgba(255,255,255,.1);
   border-radius: var(--hcn-radius); padding: 12px 16px; backdrop-filter: blur(6px);
-  min-width: 300px; }
+  min-width: min(300px, 100%); }
 .term .ln { display: block; white-space: pre-wrap; }
 .term .you { color: var(--text-primary); }
 .term .you::before { content: "você → ia  "; color: var(--text-faint); }
@@ -118,14 +118,14 @@ section { padding: 64px 0; }
   box-shadow: inset 0 -1px 1px rgba(255,255,255,.2), 0 1px 3px rgba(0,0,0,.7); }
 .vmrow .v { font-family: var(--hcn-font-mono); font-size: 12px; color: var(--text-primary); text-align: right; font-variant-numeric: tabular-nums; }
 .vmtotal { display: flex; justify-content: space-between; align-items: center; border-top: 1px solid var(--hairline); padding-top: 14px; }
-.vmtotal .placard b { font-size: 15px; letter-spacing: 0; }
+.vmtotal .placard b { font-size: 15px; letter-spacing: 0; white-space: nowrap; }
 
 /* confiança */
 .trust { grid-template-columns: repeat(4, 1fr); }
 .trust > div h4 { margin: 10px 0 4px; font-size: 13.5px; }
 .trust > div p { margin: 0; font-size: 12.5px; color: var(--text-faint); }
 
-.paylogos { display: flex; gap: 8px; align-items: center; margin-top: 18px; }
+.paylogos { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; margin-top: 18px; }
 .paylogos .pill { font-family: var(--hcn-font-mono); font-size: 10px; letter-spacing: .1em; text-transform: uppercase; color: var(--text-muted); border: 1px solid var(--hcn-gm-700); border-radius: 999px; padding: 4px 12px; }
 .paylogos .pill--pix { color: var(--system); border-color: var(--system-dim); }
 
@@ -143,7 +143,7 @@ section { padding: 64px 0; }
 <body class="hangar hangar--halo-steel">
 
 <div class="statusbar">
-  <span class="sys">hangar network // cloud <span class="led led--steel"></span>&nbsp; sites · games · tv</span>
+  <span class="sys"><span class="sb-net"><a href="./index.html">hangar network</a> // cloud <span class="led led--steel"></span></span> <span class="sb-links">&nbsp;<a href="./sites.html">sites</a> · <a href="./games.html">games</a> · <a href="./tv.html">tv</a></span></span>
   <span class="placard">uptime 30d: <b>99,98%</b></span>
 </div>
 
@@ -171,8 +171,10 @@ section { padding: 64px 0; }
       sem ticket, sem espera, sem consultor.
     </p>
     <div>
-      <a class="btn btn--lg" href="#">Criar minha conta</a>
-      <a class="btn btn--ghost btn--lg" href="#mcp" style="margin-left:10px;">Ver o deploy por IA</a>
+      <div class="ctapair">
+        <a class="btn btn--lg" href="#">Criar minha conta</a>
+        <a class="btn btn--ghost btn--lg" href="#mcp">Ver o deploy por IA</a>
+      </div>
       <span class="reassure">A partir de R$ 19/mês · Pague com Pix · Cancele quando quiser</span>
     </div>
     <aside class="sponsor" aria-label="Patrocinador oficial: NVIDIA">
@@ -281,7 +283,7 @@ section { padding: 64px 0; }
 
 <footer class="sitefoot">
   <div class="wrap">
-    <span class="sys">hangar network // sites · <b>cloud</b> · games · tv</span>
+    <span class="sys"><a href="./index.html">hangar network</a> // <a href="./sites.html">sites</a> · <b>cloud</b> · <a href="./games.html">games</a> · <a href="./tv.html">tv</a></span>
     <span class="placard">Brazas Tecnologia Ltda. · CNPJ 66.856.116/0001-35 · <a class="fliplink" href="#">privacidade</a> · <a class="fliplink" href="#">termos</a></span>
   </div>
 </footer>

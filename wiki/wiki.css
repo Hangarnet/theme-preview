@@ -7,6 +7,22 @@
   position: sticky; top: 0; align-self: start; height: calc(100vh - 35px); }
 .sidebar .brand img { width: 150px; display: block; margin-bottom: 6px;
   filter: drop-shadow(0 3px 8px rgba(0,0,0,.5)); }
+/* topo do sidebar: no desktop é transparente (display:contents); no mobile
+   vira a barra compacta marca + botão de menu */
+.sidehead { display: contents; }
+.wmenu-tgl { display: none; align-items: center; gap: 9px; cursor: pointer;
+  font-family: var(--hcn-font-mono); font-size: 11.5px; letter-spacing: .16em;
+  text-transform: lowercase; color: var(--system);
+  padding: 10px 15px; min-height: 40px; border-radius: 6px;
+  background: linear-gradient(180deg, rgba(105,170,215,.10), rgba(105,170,215,.03) 60%, rgba(105,170,215,.06));
+  border: 1px solid rgba(105,170,215,.34);
+  box-shadow: 0 0 14px rgba(105,170,215,.12), 0 1px 2px rgba(0,0,0,.5),
+    inset 0 1px 0 rgba(255,255,255,.14), inset 0 -1px 0 rgba(0,0,0,.4); }
+.wmenu-tgl::after { content: "▾"; font-size: 12px; color: var(--text-faint);
+  transition: transform 150ms ease; }
+.sidebar.open .wmenu-tgl { color: #cfe7fa;
+  text-shadow: 0 0 9px rgba(105,170,215,.9); }
+.sidebar.open .wmenu-tgl::after { transform: rotate(180deg); }
 
 .wnav { display: flex; flex-direction: column; gap: 2px; flex: 1; }
 .wnav a { font-family: var(--hcn-font-ui); font-size: 14px; font-weight: 500;
@@ -56,13 +72,22 @@
 .content ul li::before { content: "— "; color: var(--accent); }
 .content ul.steel li::before { color: var(--system); }
 
-/* tabelas com moldura: cabeçalho destacado, zebra, largura do conteúdo */
-.content table { border-collapse: separate; border-spacing: 0;
-  width: fit-content; min-width: min(560px, 100%); max-width: 100%;
-  margin: 16px 0 26px; font-size: 13.5px;
-  border: 1px solid var(--hcn-gm-700); border-radius: 8px; overflow: hidden;
+/* tabelas com moldura: cabeçalho destacado, zebra, largura do conteúdo.
+   A moldura vive no wrapper (.tablewrap, gerado no build), que rola
+   horizontalmente no mobile — a tabela nunca espreme nem estoura a página. */
+.tablewrap { width: fit-content; max-width: 100%; margin: 16px 0 26px;
+  border: 1px solid var(--hcn-gm-700); border-radius: 8px;
   background: var(--surface-raised);
-  box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 4px 16px rgba(0,0,0,.3); }
+  box-shadow: inset 0 1px 0 rgba(255,255,255,.05), 0 4px 16px rgba(0,0,0,.3);
+  overflow-x: auto; -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin; scrollbar-color: var(--hcn-gm-700) #101114; }
+.tablewrap::-webkit-scrollbar { height: 8px; }
+.tablewrap::-webkit-scrollbar-track { background: #101114; }
+.tablewrap::-webkit-scrollbar-thumb { background: var(--hcn-gm-700); border-radius: 4px; }
+.content .tablewrap { min-width: min(560px, 100%); }
+.content table { border-collapse: separate; border-spacing: 0;
+  width: fit-content; min-width: 100%;
+  margin: 0; font-size: 13.5px; }
 .content th { font-family: var(--hcn-font-mono); font-size: 12.5px; letter-spacing: .12em;
   text-transform: lowercase; color: var(--system); text-align: left;
   padding: 11px 18px; border-bottom: 1px solid var(--hcn-gm-700);
@@ -93,7 +118,7 @@
 .netmap-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; flex-wrap: wrap; }
 .netmap-head .hint { font-family: var(--hcn-font-mono); font-size: 11px;
   letter-spacing: .1em; color: var(--text-faint); text-transform: lowercase; }
-.netmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 12px; }
+.netmap-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(190px, 100%), 1fr)); gap: 12px; }
 .netmap-grid .node { background: linear-gradient(180deg, var(--hcn-gm-800), var(--hcn-gm-900));
   border: 1px solid var(--edge-dark); border-radius: 8px; padding: 14px 16px;
   box-shadow: inset 0 1px 0 rgba(255,255,255,.07), 0 3px 10px rgba(0,0,0,.35); }
@@ -147,7 +172,7 @@
   letter-spacing: .14em; color: var(--system); text-transform: lowercase; white-space: nowrap; }
 
 /* badges de comunidade — insígnias visuais */
-.badge-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+.badge-row { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr));
   gap: 12px; margin: 16px 0 10px; max-width: 720px; }
 .hbadge { display: flex; align-items: center; gap: 12px; padding: 10px 16px 10px 10px;
   border-radius: 999px; border: 1px solid;
@@ -172,7 +197,7 @@
 .hbadge--cm b { color: #a8d4f2; }
 
 /* widgets de leitura — destaques e números */
-.statrow { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+.statrow { display: grid; grid-template-columns: repeat(auto-fit, minmax(min(150px, 45%), 1fr));
   gap: 12px; margin: 18px 0 22px; max-width: 720px; }
 .stat { background: linear-gradient(180deg, var(--hcn-gm-800), var(--hcn-gm-900));
   border: 1px solid var(--edge-dark); border-radius: 8px; padding: 15px 17px;
@@ -209,7 +234,7 @@
 .logocard img { width: min(240px, 84%); height: auto; }
 .logocard .emb { width: 84px; }
 .logocard figcaption { align-self: stretch; display: flex; justify-content: space-between;
-  gap: 10px; border-top: 1px solid var(--hairline); padding-top: 10px; }
+  flex-wrap: wrap; gap: 4px 10px; border-top: 1px solid var(--hairline); padding-top: 10px; }
 .logocard figure { margin: 0; display: contents; }
 .onlight { background: #e9ecef; border-radius: 4px; padding: 22px 16px; width: 100%;
   display: flex; justify-content: center; }
@@ -228,8 +253,25 @@
   letter-spacing: .16em; text-transform: lowercase; color: var(--system); }
 
 @media (max-width: 820px) {
-  .wikigrid { grid-template-columns: 1fr; }
-  .sidebar { position: static; height: auto; flex-direction: column; }
-  .wnav { flex-direction: row; flex-wrap: wrap; }
+  .wikigrid { grid-template-columns: minmax(0, 1fr); min-height: 0; }
+  /* sidebar vira barra compacta: marca + disclosure; o conteúdo começa já */
+  .sidebar { position: static; height: auto; padding: 12px 18px; gap: 14px;
+    border-right: none; border-bottom: 1px solid var(--edge-dark);
+    box-shadow: inset 0 -1px 0 rgba(255,255,255,.04); }
+  .sidehead { display: flex; align-items: center; justify-content: space-between;
+    gap: 14px; }
+  .sidebar .brand img { width: 128px; margin-bottom: 0; }
+  .wmenu-tgl { display: inline-flex; }
+  .wnav { display: none; }
+  .sidebar.open .wnav { display: flex; flex-direction: column; padding-bottom: 2px; }
+  /* hierarquia de 3 níveis intacta, com alvos de toque ≥40px */
+  .wnav a { padding-top: 11px; padding-bottom: 11px; }
+  .wnav a.sub2 { padding-top: 12px; padding-bottom: 12px; }
+  .wnav .tgl { padding: 8px 14px 10px; min-width: 46px; min-height: 40px; }
+  .sidebar .back { display: none; }
+  .sidebar.open .back { display: inline-block; padding: 12px 8px; margin: -6px -8px; }
   .content { padding: 30px 22px 60px; }
+  /* tabelas largas rolam dentro da moldura no tamanho preferido —
+     colunas de prosa respiram em vez de espremer a uma palavra por linha */
+  .content table { width: max-content; max-width: 740px; }
 }

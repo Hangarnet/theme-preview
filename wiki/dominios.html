@@ -17,10 +17,13 @@
 
 <div class="wikigrid">
   <aside class="sidebar">
-    <a class="brand" href="../pages/index.html">
-      <img src="../logo/hangar-network.svg" alt="Hangar Network">
-    </a>
-    <nav class="wnav" aria-label="Wiki">
+    <div class="sidehead">
+      <a class="brand" href="../pages/index.html">
+        <img src="../logo/hangar-network.svg" alt="Hangar Network">
+      </a>
+      <button class="wmenu-tgl" type="button" aria-expanded="false" aria-controls="wnav">menu</button>
+    </div>
+    <nav class="wnav" id="wnav" aria-label="Wiki">
       <a href="./index.html">Início</a>
       <a href="./projeto.html">Projetos</a>
       <a href="./projeto-cloud.html" class="sub">Hangar Cloud</a>
@@ -61,7 +64,7 @@
     <p>O titular atual não renovou. Se não pagar, o domínio entra no <b>processo de liberação do Registro.br</b> — dá para acompanhar e disputar. Plano completo: <a class="fliplink" href="./dominios-hangar.html">Plano hangar.com.br</a> · <a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-15" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-15</a>. De olho também em <b>hangar.net.br</b>, que expira em 24/07/2026.</p></div>
 </div><h2>Já garantidos</h2>
 <p>Registrados pelos sócios — a base da marca está segura:</p>
-<table>
+<div class="tablewrap"><table>
 <thead>
 <tr>
 <th>domínio</th>
@@ -84,10 +87,10 @@
 <td>Victor Souto</td>
 <td class="pts">2029-07-06</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <h2>A matriz — hnet · hangarnet · hangar · hca</h2>
 <p>✅ livre · ❌ registrado · 🟢 nosso · 🔥 expirado (vigiar) · 🟡 checagem parcial (só DNS) · ⚠️ livre, mas provável preço premium</p>
-<table>
+<div class="tablewrap"><table>
 <thead>
 <tr>
 <th>tld</th>
@@ -216,7 +219,7 @@
 <td>🟡</td>
 <td>🟡</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <p>A coluna <b>hangarnet</b> é a mais aberta: quase todos os TLDs relevantes estão
 livres (.net, .org, .io, .dev, .app, .cloud, .network, .gg, .games) — dá para
 fechar o cerco da marca inteira por pouco. Na linha <b>.tv.br</b>, além do hnet.tv.br já nosso, <b>hangar.tv.br está
@@ -228,7 +231,7 @@ de 2–3 letras (.io, .co, .gg, .tv) quase certamente caem no tier premium.</p>
 venda — forte indício de tier premium/reservado da Verisign. Verificar preço
 real em registrador que venda premium (Porkbun/Namecheap) antes de decidir.</p>
 <h2>Nomes compostos e sub-marcas</h2>
-<table>
+<div class="tablewrap"><table>
 <thead>
 <tr>
 <th>domínio</th>
@@ -281,13 +284,13 @@ real em registrador que venda premium (Porkbun/Namecheap) antes de decidir.</p>
 <td>❌ registrado</td>
 <td>terceiro</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <h2>Plano de conquista — hangar.com.br</h2>
 <p>O domínio mais valioso da caçada tem página própria com as fases, datas e
 regras de engajamento: <b><a href="./dominios-hangar.html">Plano hangar.com.br</a></b>.</p>
 <h2>Registrados por terceiros — vigiar</h2>
 <p>Titulares e expiração via RDAP público do Registro.br:</p>
-<table>
+<div class="tablewrap"><table>
 <thead>
 <tr>
 <th>domínio</th>
@@ -315,7 +318,7 @@ regras de engajamento: <b><a href="./dominios-hangar.html">Plano hangar.com.br</
 <td>Helio Rubens Lima Nunes</td>
 <td class="pts">2030-05-08</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <h2>Método</h2>
 <ul class="steel">
 <li>Verificação via <b>RDAP</b> (WHOIS moderno): 404 = livre, 200 = registrado —
@@ -336,6 +339,15 @@ provável livre, não conclusivo)</li>
   </main>
 </div>
 
+<script>
+/* menu mobile: o botão do sidebar abre/fecha a navegação da wiki */
+(function () {
+  var b = document.querySelector('.wmenu-tgl');
+  b.addEventListener('click', function () {
+    b.setAttribute('aria-expanded', b.closest('.sidebar').classList.toggle('open'));
+  });
+})();
+</script>
 <script>
 /* menu: expandir/recolher grupos de terceiro nível */
 document.querySelectorAll('.wnav .tgl').forEach(function (b) {

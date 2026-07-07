@@ -154,12 +154,21 @@ section { padding: 60px 0; }
 
 @media (max-width: 960px) { .gamesgrid { grid-template-columns: repeat(2, 1fr); } .tvgrid { grid-template-columns: 1fr; } }
 @media (max-width: 860px) { .hcagrid, .forum { grid-template-columns: 1fr; } }
+@media (max-width: 700px) {
+  /* fórum: meta empilha abaixo do título — sem disputa de largura */
+  .fcat { flex-direction: column; align-items: flex-start; gap: 6px; }
+  .fcat .count { text-align: left; }
+  /* texto corrido legível no telefone */
+  .tv .tbody p, .fcat .info p { font-size: 14px; }
+  .game p { font-size: 13px; }
+  .era { font-size: 12.5px; }
+}
 </style>
 </head>
 <body class="hangar hangar--halo-steel">
 
 <div class="statusbar">
-  <span class="sys">hangar network // games <span class="led led--steel"></span>&nbsp; sites · cloud · tv</span>
+  <span class="sys"><span class="sb-net"><a href="./index.html">hangar network</a> // games <span class="led led--steel"></span></span> <span class="sb-links">&nbsp;<a href="./sites.html">sites</a> · <a href="./cloud.html">cloud</a> · <a href="./tv.html">tv</a></span></span>
   <span class="placard">hca temporada 1 · <b>inscrições abertas</b></span>
 </div>
 
@@ -188,8 +197,10 @@ section { padding: 60px 0; }
       de campeonatos. O hangar reabriu. <b>Mesma alma, novos jogos.</b>
     </p>
     <div>
-      <a class="btn btn--lg" href="#">Entrar na comunidade</a>
-      <a class="btn btn--ghost btn--lg" href="#hca" style="margin-left:10px;">Ver campeonatos</a>
+      <div class="ctapair">
+        <a class="btn btn--lg" href="#">Entrar na comunidade</a>
+        <a class="btn btn--ghost btn--lg" href="#hca">Ver campeonatos</a>
+      </div>
       <span class="reassure">Conta grátis · Um login para toda a rede Hangar</span>
     </div>
     <aside class="sponsor" aria-label="Patrocinador oficial: NVIDIA">
@@ -342,7 +353,7 @@ section { padding: 60px 0; }
 
 <footer class="sitefoot">
   <div class="wrap">
-    <span class="sys">hangar network // sites · cloud · <b>games</b> · tv</span>
+    <span class="sys"><a href="./index.html">hangar network</a> // <a href="./sites.html">sites</a> · <a href="./cloud.html">cloud</a> · <b>games</b> · <a href="./tv.html">tv</a></span>
     <span class="placard">Brazas Tecnologia Ltda. · CNPJ 66.856.116/0001-35 · est. 1998 · <a class="fliplink" href="#">privacidade</a></span>
   </div>
 </footer>

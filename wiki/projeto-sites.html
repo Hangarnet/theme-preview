@@ -17,10 +17,13 @@
 
 <div class="wikigrid">
   <aside class="sidebar">
-    <a class="brand" href="../pages/index.html">
-      <img src="../logo/hangar-network.svg" alt="Hangar Network">
-    </a>
-    <nav class="wnav" aria-label="Wiki">
+    <div class="sidehead">
+      <a class="brand" href="../pages/index.html">
+        <img src="../logo/hangar-network.svg" alt="Hangar Network">
+      </a>
+      <button class="wmenu-tgl" type="button" aria-expanded="false" aria-controls="wnav">menu</button>
+    </div>
+    <nav class="wnav" id="wnav" aria-label="Wiki">
       <a href="./index.html">Início</a>
       <a href="./projeto.html">Projetos</a>
       <a href="./projeto-cloud.html" class="sub">Hangar Cloud</a>
@@ -70,7 +73,7 @@
 <li><b>Emails transacionais</b> — confirmação de conta, recuperação de senha, magic link</li>
 </ul>
 <h2>Modelo de negócio</h2>
-<table>
+<div class="tablewrap"><table>
 <thead>
 <tr>
 <th>item</th>
@@ -89,7 +92,7 @@
 <td>Período de teste</td>
 <td>1 mês grátis, sem cartão de crédito</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <div class="callout callout--info"><span class="ico">🔗</span>
   <div><b>Papel na rede</b>
     <p>O Sites é a porta de entrada do público leigo — bundle tudo-incluso,
@@ -107,6 +110,15 @@ remodelado, prontos para smoke test — está planejado e rastreado:
   </main>
 </div>
 
+<script>
+/* menu mobile: o botão do sidebar abre/fecha a navegação da wiki */
+(function () {
+  var b = document.querySelector('.wmenu-tgl');
+  b.addEventListener('click', function () {
+    b.setAttribute('aria-expanded', b.closest('.sidebar').classList.toggle('open'));
+  });
+})();
+</script>
 <script>
 /* menu: expandir/recolher grupos de terceiro nível */
 document.querySelectorAll('.wnav .tgl').forEach(function (b) {

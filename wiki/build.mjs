@@ -88,6 +88,9 @@ function renderBody(md) {
       .replace(/<td>@(k|pts):\s*/g, '<td class="$1">')
       // classe de lista: linha {.steel} antes da lista
       .replace(/<p>\{\.([\w-]+)\}<\/p>\s*<ul>/g, '<ul class="$1">')
+      // toda tabela ganha wrapper de moldura + scroll horizontal (mobile)
+      .replace(/<table>/g, '<div class="tablewrap"><table>')
+      .replace(/<\/table>/g, '</table></div>')
   );
 }
 
@@ -120,6 +123,16 @@ function page(meta, bodyHtml) {
   const headerVisual = meta.logo
     ? `      <img src="${meta.logo}" alt="${meta.logo_alt || ''}" style="width:220px;margin:6px 0 16px;filter:drop-shadow(0 4px 12px rgba(0,0,0,.55))">`
     : `      <h1 class="display">${meta.h1}</h1>`;
+  const menuJs = `
+<script>
+/* menu mobile: o botão do sidebar abre/fecha a navegação da wiki */
+(function () {
+  var b = document.querySelector('.wmenu-tgl');
+  b.addEventListener('click', function () {
+    b.setAttribute('aria-expanded', b.closest('.sidebar').classList.toggle('open'));
+  });
+})();
+</script>`;
   const navJs = nav.includes('navgroup')
     ? `
 <script>
@@ -168,10 +181,13 @@ document.addEventListener('click', function (e) {
 
 <div class="wikigrid">
   <aside class="sidebar">
-    <a class="brand" href="../pages/index.html">
-      <img src="../logo/hangar-network.svg" alt="Hangar Network">
-    </a>
-    <nav class="wnav" aria-label="Wiki">
+    <div class="sidehead">
+      <a class="brand" href="../pages/index.html">
+        <img src="../logo/hangar-network.svg" alt="Hangar Network">
+      </a>
+      <button class="wmenu-tgl" type="button" aria-expanded="false" aria-controls="wnav">menu</button>
+    </div>
+    <nav class="wnav" id="wnav" aria-label="Wiki">
 ${nav}
     </nav>
     <a class="back fliplink" href="../pages/index.html">← voltar ao hub</a>
@@ -191,7 +207,7 @@ ${bodyHtml}
     </div>
   </main>
 </div>
-${navJs}${linearJs}
+${menuJs}${navJs}${linearJs}
 </body>
 </html>
 `;

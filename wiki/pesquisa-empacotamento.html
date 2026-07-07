@@ -17,10 +17,13 @@
 
 <div class="wikigrid">
   <aside class="sidebar">
-    <a class="brand" href="../pages/index.html">
-      <img src="../logo/hangar-network.svg" alt="Hangar Network">
-    </a>
-    <nav class="wnav" aria-label="Wiki">
+    <div class="sidehead">
+      <a class="brand" href="../pages/index.html">
+        <img src="../logo/hangar-network.svg" alt="Hangar Network">
+      </a>
+      <button class="wmenu-tgl" type="button" aria-expanded="false" aria-controls="wnav">menu</button>
+    </div>
+    <nav class="wnav" id="wnav" aria-label="Wiki">
       <a href="./index.html">Início</a>
       <a href="./projeto.html">Projetos</a>
       <a href="./projeto-cloud.html" class="sub">Hangar Cloud</a>
@@ -70,7 +73,7 @@
 <li><b>Lição Cloudflare</b>: dentro do Cloud, não fragmentar sub-produtos — um plano com capacidades, não três produtos</li>
 </ul>
 <h2>Como cada player se organiza</h2>
-<table>
+<div class="tablewrap"><table>
 <thead>
 <tr>
 <th>empresa</th>
@@ -97,7 +100,7 @@
 <td class="k">Wix</td>
 <td>Sistema fechado: o builder É o produto, hosting invisível dentro dele</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <h2>Referência</h2>
 <ul class="steel">
 <li><b>Pesquisa Claude · 03/07/2026</b> — varredura web com fontes. Arquivo completo: <em>references/domains-and-business/2026-07-03-pesquisa-cloud-vs-sites-empacotamento.md</em></li>
@@ -110,6 +113,15 @@
   </main>
 </div>
 
+<script>
+/* menu mobile: o botão do sidebar abre/fecha a navegação da wiki */
+(function () {
+  var b = document.querySelector('.wmenu-tgl');
+  b.addEventListener('click', function () {
+    b.setAttribute('aria-expanded', b.closest('.sidebar').classList.toggle('open'));
+  });
+})();
+</script>
 <script>
 /* menu: expandir/recolher grupos de terceiro nível */
 document.querySelectorAll('.wnav .tgl').forEach(function (b) {

@@ -17,10 +17,13 @@
 
 <div class="wikigrid">
   <aside class="sidebar">
-    <a class="brand" href="../pages/index.html">
-      <img src="../logo/hangar-network.svg" alt="Hangar Network">
-    </a>
-    <nav class="wnav" aria-label="Wiki">
+    <div class="sidehead">
+      <a class="brand" href="../pages/index.html">
+        <img src="../logo/hangar-network.svg" alt="Hangar Network">
+      </a>
+      <button class="wmenu-tgl" type="button" aria-expanded="false" aria-controls="wnav">menu</button>
+    </div>
+    <nav class="wnav" id="wnav" aria-label="Wiki">
       <a href="./index.html">Início</a>
       <a href="./projeto.html">Projetos</a>
       <a href="./projeto-cloud.html" class="sub">Hangar Cloud</a>
@@ -98,7 +101,7 @@
 </ul>
 <h2>Patentes</h2>
 <p>Nomes que só a nossa comunidade entende. <b>Patente nunca desce</b> — é pontuação acumulada na vida, não saldo.</p>
-<table>
+<div class="tablewrap"><table>
 <thead>
 <tr>
 <th>patente</th>
@@ -133,7 +136,7 @@
 <td class="k">Zeratul</td>
 <td>5.000+</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <h2>Badges</h2>
 <p>Badges dizem o que a pessoa <b>é</b>; patentes dizem o quanto ela <b>participou</b>.</p>
 <div class="badge-row">
@@ -146,7 +149,7 @@
   <span class="hbadge hbadge--cm"><i>✦</i>
     <span><b>community manager</b><small>hnet community manager</small></span></span>
 </div><h2>Economia de pontos</h2>
-<table>
+<div class="tablewrap"><table>
 <thead>
 <tr>
 <th>ação</th>
@@ -184,7 +187,7 @@
 <td class="pts">+2.500</td>
 <td>após pagamento · estorno remove</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <ul class="steel">
 <li><b>Earned-only</b>: pontos nunca são compráveis — território &quot;fidelidade&quot;, fora da zona regulatória</li>
 <li><b>Sinks desde o dia 1</b>: a moeda precisa circular (status, cosméticos, acesso)</li>
@@ -197,7 +200,7 @@
 <li><b>Twitch é a ponte</b> — a única conversão real do mercado: viewer resgata channel points no canal parceiro e recebe pontos hnet (+500, via webhook)</li>
 </ul>
 <h2>Fases</h2>
-<table>
+<div class="tablewrap"><table>
 <thead>
 <tr>
 <th>fase</th>
@@ -220,7 +223,7 @@
 <td class="k">f4 · sinks</td>
 <td>Títulos, molduras, emotes, cargo Discord · depois desconto em Cloud/Sites</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 
     <div class="wikifoot">
       <span class="sys">hangar network // wiki · <b>users</b></span>
@@ -229,6 +232,15 @@
   </main>
 </div>
 
+<script>
+/* menu mobile: o botão do sidebar abre/fecha a navegação da wiki */
+(function () {
+  var b = document.querySelector('.wmenu-tgl');
+  b.addEventListener('click', function () {
+    b.setAttribute('aria-expanded', b.closest('.sidebar').classList.toggle('open'));
+  });
+})();
+</script>
 <script>
 /* menu: expandir/recolher grupos de terceiro nível */
 document.querySelectorAll('.wnav .tgl').forEach(function (b) {

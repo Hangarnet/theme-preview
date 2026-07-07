@@ -238,7 +238,15 @@ section { padding: 44px 0 0; }
 .antena-foot { padding: 16px 4px 0; }
 
 @media (max-width: 860px) {
-  .tvnav { overflow-x: auto; }
+  .tvnav { overflow-x: auto; scrollbar-width: none; }
+  .tvnav::-webkit-scrollbar { display: none; }
+  .tvnav a { padding: 11px 15px; } /* alvo de toque ≥40px */
+  /* affordance de rolagem: fade na borda direita da sintonia */
+  .tvnav-wrap { position: relative; }
+  .tvnav-wrap::after { content: ""; position: absolute; top: 1px; bottom: 1px;
+    right: 1px; width: 36px; pointer-events: none; border-radius: 0 6px 6px 0;
+    background: linear-gradient(90deg, transparent, rgba(16,17,20,.92)); }
+  .search-btn { width: 40px; height: 40px; }
   .onair { grid-template-columns: 1fr; }
   .onair-main .ph { height: 240px; }
   .onair-duo { grid-template-rows: none; grid-template-columns: 1fr 1fr; }
@@ -265,7 +273,7 @@ section { padding: 44px 0 0; }
 </svg>
 
 <div class="statusbar">
-  <span class="sys">hangar network // tv <span class="led led--steel"></span> · games · cloud · sites</span>
+  <span class="sys"><span class="sb-net"><a href="./index.html">hangar network</a> // tv <span class="led led--steel"></span></span> <span class="sb-links">· <a href="./games.html">games</a> · <a href="./cloud.html">cloud</a> · <a href="./sites.html">sites</a></span></span>
   <span class="placard">no ar agora: <b>3 dos seus canais</b></span>
 </div>
 
@@ -290,6 +298,7 @@ section { padding: 44px 0 0; }
   </nav>
 
   <!-- sintonia: um clique re-sintoniza a página inteira ([data-game]) -->
+  <div class="tvnav-wrap">
   <nav class="tvnav tuner" aria-label="Sintonia por jogo">
     <a href="#" data-tune="todos" aria-current="true">todos</a>
     <span class="sep"></span>
@@ -302,6 +311,7 @@ section { padding: 44px 0 0; }
     <a href="#" data-tune="sc2">sc2</a>
     <a class="add" href="#" onclick="return false">+ adicionar jogo</a>
   </nav>
+  </div>
   <div class="tuner-line" aria-hidden="true"></div>
 </div>
 
@@ -648,7 +658,7 @@ section { padding: 44px 0 0; }
 
 <footer class="sitefoot">
   <div class="wrap">
-    <span class="sys">hangar network // games · <b>tv</b> · cloud · sites</span>
+    <span class="sys"><a href="./index.html">hangar network</a> // <a href="./games.html">games</a> · <b>tv</b> · <a href="./cloud.html">cloud</a> · <a href="./sites.html">sites</a></span>
     <span class="placard">Brazas Tecnologia Ltda. · est. 1998 · <a class="fliplink" href="#">privacidade</a></span>
   </div>
 </footer>

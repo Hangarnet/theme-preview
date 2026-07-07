@@ -17,10 +17,13 @@
 
 <div class="wikigrid">
   <aside class="sidebar">
-    <a class="brand" href="../pages/index.html">
-      <img src="../logo/hangar-network.svg" alt="Hangar Network">
-    </a>
-    <nav class="wnav" aria-label="Wiki">
+    <div class="sidehead">
+      <a class="brand" href="../pages/index.html">
+        <img src="../logo/hangar-network.svg" alt="Hangar Network">
+      </a>
+      <button class="wmenu-tgl" type="button" aria-expanded="false" aria-controls="wnav">menu</button>
+    </div>
+    <nav class="wnav" id="wnav" aria-label="Wiki">
       <a href="./index.html">Início</a>
       <a href="./projeto.html">Projetos</a>
       <a href="./projeto-cloud.html" class="sub">Hangar Cloud</a>
@@ -57,7 +60,7 @@
     </header>
 
 <h2>A regra das três vozes</h2>
-<table>
+<div class="tablewrap"><table>
 <thead>
 <tr>
 <th>voz</th>
@@ -84,14 +87,14 @@
 <td>todo o resto — casco, painéis, texto</td>
 <td>—</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <div class="callout callout--warn"><span class="ico">⚠</span>
   <div><b>Se as vozes disputarem, o laranja vence</b>
     <p>É a cor de conversão — isolamento total: nada mais na página é
       laranja. Cores de convidados (verde NVIDIA, vermelho HCA) vivem
       contidas dentro dos seus badges/logos e não vazam para a UI.</p></div>
 </div><h2>Vozes tipográficas</h2>
-<table>
+<div class="tablewrap"><table>
 <thead>
 <tr>
 <th>voz</th>
@@ -114,14 +117,14 @@
 <td>Share Tech Mono</td>
 <td>placards, sys, tags, terminal — os rótulos gravados no metal</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <ul>
 <li><b>Placa de seção</b> (subtítulo A) organiza; <b>manchete de bloco</b> (subtítulo B, com uma palavra em brasa) vende — nunca as duas no mesmo bloco</li>
 <li><b>Breadcrumb B</b>: a linha de contexto acima da manchete, sempre começando em <span class="k" style="font-family:var(--hcn-font-mono)">//</span></li>
 <li><b>Link ver-todos</b>: o escape do bloco, sempre com seta → no fim</li>
 </ul>
 <h2>Componentes principais</h2>
-<table>
+<div class="tablewrap"><table>
 <thead>
 <tr>
 <th>componente</th>
@@ -156,7 +159,7 @@
 <td class="k">chips / cats / badges</td>
 <td>pills de produto (uma cor por setor), categorias tracejadas e insígnias de comunidade</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <h2>Metal de alta definição</h2>
 <p>Toda superfície metálica é composta por camadas, nesta ordem:</p>
 <ul class="steel">
@@ -180,6 +183,15 @@
   </main>
 </div>
 
+<script>
+/* menu mobile: o botão do sidebar abre/fecha a navegação da wiki */
+(function () {
+  var b = document.querySelector('.wmenu-tgl');
+  b.addEventListener('click', function () {
+    b.setAttribute('aria-expanded', b.closest('.sidebar').classList.toggle('open'));
+  });
+})();
+</script>
 <script>
 /* menu: expandir/recolher grupos de terceiro nível */
 document.querySelectorAll('.wnav .tgl').forEach(function (b) {

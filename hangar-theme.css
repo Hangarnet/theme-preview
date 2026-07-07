@@ -207,6 +207,12 @@
 .btn--ghost:hover { filter: none; background: rgba(255,255,255,.05); box-shadow: inset 0 1px 0 rgba(255,255,255,.05); }
 .btn--lg { font-size: 15px; padding: 13px 32px; }
 .btn--sm { font-size: 12px; padding: 8px 18px; }
+/* par de CTAs (primário + fantasma) — quebra com gap, nunca com margin */
+.ctapair { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 10px; }
+@media (max-width: 480px) {
+  .ctapair { flex-direction: column; align-items: stretch; }
+  .ctapair .btn { text-align: center; }
+}
 /* micro-linha de confiança sob o CTA */
 .reassure { display: block; margin-top: 10px; font-size: 12px; color: var(--text-faint); }
 
@@ -484,9 +490,19 @@
   background: linear-gradient(180deg, transparent, rgba(105,170,215,.35), transparent); }
 
 /* ═══ Nav / rodapé padrão ════════════════════════════════════════════ */
-.statusbar { display: flex; justify-content: space-between; align-items: center; gap: 16px;
+.statusbar { display: flex; justify-content: space-between; align-items: center;
+  flex-wrap: wrap; gap: 3px 16px;
   padding: 8px 24px; background: #0b0c0e; border-bottom: 1px solid var(--edge-dark);
   box-shadow: inset 0 -1px 0 rgba(255,255,255,.05); }
+.statusbar .placard { margin-left: auto; text-align: right; }
+/* pedaços que nunca quebram no meio — a barra quebra entre eles */
+.statusbar .sb-net, .statusbar .sb-links { white-space: nowrap; }
+/* menções de setor viram links reais (voz do sistema: aço, sem sublinhado) */
+.statusbar .sys a, .sitefoot .sys a { color: inherit; text-decoration: none;
+  padding: 8px 3px; margin: -8px -3px; border-radius: 3px; }
+.statusbar .sys a:hover, .statusbar .sys a:focus-visible,
+.sitefoot .sys a:hover, .sitefoot .sys a:focus-visible { color: #cfe7fa;
+  text-shadow: 0 0 8px rgba(105,170,215,.8); }
 .mainnav { display: flex; align-items: center; gap: 26px; padding: 22px 0; }
 .wordmark { font-family: var(--hcn-font-display); font-weight: 800;
   font-size: 18px; letter-spacing: .05em;
@@ -499,7 +515,30 @@
 .sitefoot .wrap { display: flex; justify-content: space-between; gap: 18px; flex-wrap: wrap; }
 
 @media (max-width: 860px) {
-  .mainnav ul { display: none; }
+  /* nav mobile: wordmark + CTA na primeira linha; o menu desce como um
+     painel holográfico de aço (mesma voz do .holonav) que quebra em linhas */
+  .mainnav { flex-wrap: wrap; gap: 14px 16px; }
+  .mainnav > :last-child { margin-left: auto; }
+  .mainnav ul {
+    order: 10; flex: 1 1 100%; flex-wrap: wrap; align-items: center;
+    gap: 2px; margin: 0; padding: 4px 6px; border-radius: 6px;
+    background: linear-gradient(180deg, rgba(105,170,215,.10), rgba(105,170,215,.03) 60%, rgba(105,170,215,.06));
+    border: 1px solid rgba(105,170,215,.34);
+    box-shadow: 0 0 18px rgba(105,170,215,.13), 0 1px 2px rgba(0,0,0,.5),
+      inset 0 1px 0 rgba(255,255,255,.14), inset 0 -1px 0 rgba(0,0,0,.4);
+  }
+  .mainnav ul a { display: inline-block;
+    font-family: var(--hcn-font-mono); font-size: 11.5px; font-weight: 400;
+    letter-spacing: .14em; text-transform: lowercase; color: var(--system);
+    padding: 11px 13px; }
+  .mainnav ul a:hover, .mainnav ul a:focus-visible { color: #cfe7fa;
+    background: rgba(105,170,215,.13);
+    text-shadow: 0 0 9px rgba(105,170,215,.9); }
+  /* alvos de toque ≥40px nas áreas de navegação */
+  .holonav a { padding: 11px 14px; }
+  .fliplink { padding: 14px 8px; margin: -14px -8px; }
+  .statusbar .sys a, .sitefoot .sys a { padding: 15px 4px; margin: -15px -4px; }
+  .statusbar { padding: 7px 16px; }
   .strip { grid-template-columns: 1fr !important; }
   .strip > * { border-right: none !important; border-top: 1px solid rgba(0,0,0,.6); }
   .manifest .mrow { grid-template-columns: 1fr; gap: 4px; }

@@ -15,7 +15,7 @@ foot_placard: <a class="fliplink" href="./projeto.html">← projeto</a>
 ---
 <div class="callout callout--warn"><span class="ico">🔥</span>
   <div><b>Oportunidade: hangar.com.br expirou em 01/06/2026</b>
-    <p>O titular atual não renovou. Se não pagar, o domínio entra no <b>processo de liberação do Registro.br</b> — dá para acompanhar e disputar. Plano completo: <a class="fliplink" href="./dominios-hangar.html">Plano hangar.com.br</a>. De olho também em <b>hangar.net.br</b>, que expira em 24/07/2026.</p></div>
+    <p>O titular atual não renovou. Se não pagar, o domínio entra no <b>processo de liberação do Registro.br</b> — dá para acompanhar e disputar. Plano completo: <a class="fliplink" href="./dominios-hangar.html">Plano hangar.com.br</a> · {{linear:HAN-15}}. De olho também em <b>hangar.net.br</b>, que expira em 24/07/2026.</p></div>
 </div>
 
 ## Já garantidos

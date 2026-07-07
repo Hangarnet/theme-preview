@@ -17,10 +17,13 @@
 
 <div class="wikigrid">
   <aside class="sidebar">
-    <a class="brand" href="../pages/index.html">
-      <img src="../logo/hangar-network.svg" alt="Hangar Network">
-    </a>
-    <nav class="wnav" aria-label="Wiki">
+    <div class="sidehead">
+      <a class="brand" href="../pages/index.html">
+        <img src="../logo/hangar-network.svg" alt="Hangar Network">
+      </a>
+      <button class="wmenu-tgl" type="button" aria-expanded="false" aria-controls="wnav">menu</button>
+    </div>
+    <nav class="wnav" id="wnav" aria-label="Wiki">
       <a href="./index.html">Início</a>
       <a href="./projeto.html">Projetos</a>
       <a href="./projeto-cloud.html" class="sub">Hangar Cloud</a>
@@ -67,7 +70,7 @@
 <p>A plataforma (ex-Brazas) já entrega multi-tenant por subdomínio, conta única da rede, onboarding self-service e um admin completo — o grosso é <b>encaixe e remodel</b>, não construção. A análise do código (2026-07-06) confirmou os ~90% e revelou os buracos que o plano ataca: a loja criada pelo fluxo expresso não fica ativa de cara, o fluxo de retorno ao onboarding tem um beco sem saída, e restos da marca antiga ainda apontam para o domínio velho.</p>
 <p>O plano passou por <b>revisão técnica de tech lead</b> (2026-07-06): cada ticket carrega solução técnica verificada contra o código, riscos, critérios de aceite e plano de teste. Veredito: a arquitetura proposta encaixa bem no que já existe — inclusive o ciclo de suspensão de trial, que já está construído e só precisa ser agendado.</p>
 <h2>As frentes</h2>
-<table>
+<div class="tablewrap"><table>
 <thead>
 <tr>
 <th>ticket</th>
@@ -120,7 +123,7 @@
 <td class="k">pós-smoke</td>
 <td>Baixa</td>
 </tr>
-</tbody></table>
+</tbody></table></div>
 <h2>Sequência</h2>
 <ul class="steel">
 <li><b>1 — núcleo:</b> <a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-6" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-6</a> + <a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-7" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-7</a> destravam a criação expressa; <a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-8" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-8</a> e <a class="linbadge" href="https://linear.app/hangar-network/issue/HAN-10" target="_blank" rel="noopener" title="Abrir no Linear"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2.886 4.18A11.982 11.982 0 0 1 11.99 0C18.624 0 24 5.376 24 12.009c0 3.64-1.62 6.903-4.18 9.105L2.887 4.18ZM1.817 5.626l16.556 16.556c-.524.33-1.075.62-1.65.866L.951 7.277c.247-.575.537-1.126.866-1.65ZM.322 9.163l14.515 14.515c-.71.172-1.443.282-2.195.322L0 11.358a12 12 0 0 1 .322-2.195Zm-.17 4.862 9.823 9.824a12.02 12.02 0 0 1-9.824-9.824Z"/></svg>HAN-10</a> vestem landing e admin com a marca nova</li>
@@ -142,6 +145,15 @@
   </main>
 </div>
 
+<script>
+/* menu mobile: o botão do sidebar abre/fecha a navegação da wiki */
+(function () {
+  var b = document.querySelector('.wmenu-tgl');
+  b.addEventListener('click', function () {
+    b.setAttribute('aria-expanded', b.closest('.sidebar').classList.toggle('open'));
+  });
+})();
+</script>
 <script>
 /* menu: expandir/recolher grupos de terceiro nível */
 document.querySelectorAll('.wnav .tgl').forEach(function (b) {
