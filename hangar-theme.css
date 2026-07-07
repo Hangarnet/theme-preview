@@ -516,18 +516,25 @@
 
 @media (max-width: 860px) {
   /* nav mobile: wordmark + CTA na primeira linha; o menu desce como um
-     painel holográfico de aço (mesma voz do .holonav) que quebra em linhas */
+     painel holográfico de aço em LINHA ÚNICA com scroll lateral (padrão
+     Netflix/apps de mídia) — nunca quebra; fade à direita sinaliza que
+     há mais itens; scrollbar escondida (swipe é natural no touch) */
   .mainnav { flex-wrap: wrap; gap: 14px 16px; }
   .mainnav > :last-child { margin-left: auto; }
   .mainnav ul {
-    order: 10; flex: 1 1 100%; flex-wrap: wrap; align-items: center;
+    order: 10; flex: 1 1 100%; flex-wrap: nowrap; align-items: center;
     gap: 2px; margin: 0; padding: 4px 6px; border-radius: 6px;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
     background: linear-gradient(180deg, rgba(105,170,215,.10), rgba(105,170,215,.03) 60%, rgba(105,170,215,.06));
     border: 1px solid rgba(105,170,215,.34);
     box-shadow: 0 0 18px rgba(105,170,215,.13), 0 1px 2px rgba(0,0,0,.5),
       inset 0 1px 0 rgba(255,255,255,.14), inset 0 -1px 0 rgba(0,0,0,.4);
+    -webkit-mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 34px), transparent 100%);
+    mask-image: linear-gradient(90deg, #000 0, #000 calc(100% - 34px), transparent 100%);
   }
-  .mainnav ul a { display: inline-block;
+  .mainnav ul::-webkit-scrollbar { display: none; }
+  .mainnav ul a { display: inline-block; flex: none; white-space: nowrap;
     font-family: var(--hcn-font-mono); font-size: 11.5px; font-weight: 400;
     letter-spacing: .14em; text-transform: lowercase; color: var(--system);
     padding: 11px 13px; }
