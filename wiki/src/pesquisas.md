@@ -30,4 +30,11 @@ foot_placard: arquivos completos com fontes: acervo interno da rede
       hub-and-spoke.</p>
     <span class="go">→ abrir</span>
   </a>
+  <a class="panel" href="./pesquisa-menu-mobile.html">
+    <span class="sys">// pesquisa · 2026-07-07</span>
+    <h3>Menu mobile: o padrão Netflix</h3>
+    <p>Como apps de mídia mantêm menus visíveis em telas estreitas: linha
+      única com swipe, fade na borda, scrollbar escondida. Adotado no template.</p>
+    <span class="go">→ abrir</span>
+  </a>
 </div>

@@ -29,6 +29,7 @@ const NAV = [
   { key: 'pesquisas', href: './pesquisas.html', label: 'Pesquisas' },
   { key: 'pesquisa-empacotamento', href: './pesquisa-empacotamento.html', label: 'Empacotamento', sub: true },
   { key: 'pesquisa-gamificacao', href: './pesquisa-gamificacao.html', label: 'Gamificação', sub: true },
+  { key: 'pesquisa-menu-mobile', href: './pesquisa-menu-mobile.html', label: 'Menu mobile', sub: true },
   { key: 'design', href: './design.html', label: 'Design' },
   { key: 'design-logos', href: './design-logos.html', label: 'Logos', sub: true },
   { key: 'design-template', href: './design-template.html', label: 'Template', sub: true },

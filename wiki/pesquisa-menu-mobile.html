@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Pesquisa: Empacotamento — Wiki Hangar Network</title>
+<title>Pesquisa: Menu mobile — Wiki Hangar Network</title>
 <link rel="icon" href="../logo/hangar-emblem.svg">
 <link rel="stylesheet" href="../hangar-theme.css">
 <link rel="stylesheet" href="./wiki.css">
@@ -11,8 +11,8 @@
 <body class="hangar">
 
 <div class="statusbar">
-  <span class="sys">hangar network // wiki · pesquisas · empacotamento <span class="led led--steel"></span></span>
-  <span class="placard">key insights · <b>2026-07-03</b></span>
+  <span class="sys">hangar network // wiki · pesquisas · menu mobile <span class="led led--steel"></span></span>
+  <span class="placard">key insights · <b>2026-07-07</b></span>
 </div>
 
 <div class="wikigrid">
@@ -42,9 +42,9 @@
       </div>
       <a href="./users.html">Users, auth, points &amp; tiers</a>
       <a href="./pesquisas.html">Pesquisas</a>
-      <a href="./pesquisa-empacotamento.html" class="sub" aria-current="page">Empacotamento</a>
+      <a href="./pesquisa-empacotamento.html" class="sub">Empacotamento</a>
       <a href="./pesquisa-gamificacao.html" class="sub">Gamificação</a>
-      <a href="./pesquisa-menu-mobile.html" class="sub">Menu mobile</a>
+      <a href="./pesquisa-menu-mobile.html" class="sub" aria-current="page">Menu mobile</a>
       <a href="./design.html">Design</a>
       <a href="./design-logos.html" class="sub">Logos</a>
       <a href="./design-template.html" class="sub">Template</a>
@@ -55,60 +55,51 @@
 
   <main class="content">
     <header>
-      <span class="sys sys--crumb">// wiki · pesquisas · <b>empacotamento</b></span>
-      <h1 class="display">Empacotamento: cloud vs <em>criação de sites</em></h1>
-      <p class="lead">Como as melhores startups (Vercel, Cloudflare, DigitalOcean, Hostinger, Wix/GoDaddy) organizam infra/devops e construção de sites — e como vendem.</p>
+      <span class="sys sys--crumb">// wiki · pesquisas · <b>menu mobile</b></span>
+      <h1 class="display">Menu mobile: o padrão <em>Netflix</em></h1>
+      <p class="lead">Pesquisa rápida sobre como apps de mídia resolvem navegação visível em telas estreitas — origem do padrão adotado nos menus de setor do template.</p>
     </header>
 
-<div class="callout callout--info"><span class="ico">🔗</span>
-  <div><b>Conta única é o elo</b>
-    <p>Todos os grandes separam os produtos por público (dev vs leigo) —
-      mas unificam a identidade e fazem cross-sell pela base
-      (Vercel v0 → hosting; DigitalOcean → Cloudways). É exatamente o
-      desenho da rede Hangar.</p></div>
+<div class="callout callout--ok"><span class="ico">✓</span>
+  <div><b>Decisão adotada no template</b>
+    <p>Menus de navegação em mobile nunca quebram linha: <b>linha única com scroll lateral</b> (swipe), scrollbar escondida e <b>fade na borda direita</b> como pista de que há mais itens. Aplicado ao menu dos setores (.mainnav ≤860px) e já era o padrão da barra de sintonia da TV (.tvnav).</p></div>
 </div><h2>Key insights</h2>
 <ul>
-<li><b>Separam produtos por público, não por tecnologia</b> — a divisão que sobrevive no mercado é por tipo de cliente</li>
-<li><b>Venda por público</b>: para dev, separado e por uso; para leigo, bundle em assinatura única — nunca misturar os modelos</li>
-<li><b>Bundle só como cross-sell</b> (desconto/crédito entre setores), nunca como produto único &quot;Sites+Cloud&quot;</li>
-<li><b>Lição Cloudflare</b>: dentro do Cloud, não fragmentar sub-produtos — um plano com capacidades, não três produtos</li>
+<li><b>Linha única com swipe é o padrão da indústria</b> — Netflix, YouTube, App
+Store e Play Store usam fileiras horizontais deslizáveis para categorias e
+filtros; o menu nunca quebra em múltiplas linhas</li>
+<li><b>Swipe lateral é natural no touch</b> (NN/g): usuários mobile deslizam sem
+fricção; o problema do scroll horizontal é no desktop, onde exigem-se setas
+ou outra affordance visível</li>
+<li><b>A affordance certa no mobile é o corte/fade na borda</b> — um item
+parcialmente visível (ou um gradiente de fade) comunica &quot;tem mais para o
+lado&quot; sem UI extra; setas só se justificam com ponteiro/hover</li>
+<li><b>Scrollbar escondida</b> — a barra nativa suja o visual e não agrega no
+touch; o conteúdo cortado já é o indicador</li>
 </ul>
-<h2>Como cada player se organiza</h2>
-<div class="tablewrap"><table>
-<thead>
-<tr>
-<th>empresa</th>
-<th>modelo</th>
-</tr>
-</thead>
-<tbody><tr>
-<td class="k">Vercel</td>
-<td>Infra (Vercel) e builder por IA (v0) — produtos distintos, mesma marca e conta; billing separado</td>
-</tr>
-<tr>
-<td class="k">Cloudflare</td>
-<td>Serviços de site (por domínio) vs developer platform (por uso); consolidando a infra em 2026</td>
-</tr>
-<tr>
-<td class="k">DigitalOcean</td>
-<td>Comprou a Cloudways e manteve marca separada: DO p/ devs, Cloudways p/ quem quer tudo gerenciado</td>
-</tr>
-<tr>
-<td class="k">Hostinger</td>
-<td>Casa única (hPanel): shared, VPS, cloud e builder por IA — o builder é a vitrine</td>
-</tr>
-<tr>
-<td class="k">Wix</td>
-<td>Sistema fechado: o builder É o produto, hosting invisível dentro dele</td>
-</tr>
-</tbody></table></div>
-<h2>Referência</h2>
+<h2>Como ficou no tema</h2>
 <ul class="steel">
-<li><b>Pesquisa Claude · 03/07/2026</b> — varredura web com fontes. Arquivo completo: <em>references/domains-and-business/2026-07-03-pesquisa-cloud-vs-sites-empacotamento.md</em></li>
+<li><code>.mainnav ul</code> ≤860px: flex nowrap + overflow-x auto + scrollbar-width none<ul>
+<li>mask-image com fade de 34px à direita; o casco do painel holográfico fica
+fixo, só os itens rolam</li>
+</ul>
+</li>
+<li><code>.tvnav</code> (Hnet TV): mesmo conceito, com fade próprio — as duas navegações
+falam o mesmo idioma</li>
+<li>Detecção de overflow em QA: elementos dentro de um scroller horizontal
+intencional não contam como estouro de viewport</li>
+</ul>
+<h2>Referências</h2>
+<ul class="steel">
+<li><b>Pesquisa Claude · 07/07/2026</b> — busca web rápida (não robusta)</li>
+<li>NN/g — Beware Horizontal Scrolling and Mimicking Swipe on Desktop
+(nngroup.com/articles/horizontal-scrolling/)</li>
+<li>Netflix Help Center — Updated layout, navigation for the Netflix mobile app
+(help.netflix.com/en/node/575087423404644)</li>
 </ul>
 
     <div class="wikifoot">
-      <span class="sys">hangar network // wiki · pesquisas · <b>empacotamento</b></span>
+      <span class="sys">hangar network // wiki · pesquisas · <b>menu mobile</b></span>
       <span class="placard"><a class="fliplink" href="./pesquisas.html">← pesquisas</a></span>
     </div>
   </main>
